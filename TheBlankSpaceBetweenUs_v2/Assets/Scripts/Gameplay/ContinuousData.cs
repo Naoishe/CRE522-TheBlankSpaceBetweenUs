@@ -6,7 +6,7 @@ public class ContinuousData : MonoBehaviour
     public static ContinuousData instance;
     public Scene currentScene;
     public Scene previousScene;
-    //public string playerName;
+    public string playerName;
 
     public int CDtimeIndex;
     public int CDdayIndex;

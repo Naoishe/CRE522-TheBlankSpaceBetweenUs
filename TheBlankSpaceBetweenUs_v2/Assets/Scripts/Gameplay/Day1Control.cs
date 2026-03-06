@@ -71,10 +71,11 @@ public class Day1Control : MonoBehaviour
     }
     void Update()
     {
-        if (ContinuousData.instance.interactionsHad == 5)
+        /*if (ContinuousData.instance.interactionsHad == 5)
         {
             ObjUpdate2?.Invoke();
         }
+        */
         player = GameObject.Find("PlayerObj");
         playerCollider = player.GetComponent<Collider2D>();
         if (ContinuousData.instance.currentSceneName == "PlayerHouse")
