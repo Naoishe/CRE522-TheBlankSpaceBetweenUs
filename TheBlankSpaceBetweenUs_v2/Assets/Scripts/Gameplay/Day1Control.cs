@@ -77,7 +77,12 @@ public void SceneChangeDetected()
             PreSceneChange?.Invoke();
             nextSceneString = "CampusGrounds";
             StartCoroutine(SceneLoad());
-        }
+    }
+
+    if (ContinuousData.instance.currentSceneName == "CampusGrounds")
+    {
+            CampusGroundsSceneChange();
+    }
 
     if (ContinuousData.instance.currentSceneName == "Midday")
     {

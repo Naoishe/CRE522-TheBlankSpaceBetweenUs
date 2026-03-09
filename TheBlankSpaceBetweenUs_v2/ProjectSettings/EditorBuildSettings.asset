@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Library.unity
     guid: 5bd2120ee03563b458f5cadbaf227218
+  - enabled: 1
+    path: Assets/Scenes/HolderScene.unity
+    guid: cb0c5784e4db6354780535695a246431
   m_configObjects: {}

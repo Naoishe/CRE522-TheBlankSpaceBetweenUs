@@ -27,6 +27,9 @@ public class CampusGrounds : MonoBehaviour
             notificationSound.Play();
             StartCoroutine(DelayObj());
         }*/
+
+        objective.SetActive(false);
+        objective2.SetActive(false);
         if (ContinuousData.instance.libraryVisited)
         {
             objective2.SetActive(true);
@@ -80,13 +83,15 @@ private void Update()
                 targetScene = "HolderScene";
                 SceneChanged?.Invoke();
             }
+            else
+            {
+                noReturn.SetActive(true);
+                StartCoroutine(DelayObj(noReturn));
+
+            }
 
         }
-        else
-        {
-            noReturn.SetActive(true);
-            StartCoroutine(DelayObj(noReturn));
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.L))
         {
