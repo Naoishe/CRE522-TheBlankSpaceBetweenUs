@@ -53,11 +53,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public string name
-    {
-        get { return privName; }
-        set { privName = value; }
-    }
 
     public Player()
     {

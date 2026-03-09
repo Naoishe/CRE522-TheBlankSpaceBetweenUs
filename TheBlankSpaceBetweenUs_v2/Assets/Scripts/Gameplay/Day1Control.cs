@@ -1,7 +1,8 @@
-using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.Collections.AllocatorManager;
 
 public class Day1Control : MonoBehaviour
 {
@@ -11,28 +12,15 @@ public class Day1Control : MonoBehaviour
     public static Action ObjUpdate1;
     public static Action ObjUpdate2;
 
-    /// <summary>
-    /// DEV NOTE: 
-    ///     SCENE STRING NAMES --- index in build settings:
-    ///         "PlayerHouse" --- 0
-    ///         "CampusGrounds" --- 1
-    ///         
-    /// </summary>
-
     public Collider2D playerCollider;
-    public Collider2D interactingCollider;
+    public GameObject gameManager;
 
     private GameObject player;
-    private bool objectivesFinished;
 
     private string nextSceneString;
-    private bool disableCode;
 
     public static Day1Control instance;
     public string playerName;
-
-    private string comparisonString;
-    private int preventClassEndedMethod;
 
 
     /// <summary>
@@ -42,24 +30,23 @@ public class Day1Control : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(gameObject);
-        disableCode = false;
-        preventClassEndedMethod = 0;
     }
 
     private void OnEnable()
     {
         
-        NewSceneLoaded += ResetBool;
         NewSceneLoaded += InitialisePlayer;
-        NewSceneLoaded += ObjectiveLoad;
+        PHDay1.LeavingHouse += SceneChangeDetected;
+        CampusGrounds.SceneChanged+= SceneChangeDetected;
+        Library.ReturnToCampus += SceneChangeDetected;
     }
 
     private void OnDisable()
     {
-        
-        NewSceneLoaded -= ResetBool;
         NewSceneLoaded -= InitialisePlayer;
-        NewSceneLoaded -= ObjectiveLoad;
+        PHDay1.LeavingHouse -= SceneChangeDetected;
+        CampusGrounds.SceneChanged -= SceneChangeDetected;
+        Library.ReturnToCampus -= SceneChangeDetected;
     }
 
     private void Start()
@@ -71,69 +58,45 @@ public class Day1Control : MonoBehaviour
     }
     void Update()
     {
-        /*if (ContinuousData.instance.interactionsHad == 5)
-        {
-            ObjUpdate2?.Invoke();
-        }
-        */
+        
         player = GameObject.Find("PlayerObj");
         playerCollider = player.GetComponent<Collider2D>();
-        if (ContinuousData.instance.currentSceneName == "PlayerHouse")
-        {
-            interactingCollider = GameObject.Find("ExitCollider1").GetComponent<Collider2D>();
-        }
-        if (ContinuousData.instance.currentSceneName == "Midday")
-        {
-            interactingCollider = GameObject.Find("debuggingCollider").GetComponent<Collider2D>();
-        }
-        if (ContinuousData.instance.currentSceneName == "CampusGrounds")
-        {
-            interactingCollider = GameObject.Find("ReturnCollider1").GetComponent<Collider2D>();
-        }
 
-        //Variable check updates
-        
-        if (Physics2D.IsTouching(interactingCollider, playerCollider)) //Leaving house in morning - TIMEFRAME UPDATE: Morning to Midday
-                                                                //SCENE UPDATE: PlayerHouse to CampusGrounds
-        {
-            if(!disableCode)
-            {
-                if (ContinuousData.instance.currentSceneName == "PlayerHouse")
-                {
-                    disableCode = true;
-                    PreSceneChange?.Invoke();
-                    nextSceneString = "Midday";
-                    StartCoroutine(SceneLoad());
-                }
-                if (ContinuousData.instance.currentSceneName == "Midday")
-                {
-                    Debug.Log("Player shouldn't be here");
+    }
 
-                }
-                if (ContinuousData.instance.currentSceneName == "CampusGrounds")
-                {
-                    disableCode = true;
-                    PreSceneChange?.Invoke();
-                    nextSceneString = "PlayerHouse";
-                    StartCoroutine(SceneLoad());
-                }
-            }
-            
-        }
-        if (ContinuousData.instance.currentSceneName == "Midday")
-        {
-            disableCode = true;
+public void SceneChangeDetected()
+{
+    if (ContinuousData.instance.currentSceneName == "PlayerHouse")
+    {
+    
+        PreSceneChange?.Invoke();
+        nextSceneString = "Midday";
+        StartCoroutine(SceneLoad());
+    }
+    if (ContinuousData.instance.currentSceneName == "Library")
+    {
             PreSceneChange?.Invoke();
-            nextSceneString = "Midday";
+            nextSceneString = "CampusGrounds";
             StartCoroutine(SceneLoad());
         }
-        
 
+    if (ContinuousData.instance.currentSceneName == "Midday")
+    {
+        PreSceneChange?.Invoke();
+        nextSceneString = "CampusGrounds";
+        StartCoroutine(SceneLoad());
+    }
+}
+
+    public void CampusGroundsSceneChange()
+    {
+        PreSceneChange?.Invoke();
+        nextSceneString = gameManager.GetComponent<CampusGrounds>().targetScene;
+        StartCoroutine(SceneLoad());
     }
 
     public void ClassEnded()
     {
-        preventClassEndedMethod++;
         nextSceneString = "CampusGrounds";
         BufferMethod();
     }
@@ -153,29 +116,16 @@ public class Day1Control : MonoBehaviour
         
 
     }
-    private void ObjectiveLoad()
-    {
-        
-        if (ContinuousData.instance.currentSceneName == "CampusGrounds")
-        {
-            ObjUpdate1?.Invoke();
-        }
-        
-
-
-
-    }
-
-    public void ResetBool()
-    {
-        disableCode= false;
-    }
 
     private void InitialisePlayer()
     {
-        if (ContinuousData.instance.currentSceneName == "CampusGrounds")
+        if (ContinuousData.instance.currentSceneName == "CampusGrounds" && ContinuousData.instance.previousScene.name=="Midday")
         {
-            player.transform.position = new Vector3(40.8f, -12.7f, 0);
+            player.transform.position = new Vector3(40f,0.5f,0f);
+        }
+        if (ContinuousData.instance.currentSceneName == "CampusGrounds" && ContinuousData.instance.previousScene.name == "Library")
+        {
+            player.transform.position = new Vector3(-34f,43f, 0f);
         }
     }
 

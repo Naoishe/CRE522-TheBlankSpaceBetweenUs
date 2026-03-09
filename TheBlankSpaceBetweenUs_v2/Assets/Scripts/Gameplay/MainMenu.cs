@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using System;
 
 public class MainMenu : MonoBehaviour
 {
     public Button startButton;
-    private string receivedPlayerName;
-    private Image whiteLerp;
-    private Image blackLerp;
-    public Text text;
+    public Image whiteLerp;
+    public Image blackLerp;
+    public GameObject newNameObject;
+    public GameObject confirmButtons;
+    public TextMeshProUGUI askingText;
+    public string submittedName;
+    public InputField inputField;
     public float minOpacity=-1.0f;
     public float maxOpacity=1.0f;
+
     static float whiteT = 0.0f;
     static float blackT = 0.0f;
+
+    public static Action startButtonPressed;
 
 
 
@@ -26,40 +34,66 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        DEBUGVAR_block = false;
-
-
+     
     }
     void Update()
     {
-        if (!DEBUGVAR_block) 
-        {
-            WhiteLerpScreen();
-        }
+        
 
     }
 
     public void StartNewGame()
     {
+        startButtonPressed?.Invoke();
         WhiteLerpScreen();
-        //SceneManager.LoadScene("PlayerHouse");
     }
 
     public void WhiteLerpScreen()
     {
-        // value = new Vector3(Mathf.Lerp(minimum, maximum, t), 0, 0);
-        //whiteLerp.GetComponent<Image>().color.a = 0f;
         whiteLerp.color = new Color(whiteLerp.color.r, whiteLerp.color.g, whiteLerp.color.b, Mathf.Lerp(minOpacity, maxOpacity, whiteT));
         whiteT += 0.5f * Time.deltaTime;
 
         if (whiteT >= 1.0f)
         {
-            DEBUGVAR_block = true;
+            RequestName();
         }
     }
 
-    private void RegisterPlayerName()
+    public void BlackLerpScreen()
     {
+        blackLerp.color = new Color(blackLerp.color.r, blackLerp.color.g, blackLerp.color.b, Mathf.Lerp(minOpacity, maxOpacity, blackT));
+        blackT += 0.5f * Time.deltaTime;
+
+        if (blackT >= 1.0f)
+        {
+            SceneManager.LoadScene("PlayerHouse");
+        }
+    }
+
+    public void RequestName()
+    {
+        newNameObject.SetActive(true);
+        confirmButtons.SetActive(false);
+        askingText.text = "What is your name?";
+    }
+
+    public void SubmitName()
+    {
+        submittedName = inputField.text;
+        newNameObject.SetActive(false);
+        askingText.text = submittedName + "...Is that right?...";
+        confirmButtons.SetActive(true);
+
 
     }
+
+    public void ConfirmName()
+    {
+        confirmButtons.SetActive(false);
+        askingText.text = "Alright...I'll remember that.";
+        BlackLerpScreen();
+
+    }
+
+
 }

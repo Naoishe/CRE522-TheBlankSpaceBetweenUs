@@ -8,7 +8,7 @@ using TMPro;
 public class TimeUI : MonoBehaviour
 {
     
-    public TextMeshProUGUI timeText;
+    //public TextMeshProUGUI timeText;
     public Animator sundialAnimator;
     private float staticTimeFeedingVar;
     //public TimeManager timeManager;
@@ -31,14 +31,14 @@ public class TimeUI : MonoBehaviour
         timeIndex = TimeManager.TimeFrameIndex;  
         day= TimeManager.Day;
         timeframe = TimeManager.TimeFrame[timeIndex];
-        UpdateTime();
+        //UpdateTime();
         UpdateSundial();
 
     }
     
     private void UpdateTime()
     {
-        timeText.text = $"Day {day}: {TimeManager.TimeFrame[timeIndex]}";
+        //timeText.text = $"Day {day}: {TimeManager.TimeFrame[timeIndex]}";
         //Debug.Log("TimeUpdated");
         //Debug.Log("timeIndex = " + timeIndex);
         //Debug.Log("Day = " + day);

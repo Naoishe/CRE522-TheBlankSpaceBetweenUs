@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PlayerHouse.unity
+    guid: da4c245c83f63f841b35e8078870580b
+  - enabled: 1
+    path: Assets/Scenes/Midday.unity
+    guid: 3d86cb717aaeef247a4dab2e7476d15a
+  - enabled: 1
+    path: Assets/Scenes/CampusGrounds.unity
+    guid: 3cdd097987a0cd744841ef976a834d80
+  - enabled: 1
+    path: Assets/Scenes/Library.unity
+    guid: 5bd2120ee03563b458f5cadbaf227218
   m_configObjects: {}
