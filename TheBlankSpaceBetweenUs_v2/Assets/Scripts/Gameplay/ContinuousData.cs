@@ -15,7 +15,7 @@ public class ContinuousData : MonoBehaviour
     public int currentSceneBuildIndex;
     public bool nikoImagebool;
 
-    public int libraryVisted=0;
+    public bool libraryVisited;
 
     public int interactionsHad;
 
@@ -30,14 +30,15 @@ public class ContinuousData : MonoBehaviour
         interactionsHad = 0;
         variableStorage = FindObjectOfType<InMemoryVariableStorage>();
         nikoImagebool = false;
-    }
+        libraryVisited = false;
+}
 
     public void Update()
     {
         if (currentSceneName == "Library")
         {
-            libraryVisted = 1;
-            variableStorage.TryGetValue("$NikoImage", out nikoImagebool);
+            libraryVisited = true;
+            //variableStorage.TryGetValue("$NikoImage", out nikoImagebool);
             
         }
         

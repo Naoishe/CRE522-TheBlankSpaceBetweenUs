@@ -45,6 +45,11 @@ public class Library : MonoBehaviour
             nikoImage.SetActive(false);
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ReturnToCampus?.Invoke();
+        }
+
         /*if (ContinuousData.instance.nikoImagebool)
         {
             nikoImage.SetActive(true);

@@ -11,7 +11,9 @@ public class CampusGrounds : MonoBehaviour
     public Collider2D playerCollider;
     public string targetScene;
     public GameObject objective;
+    public GameObject objective2;
     public GameObject noReturn;
+    public GameObject player;
 
     public AudioSource notificationSound;
 
@@ -25,9 +27,20 @@ public class CampusGrounds : MonoBehaviour
             notificationSound.Play();
             StartCoroutine(DelayObj());
         }*/
-        objective.SetActive(true);
-        notificationSound.Play();
-        StartCoroutine(DelayObj(objective));
+        if (ContinuousData.instance.libraryVisited)
+        {
+            objective2.SetActive(true);
+            notificationSound.Play();
+            StartCoroutine(DelayObj(objective2));
+            player.transform.position = new Vector3(-34f,45.5f,0f);
+        }
+        else
+        {
+            objective.SetActive(true);
+            notificationSound.Play();
+            StartCoroutine(DelayObj(objective));
+            player.transform.position = new Vector3(3.85f,1f,0f);
+        }
     }
 
     IEnumerator DelayObj(GameObject gameObj)
@@ -46,17 +59,33 @@ private void Update()
         }
         if (Physics2D.IsTouching(toHome, playerCollider))
         {
-            if(ContinuousData.instance.libraryVisted > 0)
+            if (ContinuousData.instance.libraryVisited)
             {
                 targetScene = "HolderScene";
                 SceneChanged?.Invoke();
+
             }
             else
             {
                 noReturn.SetActive(true);
                 StartCoroutine(DelayObj(noReturn));
             }
-            
+           
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (ContinuousData.instance.libraryVisited)
+            {
+                targetScene = "HolderScene";
+                SceneChanged?.Invoke();
+            }
+
+        }
+        else
+        {
+            noReturn.SetActive(true);
+            StartCoroutine(DelayObj(noReturn));
         }
 
         if (Input.GetKeyDown(KeyCode.L))
