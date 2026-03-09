@@ -1,5 +1,7 @@
 ﻿title: Class0
+
 ---
+<<declare $EndClass = false>>
 It was your last year thankfully, the only saving grace in this stupid course. 
 You were desperately trying to hang on to graduating that year, but day by day
 s you got back your essays, 
@@ -60,5 +62,5 @@ Professor: "You can do this, Y/N ...just take it slow,"
 
 You had nodded, looking at him before you found yourself out of the building. 
 You: "Well, time to get to work I suppose..."
-
+<<set $EndClass to true>>
 ===

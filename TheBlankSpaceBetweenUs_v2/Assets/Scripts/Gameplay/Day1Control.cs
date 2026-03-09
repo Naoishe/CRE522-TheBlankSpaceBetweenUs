@@ -13,7 +13,6 @@ public class Day1Control : MonoBehaviour
     public static Action ObjUpdate2;
 
     public Collider2D playerCollider;
-    public GameObject gameManager;
 
     private GameObject player;
 
@@ -90,7 +89,10 @@ public void SceneChangeDetected()
 
     public void CampusGroundsSceneChange()
     {
+
         PreSceneChange?.Invoke();
+        GameObject gameManager;
+        gameManager = GameObject.Find("GameManager");
         nextSceneString = gameManager.GetComponent<CampusGrounds>().targetScene;
         StartCoroutine(SceneLoad());
     }

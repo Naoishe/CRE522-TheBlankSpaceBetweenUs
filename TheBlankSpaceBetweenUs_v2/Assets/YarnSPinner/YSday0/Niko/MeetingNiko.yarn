@@ -1,0 +1,184 @@
+﻿title: MeetingNiko
+
+---
+<<declare $playerName = "player">>
+<<declare $NikoImage = false>>
+When you entered the library, the smell of new books and warm coffee 
+washed over you, as the murmurs of students studying enveloped the room. 
+The library was always very nice and homey, where you liked to study in 
+as you read books assigned to you.
+
+A good candidate for this essay would definitely be here, you thought, 
+in the library where some bookworms can have the best opinions on life. 
+So you looked around the library for the right person to ask.
+
+You: "This is impossible," 
+You sighed. Everyone was in clusters, in study groups or just talking to 
+each other for lunch. You felt too awkward to go up to a bunch of people 
+in a group and ask if they'd like to participate in a questionnaire.
+
+Turning to one of the many bookcases, you shrug your shoulders, 
+absentmindedly looking at a bunch of random books laid just for you to take. 
+You saw nothing you liked, and that's when you turned your head.
+
+To your right, there was a lonesome man dressed in blacks and browns, 
+which made him look like a character out of a gothic novel. 
+The only bright hues on his person was the harsh blonde highlights in his hair, 
+and his bright amber eyes that seemed so focused on all the books around him. 
+His hands grazed the spines so delicately, and stopped, 
+hovering over one before plucking it precision.
+
+ You didn't know how he managed to open the book with one hand, but he did, 
+ reading the first few pages before he nodded. And that's when he turned also 
+ to meet your gaze, his stoic and piercing eyes meeting your own.
+
+From shock, you had quickly looked away, face warming up from the embarrassment 
+of being caught so suddenly. You heard a sigh emit from him as he spoke...
+<<set $NikoImage to true>>
+???: "Do you need something?" 
+<<set $NikoImage to false>>
+His voice was gravely, rough, as if he never really uses it and was laced with 
+annoyance that you could feel ooze from him. You really didn't want to bother him, 
+but you also needed a candidate for your essay. Maybe approaching the groups 
+would be way more easy than whatever shit this was from this one singular guy.
+
+-> walk away
+    <<WalkAway>>
+-> freeze up
+    <<FreezeUp>>
+-> walk towards him
+    <<WalkTowardsHim>>
+
+
+===
+
+title: WalkAway
+---
+<<declare $playerName = "player">>
+<<declare $NikoImage = false>>
+Fuck it, you couldn't do it, you thought, as you quickly tried to book it out of 
+that isle. You hadn’t seen the pile of books laid haphazardly on the ground, 
+pathetically you had landed on the ground with a loud "OOF". 
+You felt so embarrassed as you quickly got up to try to get away. 
+The man was feeling oh so generous and decided to rub more salt into the wound 
+by scoffing loudly at you, letting out a mocking laugh which had your face 
+burning bright. You have never felt more humiliated than now.
+<<set $NikoImage to true>>
+???: "That looked like it hurt," 
+<<set $NikoImage to false>>
+He had said, a taunt in his voice as you turned your head to look at him. A wide 
+smile was happily on his mouth now , and it made you feel even more ashamed to 
+talk to him. You got his attention now, it would be a waste to not take this 
+opportunity, might as well use your embarrassment for good.
+
+Swallowing your shame, you got up patted yourself down. Embarrassment filled you 
+as you approached him, and his eyebrow raised at your audacity.  
+You: "Hi my name is {$playerName}. I need some volunteers for my last essay in Philosophy, 
+You: and I was wondering if you'd be interested in being one?" 
+You had mustered all the confidence that you could as you declared why you were bothering 
+this random guy, and the sole response you received back was an amused smile
+
+<<MeetingNiko2>>
+===
+
+title: FreezeUp
+---
+<<declare $playerName = "player">>
+<<declare $NikoImage = false>>
+You: "Uhh..." 
+What a terrible start, you sighed, already stuttering and you haven't even talked to him yet. 
+You looked back at him, and he was looking down at you from down his nose. 
+This guy leaked of confidence, and it pissed you off already. 
+Whatever, sometimes you just had to suck it up
+
+You: "Hi my name is {$playerName}. I need some volunteers for my last essay in Philosophy, 
+You: and I was wondering if you'd be interested in being one," 
+You had mustered all the confidence that you could as you declared why you were 
+bothering this random guy, and the sole response you received back was a raised eyebrow.
+<<MeetingNiko2>>
+===
+
+title: WalkTowardsHim
+---
+<<declare $playerName = "player">>
+<<declare $NikoImage = false>>
+You had gathered enough confidence for this interaction in a split second, your 
+legs acting on their own and approaching the tall, lanky man. He had raised an 
+eyebrow at you, hands dropping and the book lazily being held in one of them. 
+He pulled is entire body to turn to you, and it was then did you realise how much he 
+towered over you. His eyes seemed to glow under the shadow casted under his face. 
+He seemed more annoyed then curious this up close, and it was making you 
+regret interrupting him.
+
+You: "Hi my name is {$playerName}. I need some volunteers for my last essay in 
+You: Philosophy, and I was wondering if you'd be interested in being one," 
+You had mustered all the confidence that you could as you declared why you were 
+bothering this random guy, and the sole response you received back was soft scoff.
+
+<<MeetingNiko2>>
+===
+
+title: MeetingNiko2
+---
+<<declare $playerName = "player">>
+<<declare $NikoImage = false>>
+The book guy's eyes closed for a second in thought, and a sigh released as he made 
+up his mind right in front of you. His eyes snapped open, and his demeanor turned 
+less hostile and annoyed. He seemed to have softened up, too.
+<<set $NikoImage to true>>
+???: "Okay," 
+<<set $NikoImage to false>>
+he said, sounding content, 
+<<set $NikoImage to true>>
+???: "I have decided. I agree to volunteer to be a part of your candidates," 
+<<set $NikoImage to false>>
+He seemed more approachable now with his walls a little down and relaxed. 
+Whatever you said must have convinced him, because he had agreed without a lot 
+of persuasion. Huh, success for you, that's all that mattered in the end.
+
+Shifting his posture, he turned his body to fully face you. The unnerving air 
+around him slowly dissipated, leaving your nerves to finally settle. It was 
+then that you saw he was carrying a satchel on his right shoulder, the same side 
+he was holding that book he picked out in the beginning.
+
+A glint of gold caught your eye, and it was then that you noticed the book was 
+gold lined. The book had the title 'Wuthering Heights' a book that had been 
+on your reading list for so long.
+<<set $NikoImage to true>>
+Niko: "My name is Niko, I'm doing Music here. It's nice to meet you," 
+<<set $NikoImage to false>>
+He had abruptly said, left hand stretched out to receive a handshake. 
+You stared it down, brain short circuiting as you reached up to take it. 
+His hands were cold, you noted mentally, and shook it once before he let go. 
+Seems like he doesn't like touching people since he grimaced as you 
+touched his hand. Okay rude.
+
+You: "It's nice to meet you too," 
+You said back, and with that you had give him the first question for your essay. 
+He was confused, but when you explained what the questions were to be used for, 
+he seemed to understand better. "Right," He had said, nodding slowly which sort of 
+implied that no he did not understand why you needed this 
+<<set $NikoImage to true>>
+Niko: "I'll answer this for you for tomorrow then...goodbye for now,"
+<<set $NikoImage to false>>
+
+And that was that, your conversation over so suddenly as he dismissed you as if you were no one. 
+You blinked as he walked away from you so suddenly, and you sighed. 
+You had no idea how to think about him.
+
+-> Like him
+    <<EndingPart>>
+-> Don't mind him
+    <<EndingPart>>
+-> Don't like him 
+    <<EndingPart>>
+===
+
+title: EndingPart
+---
+<<declare $playerName = "player">>
+<<declare $NikoImage = false>>
+You've got a candidate sorted, no need to stick around here much longer. Time to head home...
+===
+
+

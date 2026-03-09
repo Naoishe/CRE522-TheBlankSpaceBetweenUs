@@ -9,7 +9,7 @@ using System;
 
 public class PHDay1 : MonoBehaviour
 {
-    public Image blackLerp;
+    //public Image blackLerp;
     static float blackT = 0.0f;
     public Collider2D playerCollider;
     public Collider2D interactingCollider;
@@ -41,7 +41,7 @@ public class PHDay1 : MonoBehaviour
         }
     }
 
-    public void BlackLerpScreen()
+    /*public void BlackLerpScreen()
     {
         blackLerp.color = new Color(blackLerp.color.r, blackLerp.color.g, blackLerp.color.b, Mathf.Lerp(minOpacity, maxOpacity, blackT));
         blackT += 0.5f * Time.deltaTime;
@@ -50,5 +50,5 @@ public class PHDay1 : MonoBehaviour
         {
             SceneManager.LoadScene("Midday");
         }
-    }
+    }*/
 }

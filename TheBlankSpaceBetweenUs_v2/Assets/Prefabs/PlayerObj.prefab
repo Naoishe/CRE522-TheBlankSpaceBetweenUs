@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7733416462280227426}
   - component: {fileID: 8208847462085955302}
   - component: {fileID: 7156874462188848155}
+  - component: {fileID: 3989462826105728832}
   m_Layer: 0
   m_Name: PlayerObj
   m_TagString: Untagged
@@ -122,9 +123,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4842702991533775656}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b021dd53fda3eba40aa3e7063efd05fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -180,3 +181,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32652617, y: 0.2470517}
   m_EdgeRadius: 0
+--- !u!114 &3989462826105728832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842702991533775656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7878e05ab6e5f64bb651b06ebf3b24d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchRadius: 10
+  player: {fileID: 4842702991533775656}
+  animator: {fileID: 8208847462085955302}
+  collidingObjects: []
+  currentlyInteractingObject: {fileID: 0}
+  walkSpeed: 5
+  sprintSpeed: 0
+  isWalking: 0
+  playerCollectableCounter: 0

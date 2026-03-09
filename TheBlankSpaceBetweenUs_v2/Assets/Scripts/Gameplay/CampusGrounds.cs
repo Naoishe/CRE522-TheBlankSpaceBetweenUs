@@ -11,22 +11,29 @@ public class CampusGrounds : MonoBehaviour
     public Collider2D playerCollider;
     public string targetScene;
     public GameObject objective;
+    public GameObject noReturn;
+
+    public AudioSource notificationSound;
 
     public static Action SceneChanged;
 
     private void Start()
     {
-        if (ContinuousData.instance.previousScene.name == "Midday")
+        /*if (ContinuousData.instance.previousScene.name == "Midday")
         {
             objective.SetActive(true);
+            notificationSound.Play();
             StartCoroutine(DelayObj());
-        }
+        }*/
+        objective.SetActive(true);
+        notificationSound.Play();
+        StartCoroutine(DelayObj(objective));
     }
 
-    IEnumerator DelayObj()
+    IEnumerator DelayObj(GameObject gameObj)
     {
         yield return new WaitForSeconds(5f);
-        objective.SetActive(false);
+        gameObj.SetActive(false);
         
     }
 
@@ -39,7 +46,22 @@ private void Update()
         }
         if (Physics2D.IsTouching(toHome, playerCollider))
         {
-            targetScene = "PlayerHouse";
+            if(ContinuousData.instance.libraryVisted > 0)
+            {
+                targetScene = "HolderScene";
+                SceneChanged?.Invoke();
+            }
+            else
+            {
+                noReturn.SetActive(true);
+                StartCoroutine(DelayObj(noReturn));
+            }
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            targetScene = "Library";
             SceneChanged?.Invoke();
         }
     }

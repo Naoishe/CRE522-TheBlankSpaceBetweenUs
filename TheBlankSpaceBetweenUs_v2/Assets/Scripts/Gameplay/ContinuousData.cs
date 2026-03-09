@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class ContinuousData : MonoBehaviour
 {
@@ -12,8 +13,14 @@ public class ContinuousData : MonoBehaviour
     public int CDdayIndex;
     public string currentSceneName;
     public int currentSceneBuildIndex;
+    public bool nikoImagebool;
+
+    public int libraryVisted=0;
 
     public int interactionsHad;
+
+    public InMemoryVariableStorage variableStorage;
+    
     private void Awake()
     {
         instance = this;
@@ -21,7 +28,20 @@ public class ContinuousData : MonoBehaviour
         CDtimeIndex = 0;
         CDdayIndex = 0;
         interactionsHad = 0;
-}
+        variableStorage = FindObjectOfType<InMemoryVariableStorage>();
+        nikoImagebool = false;
+    }
+
+    public void Update()
+    {
+        if (currentSceneName == "Library")
+        {
+            libraryVisted = 1;
+            variableStorage.TryGetValue("$NikoImage", out nikoImagebool);
+            
+        }
+        
+    }
 
     private void OnEnable()
     {
@@ -55,6 +75,12 @@ public class ContinuousData : MonoBehaviour
         interactionsHad++;
     }
 
-    
+    public void UpdatePlayerName(string name)
+    {
+        playerName = name;
+        variableStorage.SetValue("$playerName", playerName);
+
+    }
+
 
 }

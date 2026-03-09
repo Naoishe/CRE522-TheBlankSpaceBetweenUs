@@ -17,6 +17,7 @@ public class MenuListener : MonoBehaviour
     public GameObject MenuScript;
 
     static float lerpT = 0.0f;
+    static float volumeLerp = 0.0f;
     void Start()
     {
         MainMusic.Play();
@@ -24,16 +25,28 @@ public class MenuListener : MonoBehaviour
     private void OnEnable()
     {
         MainMenu.startButtonPressed += PlaySoundEffect;
+        MainMenu.startButtonPressed += LerpMusic;
     }
 
     private void OnDisable()
     {
-        MainMenu.startButtonPressed += PlaySoundEffect;
-        MainMenu.startButtonPressed += LoadGame;
+        MainMenu.startButtonPressed -= PlaySoundEffect;
+        MainMenu.startButtonPressed -= LerpMusic;
     }
     void Update()
     {
         
+    }
+
+    public void LerpMusic()
+    {
+        /*MainMusic.volume = Mathf.Lerp(1f, 0f, volumeLerp);
+        volumeLerp += 0.5f * Time.deltaTime;
+        if (MainMusic.volume == 0f)
+        {
+            LoadGame();
+        }*/
+        LoadGame();
     }
 
     public void PlaySoundEffect()

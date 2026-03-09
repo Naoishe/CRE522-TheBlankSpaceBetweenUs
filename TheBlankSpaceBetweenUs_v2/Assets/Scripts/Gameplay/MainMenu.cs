@@ -13,11 +13,12 @@ public class MainMenu : MonoBehaviour
     public Image screen;
     public GameObject newNameObject;
     public GameObject confirmButtons;
+    public GameObject scoredOut;
     public TextMeshProUGUI askingText;
     public string submittedName;
     public InputField inputField;
-    public float minOpacity=-1.0f;
-    public float maxOpacity=1.0f;
+    public float minOpacity=0f;
+    public float maxOpacity=255f;
 
     static float lerpT = 0.0f;
 
@@ -34,7 +35,9 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-     
+        scoredOut.SetActive(true);
+        newNameObject.SetActive(false);
+        confirmButtons.SetActive(false);
     }
     void Update()
     {
@@ -45,19 +48,20 @@ public class MainMenu : MonoBehaviour
     public void StartNewGame()
     {
         startButtonPressed?.Invoke();
+        scoredOut.SetActive(false);
         LerpScreen();
     }
 
     public void LerpScreen()
     {
-        screen.color = new Color(screen.color.r, screen.color.g, screen.color.b, Mathf.Lerp(minOpacity, maxOpacity, lerpT));
-        lerpT += 0.5f * Time.deltaTime;
-        Debug.Log("Activated");
+        screen.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT),1);
+        lerpT -= 0.5f * Time.deltaTime;
 
-        if (lerpT >= 1.0f)
+        if (lerpT == 0f)
         {
-            RequestName();
+            //RequestName();
         }
+
     }
 
     public void RequestName()
@@ -81,6 +85,7 @@ public class MainMenu : MonoBehaviour
     {
         confirmButtons.SetActive(false);
         askingText.text = "Alright...I'll remember that.";
+        ContinuousData.instance.UpdatePlayerName(submittedName);
         StartCoroutine(TimeForWords());
 
 
