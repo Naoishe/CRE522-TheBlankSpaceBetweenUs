@@ -1,16 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
-using System;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     public Button startButton;
-    public Image whiteLerp;
-    public Image blackLerp;
+    public Image screen;
     public GameObject newNameObject;
     public GameObject confirmButtons;
     public TextMeshProUGUI askingText;
@@ -19,10 +19,10 @@ public class MainMenu : MonoBehaviour
     public float minOpacity=-1.0f;
     public float maxOpacity=1.0f;
 
-    static float whiteT = 0.0f;
-    static float blackT = 0.0f;
+    static float lerpT = 0.0f;
 
     public static Action startButtonPressed;
+    public static Action newGameTriggered;
 
 
 
@@ -45,28 +45,18 @@ public class MainMenu : MonoBehaviour
     public void StartNewGame()
     {
         startButtonPressed?.Invoke();
-        WhiteLerpScreen();
+        LerpScreen();
     }
 
-    public void WhiteLerpScreen()
+    public void LerpScreen()
     {
-        whiteLerp.color = new Color(whiteLerp.color.r, whiteLerp.color.g, whiteLerp.color.b, Mathf.Lerp(minOpacity, maxOpacity, whiteT));
-        whiteT += 0.5f * Time.deltaTime;
+        screen.color = new Color(screen.color.r, screen.color.g, screen.color.b, Mathf.Lerp(minOpacity, maxOpacity, lerpT));
+        lerpT += 0.5f * Time.deltaTime;
+        Debug.Log("Activated");
 
-        if (whiteT >= 1.0f)
+        if (lerpT >= 1.0f)
         {
             RequestName();
-        }
-    }
-
-    public void BlackLerpScreen()
-    {
-        blackLerp.color = new Color(blackLerp.color.r, blackLerp.color.g, blackLerp.color.b, Mathf.Lerp(minOpacity, maxOpacity, blackT));
-        blackT += 0.5f * Time.deltaTime;
-
-        if (blackT >= 1.0f)
-        {
-            SceneManager.LoadScene("PlayerHouse");
         }
     }
 
@@ -91,7 +81,15 @@ public class MainMenu : MonoBehaviour
     {
         confirmButtons.SetActive(false);
         askingText.text = "Alright...I'll remember that.";
-        BlackLerpScreen();
+        StartCoroutine(TimeForWords());
+
+
+    }
+
+    IEnumerator TimeForWords()
+    {
+        yield return new WaitForSeconds(5);
+        newGameTriggered?.Invoke();
 
     }
 
