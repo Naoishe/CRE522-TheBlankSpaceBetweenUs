@@ -54,8 +54,7 @@ would be way more easy than whatever shit this was from this one singular guy.
 
 title: WalkAway
 ---
-<<declare $playerName = "player">>
-<<declare $NikoImage = false>>
+
 Fuck it, you couldn't do it, you thought, as you quickly tried to book it out of 
 that isle. You hadn’t seen the pile of books laid haphazardly on the ground, 
 pathetically you had landed on the ground with a loud "OOF". 
@@ -83,8 +82,7 @@ this random guy, and the sole response you received back was an amused smile
 
 title: FreezeUp
 ---
-<<declare $playerName = "player">>
-<<declare $NikoImage = false>>
+
 You: "Uhh..." 
 What a terrible start, you sighed, already stuttering and you haven't even talked to him yet. 
 You looked back at him, and he was looking down at you from down his nose. 
@@ -100,8 +98,7 @@ bothering this random guy, and the sole response you received back was a raised 
 
 title: WalkTowardsHim
 ---
-<<declare $playerName = "player">>
-<<declare $NikoImage = false>>
+
 You had gathered enough confidence for this interaction in a split second, your 
 legs acting on their own and approaching the tall, lanky man. He had raised an 
 eyebrow at you, hands dropping and the book lazily being held in one of them. 
@@ -120,8 +117,7 @@ bothering this random guy, and the sole response you received back was soft scof
 
 title: MeetingNiko2
 ---
-<<declare $playerName = "player">>
-<<declare $NikoImage = false>>
+
 The book guy's eyes closed for a second in thought, and a sigh released as he made 
 up his mind right in front of you. His eyes snapped open, and his demeanor turned 
 less hostile and annoyed. He seemed to have softened up, too.
@@ -176,8 +172,7 @@ You had no idea how to think about him.
 
 title: EndingPart
 ---
-<<declare $playerName = "player">>
-<<declare $NikoImage = false>>
+
 You've got a candidate sorted, no need to stick around here much longer. Time to head home...
 ===
 

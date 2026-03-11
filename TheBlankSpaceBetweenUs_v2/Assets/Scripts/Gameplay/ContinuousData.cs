@@ -15,9 +15,12 @@ public class ContinuousData : MonoBehaviour
     public int currentSceneBuildIndex;
     public bool nikoImagebool;
 
+
     public bool libraryVisited;
 
     public int interactionsHad;
+
+    public string newVar;
 
     public InMemoryVariableStorage variableStorage;
     
@@ -38,10 +41,17 @@ public class ContinuousData : MonoBehaviour
         if (currentSceneName == "Library")
         {
             libraryVisited = true;
-            //variableStorage.TryGetValue("$NikoImage", out nikoImagebool);
-            
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            FetchYarnVariable("$stringVar",newVar);
+
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UpdatePlayerName("Naoishe");
+        }
     }
 
     private void OnEnable()
@@ -81,6 +91,12 @@ public class ContinuousData : MonoBehaviour
         playerName = name;
         variableStorage.SetValue("$playerName", playerName);
 
+    }
+
+    public void FetchYarnVariable(string yarnVar, string unityVar)
+    {
+        variableStorage.TryGetValue(yarnVar, out unityVar);
+        Debug.Log("String Fetched: " + unityVar);
     }
 
 

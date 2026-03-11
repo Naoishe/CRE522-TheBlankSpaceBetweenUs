@@ -1,5 +1,6 @@
 ﻿title: IntroDialogue
 ---
+<<declare $stringVar = "Hannah">>
 : It bleared in your ears invasively, your beloved alarm...
 A groan slipped out as you blinked away the sleep in order to slap the stop button. 
 You were hardly awake, swaying as you patted your desk for your phone. 
