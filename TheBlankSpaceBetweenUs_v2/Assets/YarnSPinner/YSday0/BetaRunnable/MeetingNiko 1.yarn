@@ -1,7 +1,7 @@
 ﻿title: MeetingNiko
 
 ---
-
+<<declare $nikoImageActive = false>>
 When you entered the library, the smell of new books and warm coffee 
 washed over you, as the murmurs of students studying enveloped the room. 
 The library was always very nice and homey, where you liked to study in 
@@ -33,9 +33,9 @@ to meet your gaze, his stoic and piercing eyes meeting your own.
 
 From shock, you had quickly looked away, face warming up from the embarrassment 
 of being caught so suddenly. You heard a sigh emit from him as he spoke...
-
+<<set $nikoImageActive = true>>
 ???: "Do you need something?" 
-
+<<set $nikoImageActive = false>>
 His voice was gravely, rough, as if he never really uses it and was laced with 
 annoyance that you could feel ooze from him. You really didn't want to bother him, 
 but you also needed a candidate for your essay. Maybe approaching the groups 

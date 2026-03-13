@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
+using UnityEngine.UI;
 
 public class Library : MonoBehaviour
 {
     public Collider2D toCampus;
     public Collider2D playerCollider;
     public GameObject playerObj;
-    public GameObject nikoImage;
-    //public GameObject DialogueRef;
-    //public YarnTask DiaRef;
-    private bool toggleTempFix;
+    public Image nikoImage;
+
+    private bool nikoImageBoolRead;
 
     public static Action ReturnToCampus;
     void Start()
     {
         playerObj.transform.position = new Vector3(-3.83f,-2.57f,0f);
-        toggleTempFix = false;
+        
     }
 
 
@@ -31,34 +31,28 @@ public class Library : MonoBehaviour
             ReturnToCampus?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.T)) 
-        {
-            toggleTempFix = !toggleTempFix;
-        }
-
-        if (toggleTempFix)
-        {
-            nikoImage.SetActive(true);
-        }
-        else
-        {
-            nikoImage.SetActive(false);
-        }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             ReturnToCampus?.Invoke();
         }
 
-        /*if (ContinuousData.instance.nikoImagebool)
+      
+
+        NikoImageStatus();
+    }
+
+    public void NikoImageStatus()
+    {
+        ContinuousData.instance.FetchYarnBoolVariable("$nikoImageActive", nikoImageBoolRead);
+
+        if (nikoImageBoolRead)
         {
-            nikoImage.SetActive(true);
+            nikoImage.color=new Color(nikoImage.color.r,nikoImage.color.g,nikoImage.color.b,255);
         }
         else
         {
-            nikoImage.SetActive(false);
-        }*/
-
-        //DiaRef.DialogueRunner.StartDialogue("MeetingNiko");
+            nikoImage.color = new Color(nikoImage.color.r, nikoImage.color.g, nikoImage.color.b, 0);
+        }
     }
 }
