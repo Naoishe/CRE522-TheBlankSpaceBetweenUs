@@ -1,12 +1,13 @@
 ﻿title: IntroDialogue
 ---
-<<declare $stringVar = "Hannah">>
+<<declare $boolVar = true>>
 : It bleared in your ears invasively, your beloved alarm...
 A groan slipped out as you blinked away the sleep in order to slap the stop button. 
 You were hardly awake, swaying as you patted your desk for your phone. 
 When your hand grabbed it, you had sleepily opened your eyes to glance at the time.
 
 : 5:00am
+<<set $boolVar = false>>
 
 You sighed. This was one of the aspects of University you did not like; 
 waking up at the ass crack of dawn just so you can catch one stupid bus to the campus. 

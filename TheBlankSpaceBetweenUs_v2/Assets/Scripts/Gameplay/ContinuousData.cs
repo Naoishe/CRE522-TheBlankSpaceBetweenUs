@@ -43,15 +43,6 @@ public class ContinuousData : MonoBehaviour
             libraryVisited = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            FetchYarnVariable("$stringVar",newVar);
-
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            UpdatePlayerName("Naoishe");
-        }
     }
 
     private void OnEnable()
@@ -93,10 +84,26 @@ public class ContinuousData : MonoBehaviour
 
     }
 
-    public void FetchYarnVariable(string yarnVar, string unityVar)
+    public void FetchYarnStringVariable(string yarnVar, string unityVar)
     {
         variableStorage.TryGetValue(yarnVar, out unityVar);
         Debug.Log("String Fetched: " + unityVar);
+    }
+    public void FetchYarnBoolVariable(string yarnVar, bool unityVar)
+    {
+        variableStorage.TryGetValue(yarnVar, out unityVar);
+        Debug.Log("Bool Fetched: " + unityVar);
+    }
+    public void FetchYarnIntVariable(string yarnVar, int unityVar)
+    {
+        variableStorage.TryGetValue(yarnVar, out unityVar);
+        Debug.Log("Int Fetched: " + unityVar);
+    }
+
+    public void SetYarnStringVariable(string yarnVar, string updatedString)
+    {
+        variableStorage.SetValue(yarnVar, updatedString);
+
     }
 
 

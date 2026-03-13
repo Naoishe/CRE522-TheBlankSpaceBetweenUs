@@ -19,6 +19,7 @@ public class PHDay1 : MonoBehaviour
 
     private float minOpacity = -1.0f;
     private float maxOpacity = 1.0f;
+    private bool receivedBool;
 
     public static Action LeavingHouse;
     void Start()
@@ -39,6 +40,7 @@ public class PHDay1 : MonoBehaviour
         {
             player.transform.position = new Vector3(-12.3f, -1.9f, 0f);
         }
+
     }
 
     /*public void BlackLerpScreen()
