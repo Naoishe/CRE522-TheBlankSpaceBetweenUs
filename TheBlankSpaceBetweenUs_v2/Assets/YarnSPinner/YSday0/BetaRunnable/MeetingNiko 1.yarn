@@ -6,10 +6,11 @@ When you entered the library, the smell of new books and warm coffee
 washed over you, as the murmurs of students studying enveloped the room. 
 The library was always very nice and homey, where you liked to study in 
 as you read books assigned to you.
-
+<<set $nikoImageActive = true>>
 A good candidate for this essay would definitely be here, you thought, 
 in the library where some bookworms can have the best opinions on life. 
 So you looked around the library for the right person to ask.
+<<set $nikoImageActive = false>>
 
 You: "This is impossible," 
 You sighed. Everyone was in clusters, in study groups or just talking to 

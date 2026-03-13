@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class ContinuousData : MonoBehaviour
 {
@@ -13,7 +19,6 @@ public class ContinuousData : MonoBehaviour
     public int CDdayIndex;
     public string currentSceneName;
     public int currentSceneBuildIndex;
-    public bool nikoImagebool;
 
 
     public bool libraryVisited;
@@ -23,7 +28,11 @@ public class ContinuousData : MonoBehaviour
     public string newVar;
 
     public InMemoryVariableStorage variableStorage;
-    
+    public Library libraryRef;
+
+    public static Action ReturnYarnAsTrue;
+    public static Action ReturnYarnAsFalse;
+
     private void Awake()
     {
         instance = this;
@@ -32,9 +41,9 @@ public class ContinuousData : MonoBehaviour
         CDdayIndex = 0;
         interactionsHad = 0;
         variableStorage = FindObjectOfType<InMemoryVariableStorage>();
-        nikoImagebool = false;
+        //nikoImagebool = false;
         libraryVisited = false;
-}
+    }
 
     public void Update()
     {
@@ -42,6 +51,8 @@ public class ContinuousData : MonoBehaviour
         {
             libraryVisited = true;
         }
+
+        
 
     }
 
@@ -93,6 +104,14 @@ public class ContinuousData : MonoBehaviour
     {
         variableStorage.TryGetValue(yarnVar, out unityVar);
         Debug.Log("Bool Fetched: " + unityVar);
+        if (unityVar)
+        {
+            ReturnYarnAsTrue?.Invoke();
+        }
+        else
+        {
+            ReturnYarnAsFalse?.Invoke();
+        }
     }
     public void FetchYarnIntVariable(string yarnVar, int unityVar)
     {
