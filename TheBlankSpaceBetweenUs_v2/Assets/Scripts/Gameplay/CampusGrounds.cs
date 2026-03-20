@@ -9,25 +9,28 @@ public class CampusGrounds : MonoBehaviour
     public Collider2D toLibrary;
     public Collider2D toHome;
     public Collider2D playerCollider;
-    public string targetScene;
     public GameObject objective;
     public GameObject objective2;
     public GameObject noReturn;
-    public GameObject player;
-
     public AudioSource notificationSound;
+    public string targetScene;
 
     public static Action SceneChanged;
 
+    private GameObject homeLabel;
+    private GameObject libraryLabel;
+    private GameObject player;
+    private void Awake()
+    {
+        player = GameObject.Find("PlayerObj");
+        homeLabel = GameObject.Find("HomeLabel");
+        libraryLabel = GameObject.Find("LibraryLabel");
+    }
+
     private void Start()
     {
-        /*if (ContinuousData.instance.previousScene.name == "Midday")
-        {
-            objective.SetActive(true);
-            notificationSound.Play();
-            StartCoroutine(DelayObj());
-        }*/
-
+        homeLabel.SetActive(false);
+        libraryLabel.SetActive(false);
         objective.SetActive(false);
         objective2.SetActive(false);
         if (ContinuousData.instance.libraryVisited)
@@ -53,7 +56,7 @@ public class CampusGrounds : MonoBehaviour
         
     }
 
-private void Update()
+    private void Update()
     {
         if (Physics2D.IsTouching(toLibrary, playerCollider))
         {
@@ -99,10 +102,43 @@ private void Update()
             SceneChanged?.Invoke();
         }
 
-        if (Vector3.Distance(player.transform.position, toHome.transform.position) < 5f)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-
+            float gap = Vector3.Distance(player.transform.position, libraryLabel.transform.position);
+            Debug.Log("Gap: " + gap);
         }
+
+        
+    }
+
+    public void FixedUpdate()
+    {
+        MapLabelControls();
+    }
+
+    public void MapLabelControls()
+    {
+        GameObject homeTP = GameObject.Find("HLDetectionPoint");
+        GameObject libraryTP = GameObject.Find("LLDetectionPoint");
+
+
+        if (Vector3.Distance(player.transform.position, homeTP.transform.position) < 10f)
+        {
+            homeLabel.SetActive(true);
+        }
+        else
+        {
+            homeLabel.SetActive(false);
+        }
+        if (Vector3.Distance(player.transform.position, libraryTP.transform.position) < 10f)
+        {
+           libraryLabel.SetActive(true);
+        }
+        else
+        {
+            libraryLabel.SetActive(false);
+        }
+
     }
 
    
