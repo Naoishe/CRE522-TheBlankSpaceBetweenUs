@@ -98,5 +98,12 @@ private void Update()
             targetScene = "Library";
             SceneChanged?.Invoke();
         }
+
+        if (Vector3.Distance(player.transform.position, toHome.transform.position) < 5f)
+        {
+
+        }
     }
+
+   
 }
