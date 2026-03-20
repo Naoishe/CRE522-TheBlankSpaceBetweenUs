@@ -183,7 +183,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.13017273, y: -0.38329124}
@@ -1321,6 +1321,7 @@ MonoBehaviour:
   noReturn: {fileID: 1031104575}
   notificationSound: {fileID: 276976168}
   targetScene: 
+  aTTAINED: {fileID: 0}
 --- !u!1 &457448064
 GameObject:
   m_ObjectHideFlags: 0
@@ -93950,7 +93951,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.3293972, y: -0.14639926}

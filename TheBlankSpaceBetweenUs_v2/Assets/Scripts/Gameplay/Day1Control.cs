@@ -21,14 +21,35 @@ public class Day1Control : MonoBehaviour
     public static Day1Control instance;
     public string playerName;
 
+    [SerializeField] bool developerMode;
+
 
     /// <summary>
     /// Need to create a method to reset variables upon 'replay'
     /// </summary>
     private void Awake()
     {
+        DeveloperModeCheck();
+        if (!developerMode)
+        {
+            //input anything in this script that needs blocked
+        }
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+    }
+
+    private void DeveloperModeCheck()
+    {
+        GameObject retrievedObject = GameObject.Find("GAMEPLAY_BLOCKER");
+        if (retrievedObject != null)
+        {
+            developerMode = true;
+        }
+        else
+        {
+            developerMode = false;
+        }
     }
 
     private void OnEnable()

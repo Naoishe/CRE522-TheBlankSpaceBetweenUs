@@ -20,6 +20,8 @@ public class CampusGrounds : MonoBehaviour
     private GameObject homeLabel;
     private GameObject libraryLabel;
     private GameObject player;
+
+    [SerializeField] bool developerMode;
     private void Awake()
     {
         player = GameObject.Find("PlayerObj");
@@ -29,23 +31,44 @@ public class CampusGrounds : MonoBehaviour
 
     private void Start()
     {
+        DeveloperModeCheck();
         homeLabel.SetActive(false);
         libraryLabel.SetActive(false);
         objective.SetActive(false);
         objective2.SetActive(false);
-        if (ContinuousData.instance.libraryVisited)
+
+        //IF DEVELOPER MODE DISABLED:
+        if (!developerMode)
         {
-            objective2.SetActive(true);
-            notificationSound.Play();
-            StartCoroutine(DelayObj(objective2));
-            player.transform.position = new Vector3(-34f,45.5f,0f);
+            if (ContinuousData.instance.libraryVisited)
+            {
+                objective2.SetActive(true);
+                notificationSound.Play();
+                StartCoroutine(DelayObj(objective2));
+                player.transform.position = new Vector3(-34f, 45.5f, 0f);
+            }
+            else
+            {
+                objective.SetActive(true);
+                notificationSound.Play();
+                StartCoroutine(DelayObj(objective));
+                player.transform.position = new Vector3(3.85f, 1f, 0f);
+            }
+        }
+    }
+        
+    
+
+    private void DeveloperModeCheck()
+    {
+        GameObject retrievedObject = GameObject.Find("GAMEPLAY_BLOCKER");
+        if (retrievedObject != null)
+        {
+            developerMode = true;
         }
         else
         {
-            objective.SetActive(true);
-            notificationSound.Play();
-            StartCoroutine(DelayObj(objective));
-            player.transform.position = new Vector3(3.85f,1f,0f);
+            developerMode = false;
         }
     }
 
@@ -57,6 +80,19 @@ public class CampusGrounds : MonoBehaviour
     }
 
     private void Update()
+    {
+        
+
+    }
+
+    public void FixedUpdate()
+    {
+        MapLabelControls();
+        CheckCollisions();
+
+    }
+
+    public void CheckCollisions()
     {
         if (Physics2D.IsTouching(toLibrary, playerCollider))
         {
@@ -76,44 +112,8 @@ public class CampusGrounds : MonoBehaviour
                 noReturn.SetActive(true);
                 StartCoroutine(DelayObj(noReturn));
             }
-           
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            if (ContinuousData.instance.libraryVisited)
-            {
-                targetScene = "HolderScene";
-                SceneChanged?.Invoke();
-            }
-            else
-            {
-                noReturn.SetActive(true);
-                StartCoroutine(DelayObj(noReturn));
-
-            }
 
         }
-        
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            targetScene = "Library";
-            SceneChanged?.Invoke();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            float gap = Vector3.Distance(player.transform.position, libraryLabel.transform.position);
-            Debug.Log("Gap: " + gap);
-        }
-
-        
-    }
-
-    public void FixedUpdate()
-    {
-        MapLabelControls();
     }
 
     public void MapLabelControls()
