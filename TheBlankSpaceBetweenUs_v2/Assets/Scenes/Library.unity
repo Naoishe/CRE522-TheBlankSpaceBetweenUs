@@ -10060,6 +10060,7 @@ MonoBehaviour:
   nikoImage: {fileID: 2035689016}
   yarnComms: {fileID: 1602744261}
   nikoImageBoolRead: 0
+  holderBool: 0
 --- !u!114 &1602744261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14768,7 +14769,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_TargetDisplay: 0
 --- !u!224 &2061275813
 RectTransform:
