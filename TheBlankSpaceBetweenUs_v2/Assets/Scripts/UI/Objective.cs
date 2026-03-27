@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Objective: MonoBehaviour 
+public class Objective 
 {
     public string objectiveTitle;
     public string objectiveDescription;
-    public int objectiveSegmentCount;
-    public int segmentIndex;
+
+    //Changable Vars
+
     public bool completed;
+    public int segmentCount;
+    public string notificationType;
+    public string[] descriptions; //All segment descriptions of the Objective that can appear on an update are stored in here
 
-    public string[] descriptions;
 
-    //hierarchy variables
+    public Objective()
+    {
 
-    public GameObject notifImage;
-    public GameObject notifTitle;
-    public TextMeshProUGUI description;
-
+    }
 }
+

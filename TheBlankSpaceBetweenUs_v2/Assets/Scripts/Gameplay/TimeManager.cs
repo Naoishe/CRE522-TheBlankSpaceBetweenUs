@@ -26,13 +26,15 @@ public class TimeManager : MonoBehaviour
     private void OnEnable()
     {
         OnTimeFrameChanged += UpdateTimeFrame;
-        Day1Control.PreSceneChange += UpdateAndStoreTime;
-        Day1Control.NewSceneLoaded += NewSceneResets; 
+        ContinuousData.PreSceneChange += UpdateAndStoreTime;
+        ContinuousData.NewSceneLoaded += NewSceneResets; 
     }
 
     private void OnDisable()
     {
         OnTimeFrameChanged -= UpdateTimeFrame;
+        ContinuousData.PreSceneChange -= UpdateAndStoreTime;
+        ContinuousData.NewSceneLoaded -= NewSceneResets;
     }
 
     void Update()

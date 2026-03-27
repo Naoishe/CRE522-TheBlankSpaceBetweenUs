@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class EmptyMonoBehaviour : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //Monobehaviour used for inheritence
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public interface IMonoBehaviour
+{
+    EmptyMonoBehaviour EmptyMonoBehaviour();
 }

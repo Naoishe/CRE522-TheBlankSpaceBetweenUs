@@ -6,6 +6,7 @@ using static Unity.Collections.AllocatorManager;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class MenuListener : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class MenuListener : MonoBehaviour
         {
             LoadGame();
         }*/
-        LoadGame();
+        StartCoroutine(LoadGame());
     }
 
     public void PlaySoundEffect()
@@ -54,9 +55,13 @@ public class MenuListener : MonoBehaviour
         SoundEffect.Play();
     }
 
-    public void LoadGame()
-    {
+    
 
-        SceneManager.LoadScene("PlayerHouse");
+    IEnumerator LoadGame()
+    {
+        yield return new WaitForSeconds(2);
+        ContinuousData.instance.SceneChangeDetected("PlayerHouse", ContinuousData.instance.playerHouse_MorningSpawn);
     }
+    
+
 }

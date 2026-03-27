@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class ContinuousData : MonoBehaviour
 {
-    [SerializeField] public bool sceneTestMode;
+    [SerializeField] public bool newGame;
     public static ContinuousData instance;
 
     //Currently Playing Scene Variables
@@ -60,7 +60,7 @@ public class ContinuousData : MonoBehaviour
         interactionsHad = 0;
         variableStorage = FindObjectOfType<InMemoryVariableStorage>();
 
-        if (!sceneTestMode)
+        if (newGame)
         {
 
         }
@@ -157,6 +157,7 @@ public class ContinuousData : MonoBehaviour
     public void SceneLoad(Vector3 nextSpawnPoint)
     {
         SceneManager.LoadScene(nextSceneString);
+        NewSceneLoaded?.Invoke();
         SetSpawnPosition(nextSpawnPoint);
     }
 
