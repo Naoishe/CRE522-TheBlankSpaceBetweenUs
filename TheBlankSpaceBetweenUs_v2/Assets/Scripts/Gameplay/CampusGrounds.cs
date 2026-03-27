@@ -19,12 +19,10 @@ public class CampusGrounds : MonoBehaviour
 
     private GameObject homeLabel;
     private GameObject libraryLabel;
-    private GameObject player;
 
     [SerializeField] bool developerMode;
     private void Awake()
     {
-        player = GameObject.Find("PlayerObj");
         homeLabel = GameObject.Find("HomeLabel");
         libraryLabel = GameObject.Find("LibraryLabel");
     }
@@ -45,14 +43,14 @@ public class CampusGrounds : MonoBehaviour
                 objective2.SetActive(true);
                 notificationSound.Play();
                 StartCoroutine(DelayObj(objective2));
-                player.transform.position = new Vector3(-34f, 45.5f, 0f);
+                ContinuousData.instance.player.transform.position = new Vector3(-34f, 45.5f, 0f);
             }
             else
             {
                 objective.SetActive(true);
                 notificationSound.Play();
                 StartCoroutine(DelayObj(objective));
-                player.transform.position = new Vector3(3.85f, 1f, 0f);
+                ContinuousData.instance.player.transform.position = new Vector3(3.85f, 1f, 0f);
             }
         }
     }
@@ -96,19 +94,19 @@ public class CampusGrounds : MonoBehaviour
     {
         if (Physics2D.IsTouching(toLibrary, playerCollider))
         {
-            targetScene = "Library";
-            SceneChanged?.Invoke();
+            ContinuousData.instance.SceneChangeDetected("Library", ContinuousData.instance.library_EntranceSpawn);
         }
         if (Physics2D.IsTouching(toHome, playerCollider))
         {
             if (ContinuousData.instance.libraryVisited)
             {
-                targetScene = "HolderScene";
-                SceneChanged?.Invoke();
-
+                Debug.Log("GAME NOT CONTINUED FROM HERE");
+                //CONTINUE POINT
+                //ContinuousData.instance.SceneChangeDetected("PlayerHouse", ContinuousData.instance.playerHouse_EntranceSpawn);
             }
             else
             {
+                //Error from trying to return home early 
                 noReturn.SetActive(true);
                 StartCoroutine(DelayObj(noReturn));
             }
@@ -122,7 +120,7 @@ public class CampusGrounds : MonoBehaviour
         GameObject libraryTP = GameObject.Find("LLDetectionPoint");
 
 
-        if (Vector3.Distance(player.transform.position, homeTP.transform.position) < 10f)
+        if (Vector3.Distance(ContinuousData.instance.player.transform.position, homeTP.transform.position) < 10f)
         {
             homeLabel.SetActive(true);
         }
@@ -130,7 +128,7 @@ public class CampusGrounds : MonoBehaviour
         {
             homeLabel.SetActive(false);
         }
-        if (Vector3.Distance(player.transform.position, libraryTP.transform.position) < 10f)
+        if (Vector3.Distance(ContinuousData.instance.player.transform.position, libraryTP.transform.position) < 10f)
         {
            libraryLabel.SetActive(true);
         }

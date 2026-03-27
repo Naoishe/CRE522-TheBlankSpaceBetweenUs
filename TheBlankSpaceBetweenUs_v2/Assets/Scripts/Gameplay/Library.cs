@@ -20,7 +20,6 @@ public class Library : MonoBehaviour
     public static Action ReturnToCampus;
     void Start()
     {
-        playerObj.transform.position = new Vector3(-3.83f,-2.57f,0f);
         
     }
 
@@ -41,15 +40,10 @@ public class Library : MonoBehaviour
     {
         if (Physics2D.IsTouching(toCampus, playerCollider))
         {
-            
-            ReturnToCampus?.Invoke();
+
+            ContinuousData.instance.SceneChangeDetected("CampusGrounds", ContinuousData.instance.campusGrounds_LibrarySpawn);
         }
 
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ReturnToCampus?.Invoke();
-        }
 
         ContinuousData.instance.FetchYarnBoolVariable("$nikoImageActive", holderBool);
     }

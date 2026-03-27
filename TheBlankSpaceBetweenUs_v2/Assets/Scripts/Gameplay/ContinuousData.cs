@@ -10,28 +10,46 @@ using UnityEngine.UI;
 
 public class ContinuousData : MonoBehaviour
 {
+    [SerializeField] public bool sceneTestMode;
     public static ContinuousData instance;
-    public Scene currentScene;
-    public Scene previousScene;
-    public string playerName;
 
+    //Currently Playing Scene Variables
     public int CDtimeIndex;
     public int CDdayIndex;
     public string currentSceneName;
     public int currentSceneBuildIndex;
+    public Scene currentScene;
+    public Scene previousScene;
+    private string nextSceneString;
 
-
+    //Gameplay Variables
     public bool libraryVisited;
 
+    //Spawn Point Vectors
+    public Vector3 campusGrounds_BridgeSpawn = new(39.5f, 1f, 0f);
+    public Vector3 campusGrounds_LibrarySpawn = new(-34,46,0);
+    public Vector3 playerHouse_EntranceSpawn = new(-2.5f,-30,0);
+    public Vector3 playerHouse_MorningSpawn = new(3.5f,1,0);
+    public Vector3 library_EntranceSpawn = new(2.5f,-12,0);
+    public Vector3 midday_Spawn = new(0,-9,0);
+
+
+    //PlayerVars
     public int interactionsHad;
+    public Collider2D playerCollider;
+    public GameObject player;
+    public string playerName;
+    public Vector3 spawnPositionVector;
 
-    public string newVar;
-
+    //Yarn
     public InMemoryVariableStorage variableStorage;
     public Library libraryRef;
 
+    //Events
     public static Action ReturnYarnAsTrue;
     public static Action ReturnYarnAsFalse;
+    public static Action PreSceneChange;
+    public static Action NewSceneLoaded;
 
     private void Awake()
     {
@@ -41,35 +59,39 @@ public class ContinuousData : MonoBehaviour
         CDdayIndex = 0;
         interactionsHad = 0;
         variableStorage = FindObjectOfType<InMemoryVariableStorage>();
-        //nikoImagebool = false;
-        libraryVisited = false;
+
+        if (!sceneTestMode)
+        {
+
+        }
     }
 
     public void Update()
     {
-        if (currentSceneName == "Library")
-        {
-            libraryVisited = true;
-        }
-
-        
 
     }
 
     private void OnEnable()
     {
-        Day1Control.PreSceneChange += UpdatePrevScene;
+        PreSceneChange += UpdatePrevScene;
     }
     private void OnDisable()
     {
-        Day1Control.PreSceneChange -= UpdatePrevScene;
+        PreSceneChange -= UpdatePrevScene;
     }
 
     public void FixedUpdate()
     {
-        currentScene= SceneManager.GetActiveScene();
-        currentSceneName=currentScene.name;
+        currentScene = SceneManager.GetActiveScene();
+        currentSceneName = currentScene.name;
         currentSceneBuildIndex = currentScene.buildIndex;
+    }
+
+    public void LocatePlayerObject()
+    {
+        player = GameObject.Find("PlayerObj");
+        playerCollider = player.GetComponent<Collider2D>();
+
     }
 
     public void UpdatePrevScene()
@@ -124,6 +146,27 @@ public class ContinuousData : MonoBehaviour
         variableStorage.SetValue(yarnVar, updatedString);
 
     }
+    public void SceneChangeDetected(string sceneToLoad, Vector3 nextSpawnPoint)
+    {
+        PreSceneChange?.Invoke();
+        nextSceneString = sceneToLoad;
+        SceneLoad(nextSpawnPoint);
 
+    }
 
+    public void SceneLoad(Vector3 nextSpawnPoint)
+    {
+        SceneManager.LoadScene(nextSceneString);
+        SetSpawnPosition(nextSpawnPoint);
+    }
+
+    public void SetSpawnPosition(Vector3 targetposition)
+    {
+        spawnPositionVector = targetposition;
+        InitialisePlayer();
+    }
+    private void InitialisePlayer()
+    {
+        player.transform.position = spawnPositionVector;
+    }
 }
