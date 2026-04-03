@@ -5,20 +5,44 @@ using UnityEngine;
 
 public class Objective 
 {
+    //Base Class for Objective objects 
+
+    //Set at Generation Vars
     public string objectiveTitle;
-    public string objectiveDescription;
+    public string objectiveSummary;
+    public int segmentCount;
+    public string[] descriptions;
 
     //Changable Vars
-
     public bool completed;
-    public int segmentCount;
     public string notificationType;
-    public string[] descriptions; //All segment descriptions of the Objective that can appear on an update are stored in here
+    public int currentIndex;
+    public string currentDescription;
 
-
-    public Objective()
+    public Objective(string insertObjectiveTitle, string insertObjectiveSummary)
     {
-
+        objectiveTitle = insertObjectiveTitle;
+        objectiveSummary = insertObjectiveSummary;
+        completed = false;
+        notificationType = "Update";
+        currentIndex = 0;
     }
+
+    public void UpdateNotificationType( string typeUpdate)
+    {
+       notificationType = typeUpdate;
+    }
+
+    public void UpdateNotificationType( bool completedUpdate)
+    {
+        completed = completedUpdate;
+    }
+
+    public void UpdateCurrentIndex()
+    {
+        currentIndex++;
+        currentDescription = descriptions[currentIndex];
+    }
+
 }
 

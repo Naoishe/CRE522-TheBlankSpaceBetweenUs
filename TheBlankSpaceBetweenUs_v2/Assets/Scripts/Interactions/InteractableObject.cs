@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractableObject : EmptyMonoBehaviour, Iinteractable
+public class InteractableObject : MonoBehaviour, Iinteractable
 {
     
 
