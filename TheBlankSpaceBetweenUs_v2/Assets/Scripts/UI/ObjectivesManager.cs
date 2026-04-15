@@ -145,11 +145,9 @@ public class ObjectivesManager : MonoBehaviour
         //Objective 0: Pull Up Your Boötes
         objective_0 = new Objective(new string("Pull Up Your Boötes"), new string("Start your assignment and complete your day."));
         objective_0.descriptions = new string[7];
-        objective_0.descriptions[0] = "Find Candidates for your Essay 0/5";
-        objective_0.descriptions[1] = "Find Candidates for your Essay 1/5";
-        objective_0.descriptions[2] = "Find Candidates for your Essay 2/5";
-        objective_0.descriptions[3] = "Find Candidates for your Essay 3/5";
-        objective_0.descriptions[4] = "Find Candidates for your Essay 4/5";
+        objective_0.descriptions[0] = "Find Candidates for your Essay 0/3";
+        objective_0.descriptions[1] = "Find Candidates for your Essay 1/3";
+        objective_0.descriptions[2] = "Find Candidates for your Essay 2/3";
         objective_0.descriptions[5] = "Cross the River to Return Home";
         objective_0.descriptions[6] = "Work on your Essay";
         objective_0.descriptions[7] = "Go to Sleep";
