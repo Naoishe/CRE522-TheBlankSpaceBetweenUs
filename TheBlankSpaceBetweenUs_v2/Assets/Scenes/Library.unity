@@ -2324,7 +2324,7 @@ Transform:
   m_GameObject: {fileID: 356173658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4031637, y: -7.0516996, z: -10}
+  m_LocalPosition: {x: 1.5480881, y: -2.8314, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10305,8 +10305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c886b9928d35a48478f299bd2362e420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollider: {fileID: 0}
-  playerName: 
 --- !u!114 &1997624119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14487,11 +14485,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1371611262075025342, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.41
+      value: -4.17
       objectReference: {fileID: 0}
     - target: {fileID: 1371611262075025342, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.23
+      value: -2.83
       objectReference: {fileID: 0}
     - target: {fileID: 1371611262075025342, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14548,11 +14546,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2800583123127861208, guid: cc756dc530bd1024db68f59f99453acd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.41
+      value: -4.17
       objectReference: {fileID: 0}
     - target: {fileID: 2800583123127861208, guid: cc756dc530bd1024db68f59f99453acd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.23
+      value: -2.83
       objectReference: {fileID: 0}
     - target: {fileID: 2800583123127861208, guid: cc756dc530bd1024db68f59f99453acd, type: 3}
       propertyPath: m_LocalPosition.z
