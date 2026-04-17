@@ -59,7 +59,7 @@ public class ContinuousData : MonoBehaviour
         CDdayIndex = 0;
         interactionsHad = 0;
         variableStorage = FindObjectOfType<InMemoryVariableStorage>();
-
+        LocatePlayerObject();
         if (newGame)
         {
 
@@ -164,6 +164,7 @@ public class ContinuousData : MonoBehaviour
     public void SetSpawnPosition(Vector3 targetposition)
     {
         spawnPositionVector = targetposition;
+        LocatePlayerObject();
         InitialisePlayer();
     }
     private void InitialisePlayer()

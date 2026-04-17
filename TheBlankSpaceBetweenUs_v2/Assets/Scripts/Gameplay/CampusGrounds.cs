@@ -9,8 +9,6 @@ public class CampusGrounds : MonoBehaviour
     public Collider2D toLibrary;
     public Collider2D toHome;
     public Collider2D playerCollider;
-    public GameObject objective;
-    public GameObject objective2;
     public GameObject noReturn;
     public AudioSource notificationSound;
     public string targetScene;
@@ -32,24 +30,18 @@ public class CampusGrounds : MonoBehaviour
         DeveloperModeCheck();
         homeLabel.SetActive(false);
         libraryLabel.SetActive(false);
-        objective.SetActive(false);
-        objective2.SetActive(false);
 
         //IF DEVELOPER MODE DISABLED:
         if (!developerMode)
         {
             if (ContinuousData.instance.libraryVisited)
             {
-                objective2.SetActive(true);
-                notificationSound.Play();
-                StartCoroutine(DelayObj(objective2));
+                
                 ContinuousData.instance.player.transform.position = new Vector3(-34f, 45.5f, 0f);
             }
             else
             {
-                objective.SetActive(true);
-                notificationSound.Play();
-                StartCoroutine(DelayObj(objective));
+               
                 ContinuousData.instance.player.transform.position = new Vector3(3.85f, 1f, 0f);
             }
         }
