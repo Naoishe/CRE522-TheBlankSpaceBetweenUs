@@ -24,6 +24,8 @@ public class ContinuousData : MonoBehaviour
 
     //Gameplay Variables
     public bool libraryVisited;
+    public bool currentlyInteracting;
+    public float shortestDistance;
 
     //Spawn Point Vectors
     public Vector3 campusGrounds_BridgeSpawn = new(39.5f, 1f, 0f);
@@ -64,6 +66,8 @@ public class ContinuousData : MonoBehaviour
         {
 
         }
+        shortestDistance = 1000f;
+        
     }
 
     public void Update()
@@ -170,5 +174,27 @@ public class ContinuousData : MonoBehaviour
     private void InitialisePlayer()
     {
         player.transform.position = spawnPositionVector;
+    }
+
+    public void CheckSavedDistance(float distance, InteractableObject interactableObject)
+    {
+        if(shortestDistance == 1000f)
+        {
+            shortestDistance = distance;
+        }
+        else
+        {
+            if (shortestDistance > distance)
+            {
+                shortestDistance = distance;
+                interactableObject.Interaction();
+            }
+            else
+            {
+                Debug.Log("Interaction Attempted, but another interaction is closer. Object: " + interactableObject.thisObject.name);
+                currentlyInteracting = true;
+                 
+            }
+        }
     }
 }
