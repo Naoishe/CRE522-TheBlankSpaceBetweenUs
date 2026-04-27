@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         {
             OnInteractionEnabled?.Invoke();
         }
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             OnMinigameInput?.Invoke();
         }

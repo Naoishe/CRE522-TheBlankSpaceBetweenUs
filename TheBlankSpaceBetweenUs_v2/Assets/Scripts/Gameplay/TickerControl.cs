@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class TickerControl : MonoBehaviour
 {
-    
+    public Action OnHit;
+    public Action OnMiss;
     public Animator tickerAnim;
     public Collider2D tickerTipCollider;
     public Collider2D safeZoneCollider;
@@ -20,6 +21,7 @@ public class TickerControl : MonoBehaviour
     public void OnEnable()
     {
         Player.OnMinigameInput += InputDetected;
+        
     }
 
     public void OnDisable()
@@ -37,12 +39,16 @@ public class TickerControl : MonoBehaviour
     {
        if(Physics2D.IsTouching(safeZoneCollider, tickerTipCollider))
         {
-            Debug.Log("Success!");
+            
+            OnHit?.Invoke();
         }
         else
         {
-            Debug.Log("Missed.");
+            
+            OnMiss?.Invoke();
         }
     }
+
+    
 
 }

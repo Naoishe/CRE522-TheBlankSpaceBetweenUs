@@ -10,7 +10,8 @@ using UnityEngine.UI;
 
 public class ContinuousData : MonoBehaviour
 {
-    [SerializeField] public bool newGame;
+    //Controling Variables
+    [SerializeField] public bool newGame=true;
     public static ContinuousData instance;
 
     //Currently Playing Scene Variables
@@ -53,6 +54,11 @@ public class ContinuousData : MonoBehaviour
     public static Action PreSceneChange;
     public static Action NewSceneLoaded;
 
+    //ClubSavedVariables
+    public int WrestlingLevel;
+    public int DebateLevel;
+    public int TheatreLevel;
+
     private void Awake()
     {
         instance = this;
@@ -64,7 +70,9 @@ public class ContinuousData : MonoBehaviour
         LocatePlayerObject();
         if (newGame)
         {
-
+            WrestlingLevel = 1;
+            DebateLevel = 1;
+            TheatreLevel = 1;
         }
         shortestDistance = 1000f;
         
