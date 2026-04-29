@@ -28,6 +28,7 @@ public class WrestlingUI : MonoBehaviour
     public AudioSource youLoseSFX;
 
     public Animator audience;
+    public Animator fighterAnim;
 
     public int HitsLanded;
     public float tickerSpeed;
@@ -35,7 +36,6 @@ public class WrestlingUI : MonoBehaviour
     public Slider fighterSlider;
     public Slider playerSlider;
 
-    private bool proceed = false;
 
     void Start()
     {
@@ -114,7 +114,7 @@ public class WrestlingUI : MonoBehaviour
         hitSFX.Play();
         fighterSlider.value -= 0.34f;
 
-        FighterTurn();
+        PrepareFighter();
     }
 
     public void TickerMiss()
@@ -123,7 +123,7 @@ public class WrestlingUI : MonoBehaviour
         missTxt.GetComponent<Animator>().SetTrigger("MissLanded");
         missSFX.Play();
 
-        FighterTurn();
+        PrepareFighter();
 
         
     }
@@ -132,7 +132,10 @@ public class WrestlingUI : MonoBehaviour
     {
         fullObject.transform.position = new Vector3(0, -7, 0);
         WrestlingUpdate?.Invoke();
+        
         fighter.GetComponent<Animator>().SetTrigger("Attack");
+        StartCoroutine(WaitForAnimationToFinish(fighterAnim, "Attack"));
+
         StartCoroutine(FighterAttackFX());
 
 
@@ -157,24 +160,21 @@ public class WrestlingUI : MonoBehaviour
             playerSlider.value -= 0.2f;
         }
 
+        ResetTicker();
+
 
     }
 
     public void PrepareFighter()
     {
         StartCoroutine(DelayTurn());
-
-        if (proceed)
-        {
-            FighterTurn();
-        }
-            
+   
     }
 
     private IEnumerator DelayTurn()
     {
         yield return new WaitForSeconds(3f);
-        proceed = true;
+        FighterTurn();
     }
 
     public void ResetTicker()
@@ -190,6 +190,40 @@ public class WrestlingUI : MonoBehaviour
         fullObject.transform.position= new Vector3(0, -3, 0);
         WrestlingUpdate?.Invoke();
     }
+
+    private IEnumerator WaitForAnimationToFinish(Animator anim, string stateName) //AI Generated method to debug 
+    {
+        if (anim == null) yield break;
+
+        int layer = 0;
+        float enterTimeout = 1.0f;
+        float timer = 0f;
+
+        // wait until the animator is in the Attack state (or timeout)
+        while (!anim.GetCurrentAnimatorStateInfo(layer).IsName(stateName) && timer < enterTimeout)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // if didn't enter the state, stop
+        if (!anim.GetCurrentAnimatorStateInfo(layer).IsName(stateName))
+            yield break;
+
+        // wait until the state completes (normalizedTime >= 1)
+        while (anim.GetCurrentAnimatorStateInfo(layer).IsName(stateName) &&
+               anim.GetCurrentAnimatorStateInfo(layer).normalizedTime < 1f)
+        {
+            yield return null;
+        }
+
+        // animation finished -> clear trigger so it won't re-enter accidentally
+        anim.ResetTrigger("Attack");
+
+        // optional: log or force a transition back to a known idle state if needed
+        // Debug.Log("Fighter attack finished");
+    }
+
 
     public void Deactivates()
     {

@@ -2273,6 +2273,7 @@ MonoBehaviour:
   hitTxt: {fileID: 1764320134}
   missTxt: {fileID: 1392678608}
   fighter: {fileID: 1079800323}
+  player: {fileID: 1675700058}
   fullObject: {fileID: 1307667286}
   music: {fileID: 1344825585}
   hitSFX: {fileID: 1180188457}
@@ -2280,6 +2281,7 @@ MonoBehaviour:
   victorySFX: {fileID: 1180188457}
   youLoseSFX: {fileID: 483780044}
   audience: {fileID: 792916475}
+  fighterAnim: {fileID: 1079800325}
   HitsLanded: 0
   tickerSpeed: 0
   fighterSlider: {fileID: 717879562}
