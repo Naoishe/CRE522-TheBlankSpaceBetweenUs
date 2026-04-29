@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
     public void InteractionCheck()
     {
 
-        /*IORadiusCheck();
+        IORadiusCheck();
         if(currentlyInteractingObject != null)
         {
             Debug.Log("Interaction Enabled On: " + gameObject.name);
@@ -167,55 +167,37 @@ public class Player : MonoBehaviour
         else
         {
             Debug.Log("No Object Located");
-        }*/
+        }
 
     }
 
     private void IORadiusCheck()
     {
-        Physics2D.OverlapCircle(playerLocation, searchRadius, contactFilter, collidingObjects);
-        if (collidingObjects != null)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerLocation, searchRadius);
+        int totalObjects = colliders.Length;
+        if (totalObjects > 0)
         {
-            for (int i=0; i > collidingObjects.Length; i++)
+            currentlyInteractingObject = null;
+            shortestDistance = float.MaxValue;
+
+            for (int i=0;i < totalObjects; i++)
             {
-                if (i == 0)
+                var collider = colliders[i];
+                var gameobj = collider.gameObject;
+                float dist = Vector2.Distance(playerLocation, gameobj.transform.position);
+                if (dist < shortestDistance && gameobj.CompareTag("Interactable"))
                 {
-                    currentlyInteractingObject = collidingObjects[0].GetComponent<GameObject>();
-                    shortestDistance = Vector2.Distance(player.transform.position, currentlyInteractingObject.transform.position);
+                    currentlyInteractingObject = gameobj;
+                    shortestDistance = dist;
                 }
-                else
-                {
-                    currentObjectVector = collidingObjects[i].transform.position;
-                    float comparingDistance = Vector2.Distance(player.transform.position, currentObjectVector);
-                    if (comparingDistance < shortestDistance)
-                    {
-                        shortestDistance = comparingDistance;
-                        currentlyInteractingObject = collidingObjects[i].GetComponent<GameObject>();
-                    }
-                }
-                
-                
             }
         }
-        else
-        {
-            //currentlyInteractingObject = null;
-            if (ContinuousData.instance.currentSceneName == "CampusGrounds")
-            {
-                currentlyInteractingObject = DetectionFix.Instance.closestChar;
-            }
-            else
-            {
-                currentlyInteractingObject = null;
-            }
+        else 
+        { 
+         currentlyInteractingObject = null;
         }
 
-        if(currentlyInteractingObject==null && ContinuousData.instance.currentSceneName == "CampusGrounds")
-        {
-            currentlyInteractingObject=DetectionFix.Instance.closestChar;
-        }
-        
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

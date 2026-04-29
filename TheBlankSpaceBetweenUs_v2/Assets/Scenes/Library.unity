@@ -2324,7 +2324,7 @@ Transform:
   m_GameObject: {fileID: 356173658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5480881, y: -2.8314, z: -10}
+  m_LocalPosition: {x: 10.85, y: -6.14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10327,6 +10327,8 @@ MonoBehaviour:
   previousScene:
     m_Handle: 0
   libraryVisited: 0
+  currentlyInteracting: 0
+  shortestDistance: 0
   campusGrounds_BridgeSpawn: {x: 39.5, y: 1, z: 0}
   campusGrounds_LibrarySpawn: {x: -34, y: 46, z: 0}
   playerHouse_EntranceSpawn: {x: -2.5, y: -30, z: 0}
@@ -10340,6 +10342,9 @@ MonoBehaviour:
   spawnPositionVector: {x: 0, y: 0, z: 0}
   variableStorage: {fileID: 0}
   libraryRef: {fileID: 0}
+  WrestlingLevel: 0
+  DebateLevel: 0
+  TheatreLevel: 0
 --- !u!4 &1997624120
 Transform:
   m_ObjectHideFlags: 0
@@ -14485,11 +14490,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1371611262075025342, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.17
+      value: 10.85
       objectReference: {fileID: 0}
     - target: {fileID: 1371611262075025342, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.83
+      value: -6.14
       objectReference: {fileID: 0}
     - target: {fileID: 1371611262075025342, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14546,11 +14551,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2800583123127861208, guid: cc756dc530bd1024db68f59f99453acd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.17
+      value: 10.85
       objectReference: {fileID: 0}
     - target: {fileID: 2800583123127861208, guid: cc756dc530bd1024db68f59f99453acd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.83
+      value: -6.14
       objectReference: {fileID: 0}
     - target: {fileID: 2800583123127861208, guid: cc756dc530bd1024db68f59f99453acd, type: 3}
       propertyPath: m_LocalPosition.z
