@@ -18,8 +18,13 @@ public class TickerControl : MonoBehaviour
     public GameObject fullObject;
     public GameObject MinigameManager;
 
-    private bool isSubscribed;
-    private bool gameStarted;
+    private bool isSubscribed=false;
+    private bool gameStarted = false;
+
+    //Serialized Inspector variables
+    [SerializeField] private bool WrestlingSceneActive;
+    [SerializeField] private bool DebateSceneActive;
+    [SerializeField] private bool TheatreSceneActive;
 
 
     public void Awake()
@@ -40,16 +45,18 @@ public class TickerControl : MonoBehaviour
 
         //Club Dependent Code, changes reference depending on scene's specific script
 
-        try
+        if(WrestlingSceneActive)
         {
-            if (ContinuousData.instance.currentSceneName == "Wrestling")
-            {
-                WrestlingUI.WrestlingUpdate += UpdateGameBool;
-            }
+            WrestlingUI.WrestlingUpdate += UpdateGameBool;
+            WrestlingUI.WrestlingEnded += GameEnded;
         }
-        catch
+         if(DebateSceneActive)
         {
-            Debug.LogWarning("TickerControl: OnEnable: Failed to subscribe to Action");
+            //DebateUI.DebateUpdate += UpdateGameBool;
+        }
+         if(TheatreSceneActive)
+        {
+            //TheatreUI.TheatreUpdate += UpdateGameBool;
         }
     }
 
@@ -70,17 +77,20 @@ public class TickerControl : MonoBehaviour
             }
             isSubscribed = false;
         }
-        try
+        if (WrestlingSceneActive)
         {
-            if (ContinuousData.instance.currentSceneName == "Wrestling")
-            {
-                WrestlingUI.WrestlingUpdate -= UpdateGameBool;
-            }
+            WrestlingUI.WrestlingUpdate -= UpdateGameBool;
+            WrestlingUI.WrestlingEnded -= GameEnded;
         }
-        catch
+        if (DebateSceneActive)
         {
-            Debug.LogWarning("TickerControl: OnDisable: Failed to unsubscribe from Action");
+            //DebateUI.DebateUpdate -= UpdateGameBool;
         }
+        if (TheatreSceneActive)
+        {
+            //TheatreUI.TheatreUpdate -= UpdateGameBool;
+        }
+
 
     }
 
@@ -94,6 +104,7 @@ public class TickerControl : MonoBehaviour
     {
         if (gameStarted)
         {
+           
             if (Physics2D.IsTouching(safeZoneCollider, tickerTipCollider))
             {
 
@@ -105,6 +116,10 @@ public class TickerControl : MonoBehaviour
                 OnMiss?.Invoke();
             }
         }
+        else
+        {
+           Debug.Log("Game Not Started");
+        }
         
     }
 
@@ -114,11 +129,17 @@ public class TickerControl : MonoBehaviour
         {
             gameStarted = false;
         }
-        else
+        
+        if (!gameStarted)
         {
             gameStarted = true;
         }
             
+    }
+
+    private void GameEnded()
+    {
+        gameStarted = false;
     }
 
 
