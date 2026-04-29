@@ -80,11 +80,11 @@ public class Player : MonoBehaviour
 
     public void PlayerButtons()
     {
-        /*if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             OnInteractionEnabled?.Invoke();
-        }*/
-        if (Input.GetKeyDown(KeyCode.M))
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             OnMinigameInput?.Invoke();
         }
@@ -157,7 +157,8 @@ public class Player : MonoBehaviour
 
     public void InteractionCheck()
     {
-        IORadiusCheck();
+
+        /*IORadiusCheck();
         if(currentlyInteractingObject != null)
         {
             Debug.Log("Interaction Enabled On: " + gameObject.name);
@@ -166,7 +167,7 @@ public class Player : MonoBehaviour
         else
         {
             Debug.Log("No Object Located");
-        }
+        }*/
 
     }
 

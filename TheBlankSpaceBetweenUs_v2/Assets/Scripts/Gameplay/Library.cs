@@ -4,22 +4,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
+using UnityEngine.UI;
 
 public class Library : MonoBehaviour
 {
     public Collider2D toCampus;
     public Collider2D playerCollider;
     public GameObject playerObj;
-    public GameObject nikoImage;
-    //public GameObject DialogueRef;
-    //public YarnTask DiaRef;
-    private bool toggleTempFix;
+    public Image nikoImage;
+    public YarnCommsLibrary yarnComms;
+
+    public bool nikoImageBoolRead;
+    public bool holderBool;
 
     public static Action ReturnToCampus;
     void Start()
     {
-        playerObj.transform.position = new Vector3(-3.83f,-2.57f,0f);
-        toggleTempFix = false;
+        
+    }
+
+    private void OnEnable()
+    {
+        ContinuousData.ReturnYarnAsTrue += AssignNikoTrue;
+        ContinuousData.ReturnYarnAsFalse += AssignNikoFalse;
+    }
+
+    private void OnDisable()
+    {
+        ContinuousData.ReturnYarnAsTrue -= AssignNikoTrue;
+        ContinuousData.ReturnYarnAsFalse -= AssignNikoFalse;
     }
 
 
@@ -27,38 +40,38 @@ public class Library : MonoBehaviour
     {
         if (Physics2D.IsTouching(toCampus, playerCollider))
         {
-            
-            ReturnToCampus?.Invoke();
+
+            ContinuousData.instance.SceneChangeDetected("CampusGrounds", ContinuousData.instance.campusGrounds_LibrarySpawn);
         }
 
-        if (Input.GetKeyDown(KeyCode.T)) 
-        {
-            toggleTempFix = !toggleTempFix;
-        }
 
-        if (toggleTempFix)
+        ContinuousData.instance.FetchYarnBoolVariable("$nikoImageActive", holderBool);
+    }
+
+    public void AssignNikoFalse()
+    {
+        nikoImageBoolRead = false;
+        NikoImageStatus();
+    }
+    public void AssignNikoTrue()
+    {
+        nikoImageBoolRead = true;
+        NikoImageStatus();
+    }
+
+    public void NikoImageStatus()
+    {
+        //ContinuousData.instance.FetchYarnBoolVariable("$nikoImageActive", nikoImageBoolRead);
+
+        Debug.Log("Processed Value: " + nikoImageBoolRead);
+        if (nikoImageBoolRead)
         {
-            nikoImage.SetActive(true);
+
+            nikoImage.color=new Color(nikoImage.color.r,nikoImage.color.g,nikoImage.color.b,255);
         }
         else
         {
-            nikoImage.SetActive(false);
+            nikoImage.color = new Color(nikoImage.color.r, nikoImage.color.g, nikoImage.color.b, 0);
         }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ReturnToCampus?.Invoke();
-        }
-
-        /*if (ContinuousData.instance.nikoImagebool)
-        {
-            nikoImage.SetActive(true);
-        }
-        else
-        {
-            nikoImage.SetActive(false);
-        }*/
-
-        //DiaRef.DialogueRunner.StartDialogue("MeetingNiko");
     }
 }

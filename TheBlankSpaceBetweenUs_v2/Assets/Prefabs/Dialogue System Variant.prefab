@@ -142,12 +142,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: NikoDay3
+      value: IntroDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject
       value: 
-      objectReference: {fileID: 7545569452688597077, guid: 3ea280dcf1ebe224ba4d118ee6dcbaca, type: 3}
+      objectReference: {fileID: 7545569452688597077, guid: 502989c68ccd5634a80cd9c85a91e44e, type: 3}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: runSelectedOptionAsLine
       value: 0
