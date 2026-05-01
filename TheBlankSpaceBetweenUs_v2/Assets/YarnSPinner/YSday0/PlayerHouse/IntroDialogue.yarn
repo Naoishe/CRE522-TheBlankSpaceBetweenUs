@@ -1,0 +1,64 @@
+﻿title: IntroDialogue
+---
+<<declare $WakeAnimBool = true>>
+It bleared in your ears invasively, your beloved alarm...
+A groan slipped out as you blinked away the sleep in order to slap the stop button. 
+You were hardly awake, swaying as you patted your desk for your phone. 
+When your hand grabbed it, you had sleepily opened your eyes to glance at the time.
+
+0500
+
+
+You sighed. This was one of the aspects of University you did not like; 
+waking up at the ass crack of dawn just so to catch one stupid bus to the campus. 
+Of course the last semester of the year was the slowest, the irony made you scoff.
+
+<<set $WakeAnimBool = false>>
+Throwing the duvets off yourself, the chilly morning air instantly hit and made 
+you shiver as you got up and started your day. 
+You at least had time to grab breakfast before going...
+
+===
+
+title: CookingBreakfast
+---
+What's for breakfast?
+-> Bacon and Eggs
+    <<jump Protein>>
+-> Fruit & Yoghurt Bowl 
+    <<jump Vitamins>>
+-> Lunar Loops
+    <<jump Sugar>>
+
+===
+
+title: LeavingForClass
+---
+With a sigh and a groan, you locked the door and set off for the bus station. 
+The cold, chilly air hit you hard, the air you breathed out 
+visible in the crisp air.
+
+The weather had you silently wishing you could hop back onto 
+your warm and cosy bed, but sadly, you had to 
+go into University today or else you will be penalised. 
+Remembering that pissed you off.
+===
+
+title: Protein
+---
+You grab eggs and bacon and flick on the stove, 
+caring more about the taste than the protein.
+===
+
+title: Vitamins
+---
+You grab fruit and yoghurt from the fridge before 
+chopping and mixing it together. 
+For once, you felt like having a healthy breakfast.
+===
+
+title: Sugar
+---
+You grab a box of the only cereal you ever bought, the sugar mainly being why.
+Besides, it was handier than the other options...
+===

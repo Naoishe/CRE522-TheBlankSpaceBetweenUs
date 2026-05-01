@@ -65,7 +65,6 @@ public class Player : MonoBehaviour
         playerDelegate += MyInput;
         playerDelegate += SpeedControl;
         playerDelegate += PlayerButtons;
-        OnInteractionEnabled += InteractionCheck;
         playerCollectableCounter = 0;
 
 
@@ -82,7 +81,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            OnInteractionEnabled?.Invoke();
+            if (ContinuousData.instance.allowInteracting)
+            {
+                OnInteractionEnabled?.Invoke();
+            }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -95,7 +97,11 @@ public class Player : MonoBehaviour
 
     public void FixedUpdate()
     {
-        MovePlayer();
+        if (ContinuousData.instance.allowMovement)
+        {
+            MovePlayer();
+        }
+            
     }
     private void MyInput()
     {
@@ -104,18 +110,32 @@ public class Player : MonoBehaviour
 
         movementInput.Normalize();
 
+        animator.SetFloat("MoveX", movementInput.x);
+        animator.SetFloat("MoveY", movementInput.y);
+
         if (movementInput.magnitude > 0)
         {
             animator.SetBool("isWalking", true);
-
+            
         }
         else
         {
-            animator.SetBool("isWalking",false);
+            animator.SetBool("isWalking", false);
         }
+
     }
 
-    public void MovePlayer()
+    public void TriggerInvis()
+    {
+               animator.SetTrigger("Invisible");
+    }
+
+    public void TriggerVisible()
+    {
+               animator.SetTrigger("Visible");
+    }
+
+    public void MovePlayer() 
     {
         if(rb!= null)
         {
@@ -153,51 +173,6 @@ public class Player : MonoBehaviour
             Vector2 limitedVel = flatVel.normalized * walkSpeed;
             rb.velocity = new Vector2(limitedVel.x, limitedVel.y);
         }
-    }
-
-    public void InteractionCheck()
-    {
-
-        IORadiusCheck();
-        if(currentlyInteractingObject != null)
-        {
-            Debug.Log("Interaction Enabled On: " + gameObject.name);
-            currentlyInteractingObject.GetComponent<InteractableObject>().InteractionActivated(currentlyInteractingObject);
-        }
-        else
-        {
-            Debug.Log("No Object Located");
-        }
-
-    }
-
-    private void IORadiusCheck()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerLocation, searchRadius);
-        int totalObjects = colliders.Length;
-        if (totalObjects > 0)
-        {
-            currentlyInteractingObject = null;
-            shortestDistance = float.MaxValue;
-
-            for (int i=0;i < totalObjects; i++)
-            {
-                var collider = colliders[i];
-                var gameobj = collider.gameObject;
-                float dist = Vector2.Distance(playerLocation, gameobj.transform.position);
-                if (dist < shortestDistance && gameobj.CompareTag("Interactable"))
-                {
-                    currentlyInteractingObject = gameobj;
-                    shortestDistance = dist;
-                }
-            }
-        }
-        else 
-        { 
-         currentlyInteractingObject = null;
-        }
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class NikoDialogueControllerLibrary : MonoBehaviour
 {
-    
+    public DialogueRunner dialogueRunner;
     void Start()
     {
         
@@ -31,6 +31,11 @@ public class NikoDialogueControllerLibrary : MonoBehaviour
     private void OnDisable()
     {
         
+    }
+
+    private void StartScript()
+    {
+        dialogueRunner.StartDialogue("NodeName");
     }
 }
 
