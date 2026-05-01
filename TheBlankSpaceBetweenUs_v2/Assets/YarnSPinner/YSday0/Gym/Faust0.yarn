@@ -1,0 +1,233 @@
+﻿title: Faust0Start
+---
+You pass by a door, but stop at the sound of shouts from
+inside. You peer in, seeing a crowd, mostly men, cheering on a
+fight. A loud round of cheers erupts as a guy in the middle
+raises his fist in triumph. He basks in the crowd's admiration,
+and you find yourself staring.
+
+When the next match starts, you find the same guy again. He is
+still in his wrestling attire, a towel over his shoulders as he
+rests.
+
+He notices you and turns, his eyes lighting up.
+
+Faust: "Hello! Are you a member here?"
+
+His voice is bubbly. He looks at what you're wearing and seems
+confused.
+
+-> Say You're a Fan
+    <<incRelationship "Faust" 1>>
+    <<jump AFan>>
+
+-> Tell The Truth
+    <<jump TellTruth>>
+
+-> Lie
+    <<decRelationship "Faust" 1>>
+    <<jump LieNode>>
+===
+
+title: AFan
+---
+You look at him and make a quick decision.
+
+You: "I'm sorry. I'm just such a big fan of you. I had to talk
+to you. You did so well today."
+
+You smile, and his grin widens instantly.
+
+His eyes light up as he basks in your praise. Ah...one of those
+people.
+
+<<jump MyNameIs>>
+===
+
+title: TellTruth
+---
+You: "I need your help with something,"
+
+You decide to be honest. His posture relaxes and his energy
+drops.
+
+Faust: "Oh? You need my help? Why?"
+
+His voice deflates like a balloon. He seems disappointed.
+
+<<jump MyNameIs>>
+===
+
+title: LieNode
+---
+You: "Oh yeah I'm in the club too,"
+
+The lie escapes before you can think. You stand there awkwardly.
+
+He furrows his brows, looking you up and down repeatedly. You
+feel self conscious under his gaze.
+
+Faust: "Yeah...I don't believe you. Why are you really here?"
+
+You sigh. Lying was a bad idea.
+
+<<jump MyNameIs>>
+===
+
+title: MyNameIs
+---
+You: "Hi, my name is {$playerName}. I need volunteers for my
+last essay in Philosophy, and I was wondering if you'd be
+interested in being one,"
+
+His expression shifts from curiosity to realization.
+
+Faust: "Of course! I'd love to help you. I'm Faust. Let's
+discuss the details,"
+
+He radiates energy and kindness as he smiles.
+
+Before you can reply, voices grow louder. A group of girls push
+through the room, clearly looking for someone.
+
+His demeanor brightens as if he forgot you were there. He
+straightens and starts walking toward them.
+
+-> 
+    <<incRelationship "Faust" 1>>
+    <<jump LetHimGo>>
+
+-> 
+    <<jump TugHisShirt>>
+
+-> 
+    <<decRelationship "Faust" 1>>
+    <<jump SayExcuseMe>>
+===
+
+title: LetHimGo
+---
+You watch him walk away, hands twitching at your sides. You
+want to stop him, but seeing him so happy makes you hesitate.
+
+Faust: "The match was challenging! Thank you for asking,"
+
+He beams warmly, filling the room with energy.
+
+The girls giggle, asking questions and offering gifts. He
+accepts them politely but does not dwell on them.
+
+After a few minutes, the crowd disperses. Faust glances back
+absently and notices you.
+
+Faust: "Oh...sorry about that,"
+
+You nod, looking away awkwardly.
+
+You: "It's fine...,"
+
+You lead him to a quieter part of the room.
+
+<<jump SoDoYou>>
+===
+
+title: TugHisShirt
+---
+You panic as he walks away. Acting on impulse, you rush forward
+and grab his shirt.
+
+You: "Wait! We still need to talk!"
+
+He startles, as if he forgot you were there. He turns to you,
+something dark flashing in his eyes before he forces a smile.
+
+Faust: "Oh! Apologies, let's go,"
+
+He glances at the crowd reluctantly before following you to a
+quiet corner.
+
+<<jump SoDoYou>>
+===
+
+title: SayExcuseMe
+---
+You frown, watching him walk away. The audacity irritates you.
+
+You: "Uh...Excuse me?"
+
+He turns, his excitement fading when he sees your expression.
+
+Faust: "Ahh...apologies. I got ahead of myself,"
+
+He turns away from the crowd and focuses on you.
+
+You both move to a quieter part of the room.
+
+<<jump SoDoYou>>
+===
+
+title: SoDoYou
+---
+You nod, smiling slightly. At least he now understands the
+importance of your questions.
+
+-> 
+    <<incRelationship "Faust" 1>>
+    <<jump >>
+
+-> 
+    <<jump >>
+
+-> 
+    <<decRelationship "Faust" 1>>
+    <<jump >>
+===
+
+title: ExplainQs
+---
+You: "Ah...well... 'Would you sacrifice one person to save many
+people?' is a common philosophy question. It comes from the
+trolley problem and shows what someone values,"
+
+Faust grows quiet, thinking carefully.
+
+Faust: "Ahh...I see, that makes sense,"
+
+You nod, satisfied.
+
+===
+
+title: AskWhat
+---
+You: "What's wrong with them?"
+
+You glance at your questions. They are standard philosophical
+topics, but not everyone dwells on them like you do.
+
+Faust: "Nothing, nothing. They're fine,"
+
+He answers quickly, clearing his throat. That only confuses you
+more.
+
+===
+
+title: Defend
+---
+You: "Cringe?"
+
+You repeat, surprised.
+
+You: "Last time I checked, I was the Philosophy student, not
+you. These are very common questions,"
+
+Your patience begins to thin.
+
+Faust raises his hands defensively.
+
+Faust: "Woah okay. Sorry, my fault. You're the one asking the
+questions, I get it,"
+
+It doesn't fully address your frustration, but you decide to
+move on.
+
+===

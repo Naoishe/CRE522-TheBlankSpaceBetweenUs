@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 
     public static Action OnMinigameInput;
     public static Action OnInteractionEnabled;
+    public static Action OnExitButton;
 
     delegate void PlayerDelegate();
     PlayerDelegate playerDelegate;
@@ -90,9 +91,14 @@ public class Player : MonoBehaviour
         {
             OnMinigameInput?.Invoke();
         }
-        
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            OnExitButton?.Invoke();
+        }
+
+
+
     }
 
     public void FixedUpdate()

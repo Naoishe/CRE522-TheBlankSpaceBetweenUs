@@ -326,4 +326,20 @@ public class ContinuousData : MonoBehaviour
     {
         diaRunner.Stop();
     }
+
+    [YarnCommand("pushObjectiveIndex")]
+    public void PushObjectiveIndex(string objectiveTitleString)
+    {
+        Objective targetObjective = null;
+        ObjectivesManager.instance.AssignObjectiveByTitle(objectiveTitleString, targetObjective);
+
+        if (targetObjective != null)
+        {
+            ObjectivesManager.instance.IncObjectiveIndex(targetObjective);
+        }
+        else
+        {
+            Debug.Log("ERROR: No Matching Objective Found");
+        }
+    }
 }

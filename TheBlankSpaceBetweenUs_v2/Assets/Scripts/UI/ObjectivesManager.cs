@@ -216,6 +216,27 @@ public class ObjectivesManager : MonoBehaviour
 
     }
 
+    public void AssignObjectiveByTitle(string objectiveTitle, Objective objRef)
+    {
+        foreach (Objective obj in activeObjectives)
+        {
+            if (obj.objectiveTitle == objectiveTitle)
+            {
+                objRef = obj;
+                break;
+            }
+        }
+        if (objRef == null)
+        {
+            Debug.Log("ERROR: No Matching Objective Found");
+        }
+        
+    }
+    public void IncObjectiveIndex(Objective objective)
+    {
+        objective.UpdateCurrentIndex();
+    }
+
 
 
     public void CloseNotification(Objective objective)
