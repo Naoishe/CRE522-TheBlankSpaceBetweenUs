@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
+using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class TimeManager : MonoBehaviour
     private bool allowUpdates;
     private GameObject CD;
     public GameObject TimeGUI;
+
 
     void Start()
     {
@@ -40,11 +42,10 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         CD = GameObject.Find("ContinuousDataObj");
-        if (!allowUpdates)
+        if (allowUpdates)
         {
             TimeFrameIndex = ContinuousData.instance.CDtimeIndex;
             Day = ContinuousData.instance.CDdayIndex;
-
         }
     }
 

@@ -1,0 +1,167 @@
+﻿title: EnterTheatre
+---
+What would you like to do?
+
+<<if $playerClub == "Theatre">>
+    -> Attend Theatre Rehearsal
+        <<startPractice "Theatre">>
+    -> Exit
+<<else>>
+-> Join Theatre Club
+    <<if $playerClub == "Wrestling">>
+        You are already in the wrestling club, 
+        would you like to quit this to join the Theatre club?
+        -> Yes 
+            <<joinClub "Theatre">>
+            You have successfully joined the Theatre Club!
+            <<if $clubAttended==false>>
+                Rehearsal is about to start, do you wish to attend?
+                -> Yes
+                    <<startPractice "Theatre">>
+                -> No
+        -> No 
+    <<elseif $playerClub == "Debate"">>
+        You are already in the debate club, 
+        would you like to quit this to join the Theatre club?
+        -> Yes 
+            <<joinClub "Theatre">>
+            You have successfully joined the Theatre Club!
+            <<if $clubAttended==false>>
+                Rehearsal is about to start, do you wish to attend?
+                -> Yes
+                    <<startPractice "Theatre">>
+                -> No
+        -> No 
+            
+    <<else>>
+    <<joinClub "Theatre">>
+    You have successfully joined the Theatre Club!
+    <<if $clubAttended==false>>
+        Rehearsal is about to start, do you wish to attend?
+        -> Yes
+            <<startPractice "Theatre">>
+        -> No
+    <<endif>>  
+-> Exit
+<<endif>>
+
+===
+
+title: EnterGym
+---
+What would you like to do?
+
+<<if $playerClub == "Wrestling">>
+    -> Attend Wrestling Practice
+        <<startPractice "Wrestling">>
+    -> Exit
+<<else>>
+-> Join Wrestling Club
+    <<if $playerClub == "Theatre">>
+        You are already in the Theatre club, 
+        would you like to quit this to join the Wrestling club?
+        -> Yes 
+            <<joinClub "Wrestling">>
+            You have successfully joined the Wrestling Club!
+            <<if $clubAttended==false>>
+                Practice is about to start, do you wish to attend?
+                -> Yes
+                    <<startPractice "Wrestling">>
+                -> No
+        -> No 
+    <<elseif $playerClub == "Debate"">>
+        You are already in the Debate club, 
+        would you like to quit this to join the Wrestling club?
+        -> Yes 
+            <<joinClub "Wrestling">>
+            You have successfully joined the Wrestling Club!
+            <<if $clubAttended==false>>
+                Practice is about to start, do you wish to attend?
+                -> Yes
+                    <<startPractice "Wrestling">>
+                -> No
+        -> No 
+            
+    <<else>>
+    <<joinClub "Wrestling">>
+    You have successfully joined the Wrestling Club!
+    <<if $clubAttended==false>>
+        Practice is about to start, do you wish to attend?
+        -> Yes
+            <<startPractice "Wrestling">>
+        -> No
+    <<endif>>  
+-> Exit
+<<endif>>
+
+===
+
+title: EnterLibrary
+---
+What would you like to do?
+
+<<if $playerClub == "Debate">>
+    -> Attend Debate Practice
+        <<startPractice "Debate">>
+    -> Enter University Library
+        <<loadScene "Library">>
+    -> Exit
+    <<closeDialogue>>
+<<else>>
+-> Join Debate Club
+    <<if $playerClub == "Theatre">>
+        You are already in the Theatre club, 
+        would you like to quit this to join the Debate club?
+        -> Yes 
+            <<joinClub "Debate">>
+            You have successfully joined the Debate Club!
+            <<if $clubAttended==false>>
+                Practice is about to start, do you wish to attend?
+                -> Yes
+                    <<startPractice "Debate">>
+                -> No
+                <<closeDialogue>>
+        -> No 
+        <<closeDialogue>>
+    <<elseif $playerClub == "Wrestling"">>
+        You are already in the Debate club, 
+        would you like to quit this to join the Debate club?
+        -> Yes 
+            <<joinClub "Debate">>
+            You have successfully joined the Wrestling Club!
+            <<if $clubAttended==false>>
+                Practice is about to start, do you wish to attend?
+                -> Yes
+                    <<startPractice "Debate">>
+                -> No
+                <<closeDialogue>>
+        -> No 
+            <<closeDialogue>>
+            
+    <<else>>
+    <<joinClub "Debate">>
+    You have successfully joined the Debate Club!
+    <<if $clubAttended==false>>
+        Practice is about to start, do you wish to attend?
+        -> Yes
+            <<startPractice "Debate">>
+        -> No
+            <<closeDialogue>>
+    <<endif>>
+-> Enter University Library
+    <<loadScene "Library">>
+-> Exit
+    <<closeDialogue>>
+<<endif>>
+
+===
+
+title: EnterCafe
+---
+What would you like to do?
+
+-> Enter Cafe
+    <<loadScene "Cafe">>
+-> Exit    
+    <<closeDialogue>>
+===

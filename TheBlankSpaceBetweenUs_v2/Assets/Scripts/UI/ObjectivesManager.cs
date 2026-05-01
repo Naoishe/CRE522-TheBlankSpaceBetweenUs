@@ -73,6 +73,14 @@ public class ObjectivesManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         GenerateObjectives();
         ObjScrActive = false;
+
+
+        objectiveUpdatedText.SetActive(false);
+        objectiveFailedText.SetActive(false);
+        objectiveCompletedText.SetActive(false);
+        objectiveUpdatedDesc.gameObject.SetActive(false);
+        objectiveFailedDesc.gameObject.SetActive(false);
+        objectiveCompletedDesc.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -96,6 +104,7 @@ public class ObjectivesManager : MonoBehaviour
 
     public void PushUpdateNotification(Objective objective)
     {
+        objectiveUpdatedText.SetActive(true);
         SetNotificationType(objective, new string("Update"));
         SetObjectiveActive(objective);
         OutputNotification(objective);
@@ -153,6 +162,7 @@ public class ObjectivesManager : MonoBehaviour
         //Decide which notification appearance type is used to show the objective with on screen [Update,Completed,Failed]
         if (notificationType == "Update")
         {
+            objectiveUpdatedDesc.gameObject.SetActive(true);
             notifImage = objectiveUpdatedNotif; //reads from objective's notification type and assigns the correct image to the notification image var
             displayedDescription = objectiveUpdatedDesc;
             objectiveTextControlled = objectiveUpdatedText;
@@ -161,6 +171,7 @@ public class ObjectivesManager : MonoBehaviour
         {
             if (notificationType == "Completed")
             {
+                objectiveCompletedDesc.gameObject.SetActive(true);
                 notifImage = objectiveCompletedNotif;
                 displayedDescription = objectiveCompletedDesc;
                 objectiveTextControlled = objectiveCompletedText;
@@ -169,6 +180,7 @@ public class ObjectivesManager : MonoBehaviour
             {
                 if (notificationType == "Failed")
                 {
+                    objectiveFailedDesc.gameObject.SetActive(true);
                     notifImage = objectiveFailedNotif;
                     displayedDescription = objectiveFailedDesc;
                     objectiveTextControlled = objectiveFailedText;
@@ -195,8 +207,10 @@ public class ObjectivesManager : MonoBehaviour
         objectiveTextControlled.SetActive(true);
         yield return new WaitForSeconds(6f);
         CloseNotification(objective);
-        
-
+        yield return new WaitForSeconds(0.3f);
+        objectiveUpdatedText.SetActive(false);
+        objectiveFailedText.SetActive(false);
+        objectiveCompletedText.SetActive(false);
     }
     private IEnumerator HeaderHold(bool state)
     {
@@ -214,6 +228,27 @@ public class ObjectivesManager : MonoBehaviour
 
         }
 
+    }
+
+    public void AssignObjectiveByTitle(string objectiveTitle, Objective objRef)
+    {
+        foreach (Objective obj in activeObjectives)
+        {
+            if (obj.objectiveTitle == objectiveTitle)
+            {
+                objRef = obj;
+                break;
+            }
+        }
+        if (objRef == null)
+        {
+            Debug.Log("ERROR: No Matching Objective Found");
+        }
+        
+    }
+    public void IncObjectiveIndex(Objective objective)
+    {
+        objective.UpdateCurrentIndex();
     }
 
 

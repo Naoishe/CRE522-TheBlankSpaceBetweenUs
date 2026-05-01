@@ -1,0 +1,108 @@
+﻿title: SalemDay1Start
+---
+<<declare $playerName="player">>
+<<gatherVars>>
+Entering Poem and Prose, the wind chime sang a soft tune as you walked inside. You expected to see Salem, but instead was met with another worker who was wiping down counters. You seemed to have came in a bit too late, and it had you sighing in disappointment. Suddenly you heard a rumble, signifying it was time to eat. You were here, you might as well eat.
+You approached the counter, the sounds of someone approaching making the server lift their head. The sight of a customer made the server smile, one that was a very obvious cooperate smile "Hello, welcome to Poem and Prose, what would you like?" Her voice was curated to be kind, and it had you smiling politely back.
+You looked at the menu at the top of the "Hi, I'd like a toastie...and also a coffee," You said what type of coffee you wanted, and she wrote it down and gestured to take a seat.
+It was just as warm as it was yesterday and just as cosy, and it made you snuggle into your seat. Looking around, it was mostly empty except for...
+Salem was in the corner of the cafe, eating a container of warm food in front of her. She was munching away, humming softly as she ate. Even when she was eating she seemed so peaceful and nice.
+"Salem!" you said, getting up to sit beside her. She had jolted and looked up, big blue eyes looking up at you in surprise. Her spoon was still in her mouth and she quickly took it out to swallow and smile.
+"Oh hey there Y/N!" Salem bubbly said, patting her mouth with a napkin. You walked over to her little corner and sat your stuff down, sitting down from across of her. Now being closer, you saw she had what looked like curry, and the smell was irresistible.
+
+-> It looked so delicious 
+    <<incRelationship "Salem" 1>>
+    <<jump Delicious>>
+-> The curry seemed alright 
+    <<jump Alright>>
+-> The curry seemed weird looking to you 
+    <<decRelationship "Salem" 1>>
+    <<jump Weird>>
+===
+
+title: Delicious
+---
+You could feel yourself drooling, having to close your mouth so you don't drool on the table "Wow...," you said, slumping in your seat "That looks so good,"
+Salem giggled at what you said, setting her phone down and flat on the table, gaze softening as she looked down "Thank you, I made it," She smiled, gathering a bit of her food in her spoon.
+The fact it was homemade made you salivate more, and to your surprise Salem had lifted up her spoon to your mouth. She gently prodded it against your mouth, smile dainty and soft and she gazed upon you. "Come on, open your mouth," She said, voice sounding like cotton clouds.
+You felt yourself fluster before you hesitantly opened your mouth, and immediately you tasted the vibrancy of her cooking. It danced on your tongue, and you groaned at how delicious her cooking was.
+"Thank you...," You said softly, and all she did was smile.
+<<jump SalemHeadBops>>
+===
+
+title: Alright
+---
+The curry seemed nice but it wasn't what you typically liked or ate. "Ooo that looks nice," You said, leaning back when you got a look at her food.
+She seemed happy with that response, humming to herself as she went back to eating. "I made it myself so thank you,"
+It didn't surprise you that Salem could cook...you wondered what else she could cook.
+<<jump SalemHeadBops>>
+===
+
+title: Weird
+---
+Looking at the curry, you looked weirdly at it. You didn't like the smell or the look, it looked unnatural to you.
+"Uh...That's nice...," You said, in reality wanting to gag. You looked away and leaned back into the chair.
+Salem was silent.
+<<jump SalemHeadBops>>
+===
+
+title: SalemHeadBops
+---
+Salem's head abruptly bobbed up, her smile for once disappearing when she looked pass you. From curiosity,
+you turned around to see what had made her frown, and it was your server holding your food.
+On her face held a grimace, annoyance. The reason why, you couldn't fathom. Not even a second passed before she plastered a smile over her frown, and approached a bit. "Uh...how about you eat over here," she said stalely "There's no room for me to set your food down,"
+When you turned around again, Salem's head was turned down to her food as she silently ate, but this time in a cold silence. You looked around you, there was a lot of space. With Salem's container pressed to her chest, and her things all in her lunchbox beside her, there were loads of space already.
+You looked back at the server and raised an eyebrow.
+-> Take the food yourself
+    <<incRelationship "Salem" 1>>
+    <<jump TakeFood>>
+-> Have the server serve you
+    <<jump MakeServer>>
+-> Move away from Salem
+    <<decRelationship "Salem" 1>>
+    <<jump MoveAway>>
+===
+
+title: TakeFood
+---
+You got up, dragging your chair out so you could walk to her. Eyes widening, the server spluttered as you took your food and sat it on your own table.
+Salem squeaked, jolting as she snapped her head up to you just to see you smile back. She must have think you were moving, and the thought made you sit back down and eat your food.
+Salem's face softened and she continued to eat. You didn't bother to see what the server was doing.
+<<jump DoneFood >>
+===
+
+title: MakeServer
+---
+"What's wrong?" you asked, tilting your head "There's loads of room...I don't quite know what you mean,"
+You could see the annoyance flare up in her face before you stiffly walked over and sat your food down. You caught her gagging, her eyes glancing at Salem's food before looking away. Such displays of disgust was all you needed to understand what was happening. No wonder Salem was in the corner, it seemed it was her designated table because of her native food.
+You frowned as the server left. Salem didn't look up once.
+<<jump DoneFood>>
+===
+
+title: MoveAway
+---
+Looking back at Salem, she had her head down as she ate. You felt bad, but you didn't see any reason why you shouldn't move, especially if a staff member asked you.
+"I'll talk to you after I eat, Salem," You said softly, and all you received back was a nod.
+You sat in a new table and suddenly the server was all preppy as she gave you your food. You stared at her but then dismissed it, it was probably nothing.
+<<jump DoneFood>>
+===
+
+title: DoneFood
+---
+"So," you started once you were done "You feeling okay?"
+Salem looked up at you as she chewed, swallowing as she nods "Yeah, don't worry about me okay," She said softly, patting her mouth clean. Drumming her fingers on the table, she finally looks at you. "Why do you ask?"
+You think back to your server, her weird actions, and how it had made Salem so silent. She's still so silent compared to yesterday. It was noticeable, at least to you. Unlike the other candidates you know, Salem so far has been very nice. You felt obligated to ask if she was alright,
+"Nothing," you sighed, shaking your head, and Salem looked back. It seemed she was looking through you however. It looked eery.
+"I have your answer here," She finally said, hands reaching into her pocket to procure a piece of paper. It was folded once, a little off centre, and you immediately perked up at the sight of it. You almost forgot you were here for her answer.
+"Oh thanks!" You said happily, taking it. You unfolded it, and saw how she just smiled at you.
+<<pushObjectiveIndex "Doing the Rounds">>
+
+
+===
+
+title: EndSalem1
+---
+"This is great, thank you," You said, folding it up again and placing it into your folder. Salem's smile got wider, basically beaming at you. Putting your hand in your pocket again, you took out a slip of paper with the next question on it. She watched you in interest, looking up at you again when you handed it to her. 
+“It’s the next question,” You explained, and it made her hum in response, taking it from you carefully. 
+“I’ll answer this for tomorrow,” she said, already reading it. That was your que to leave, and so you pushed yourself up from the table, and she waved goodbye to you as you left the cafe.
+===

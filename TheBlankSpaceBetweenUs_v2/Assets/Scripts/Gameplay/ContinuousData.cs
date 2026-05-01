@@ -25,7 +25,7 @@ public class ContinuousData : MonoBehaviour
 
     //Gameplay Variables
     public bool libraryVisited;
-    public bool currentlyInteracting;
+    public bool allowInteracting;
     public float shortestDistance;
 
     //Spawn Point Vectors
@@ -38,15 +38,18 @@ public class ContinuousData : MonoBehaviour
 
 
     //PlayerVars
-    public int interactionsHad;
     public Collider2D playerCollider;
     public GameObject player;
     public string playerName;
     public Vector3 spawnPositionVector;
+    public bool allowMovement;
 
     //Yarn
     public InMemoryVariableStorage variableStorage;
     public Library libraryRef;
+    public DialogueRunner diaRunner;
+    public bool clubAttended;
+    public string playerClub;
 
     //Events
     public static Action ReturnYarnAsTrue;
@@ -55,27 +58,36 @@ public class ContinuousData : MonoBehaviour
     public static Action NewSceneLoaded;
 
     //ClubSavedVariables
-    public int WrestlingLevel;
-    public int DebateLevel;
-    public int TheatreLevel;
+    public int StrengthLevel;
+    public int IntelligenceLevel;
+    public int CharismaLevel;
+
+    //Relationship Variables
+    public int NikoRP;
+    public int FaustRP;
+    public int SalemRP;
 
     private void Awake()
     {
         instance = this;
+        allowInteracting = true;
         DontDestroyOnLoad(gameObject);
         CDtimeIndex = 0;
         CDdayIndex = 0;
-        interactionsHad = 0;
         variableStorage = FindObjectOfType<InMemoryVariableStorage>();
         LocatePlayerObject();
         if (newGame)
         {
-            WrestlingLevel = 1;
-            DebateLevel = 1;
-            TheatreLevel = 1;
+            StrengthLevel = 1;
+            IntelligenceLevel = 1;
+            CharismaLevel = 1;
+            NikoRP = 0;
+            FaustRP = 0;
+            SalemRP = 0;
         }
         shortestDistance = 1000f;
-        
+        allowMovement = true;
+
     }
 
     public void Update()
@@ -86,6 +98,8 @@ public class ContinuousData : MonoBehaviour
     private void OnEnable()
     {
         PreSceneChange += UpdatePrevScene;
+        diaRunner = FindObjectOfType<DialogueRunner>();
+
     }
     private void OnDisable()
     {
@@ -117,10 +131,6 @@ public class ContinuousData : MonoBehaviour
         CDdayIndex = TimeManager.Day;
     }
 
-    public void UpdateInteractionCount()
-    {
-        interactionsHad++;
-    }
 
     public void UpdatePlayerName(string name)
     {
@@ -171,6 +181,7 @@ public class ContinuousData : MonoBehaviour
         SceneManager.LoadScene(nextSceneString);
         NewSceneLoaded?.Invoke();
         SetSpawnPosition(nextSpawnPoint);
+        diaRunner = FindObjectOfType<DialogueRunner>();
     }
 
     public void SetSpawnPosition(Vector3 targetposition)
@@ -184,25 +195,151 @@ public class ContinuousData : MonoBehaviour
         player.transform.position = spawnPositionVector;
     }
 
-    public void CheckSavedDistance(float distance, InteractableObject interactableObject)
+    [YarnCommand("incPlayerAttribute")]
+    public void IncPlayerAttribute(string attribute, int amount)
     {
-        if(shortestDistance == 1000f)
+        switch (attribute)
         {
-            shortestDistance = distance;
+            case "Strength":
+                StrengthLevel += amount;
+                break;
+            case "Intelligence":
+                IntelligenceLevel += amount;
+                break;
+            case "Charisma":
+                CharismaLevel += amount;
+                break;
+            default:
+                Debug.Log("ERROR: No Matching Attribute Found");
+                break;
+        }
+    }
+
+    public void SetMovementLock(bool boolLockState)
+    {
+        allowMovement = boolLockState;
+    }
+
+    ///YARN COMMANDS
+
+    [YarnCommand( "startPractice")]
+    public void StartPractice(string practiceScene)
+    {
+        SceneManager.LoadScene(practiceScene);
+    }
+
+    [YarnCommand( "endPractice")]
+    public void EndPractice()
+    {
+        SceneManager.LoadScene("CampusGrounds");
+    }
+
+    [YarnCommand("joinClub")]
+    public void joinClub(string clubName)
+    {
+        playerClub = clubName;
+    }
+
+    [YarnCommand("leaveClub")]
+    public void LeaveClub()
+    {
+        playerClub = "None";
+    }
+
+    [YarnCommand("incRelationship")]
+    public void IncRelationship(string characterName, int amount)
+    {
+        if (characterName == "Niko")
+        {
+            NikoRP += amount;
+        }
+        else if (characterName == "Faust")
+        {
+            FaustRP += amount;
+        }
+        else if (characterName == "Salem")
+        {
+            SalemRP += amount;
         }
         else
         {
-            if (shortestDistance > distance)
-            {
-                shortestDistance = distance;
-                interactableObject.Interaction();
-            }
-            else
-            {
-                Debug.Log("Interaction Attempted, but another interaction is closer. Object: " + interactableObject.thisObject.name);
-                currentlyInteracting = true;
-                 
-            }
+            Debug.Log("ERROR: No Matching Character Found");
+        }
+    }
+
+    [YarnCommand("decRelationship")]
+    public void DecRelationship(string characterName, int amount)
+    {
+        if (characterName == "Niko")
+        {
+            NikoRP -= amount;
+        }
+        else if (characterName == "Faust")
+        {
+            FaustRP -= amount;
+        }
+        else if (characterName == "Salem")
+        {
+            SalemRP -= amount;
+        }
+        else
+        {
+            Debug.Log("ERROR: No Matching Character Found");
+        }
+    }
+
+    [YarnCommand("gatherVars")]
+    public void GatherVars()
+    {
+        diaRunner.VariableStorage.SetValue("$playerName", playerName);
+        diaRunner.VariableStorage.SetValue("$playerClub", playerClub);
+        diaRunner.VariableStorage.SetValue("$clubAttended", clubAttended);
+        diaRunner.VariableStorage.SetValue("$salemRP", SalemRP);
+        diaRunner.VariableStorage.SetValue("$nikoRP", NikoRP);
+        diaRunner.VariableStorage.SetValue("$faustRP", FaustRP);
+
+    }
+
+    [YarnCommand("allowPlayerToMove")]
+    public void AllowPlayerToMove()
+    {
+        allowMovement = true;
+    }
+
+    [YarnCommand("freezePlayer")]
+    public void FreezePlayer()
+    {
+        allowMovement = false;
+    }
+
+    [YarnCommand("loadScene")]
+    public void LoadScene(string sceneName)
+    {
+        nextSceneString = sceneName;
+        SceneManager.LoadScene(nextSceneString);
+        NewSceneLoaded?.Invoke();
+        diaRunner = FindObjectOfType<DialogueRunner>();
+    }
+
+    [YarnCommand("closeDialogue")]
+    public void CloseDialogue()
+    {
+        diaRunner.Stop();
+    }
+
+    [YarnCommand("pushObjectiveIndex")]
+    public void PushObjectiveIndex(string objectiveTitleString)
+    {
+        Objective targetObjective = null;
+        ObjectivesManager.instance.AssignObjectiveByTitle(objectiveTitleString, targetObjective);
+
+        if (targetObjective != null)
+        {
+            ObjectivesManager.instance.IncObjectiveIndex(targetObjective);
+        }
+        else
+        {
+            Debug.Log("ERROR: No Matching Objective Found");
         }
     }
 }

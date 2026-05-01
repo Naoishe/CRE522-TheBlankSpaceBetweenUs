@@ -19,6 +19,7 @@ public class Objective
     public int currentIndex;
     public string currentDescription;
 
+
     public Objective(string insertObjectiveTitle, string insertObjectiveSummary)
     {
         objectiveTitle = insertObjectiveTitle;
@@ -26,6 +27,7 @@ public class Objective
         completed = false;
         notificationType = "Update";
         currentIndex = 0;
+        currentDescription = descriptions[currentIndex];
     }
 
     public void UpdateNotificationType( string typeUpdate)

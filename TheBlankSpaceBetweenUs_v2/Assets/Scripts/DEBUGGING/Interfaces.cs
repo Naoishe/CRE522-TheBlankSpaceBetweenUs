@@ -5,6 +5,6 @@ using UnityEngine;
 /// </summary>
 public interface Iinteractable
 {
-    public void InteractionActivated(GameObject gameObject);
+    public void InteractionActivated();
 
 }

@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 
     public static Action OnMinigameInput;
     public static Action OnInteractionEnabled;
+    public static Action OnExitButton;
 
     delegate void PlayerDelegate();
     PlayerDelegate playerDelegate;
@@ -65,7 +66,6 @@ public class Player : MonoBehaviour
         playerDelegate += MyInput;
         playerDelegate += SpeedControl;
         playerDelegate += PlayerButtons;
-        OnInteractionEnabled += InteractionCheck;
         playerCollectableCounter = 0;
 
 
@@ -82,20 +82,32 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            OnInteractionEnabled?.Invoke();
+            if (ContinuousData.instance.allowInteracting)
+            {
+                OnInteractionEnabled?.Invoke();
+            }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             OnMinigameInput?.Invoke();
         }
-        
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            OnExitButton?.Invoke();
+        }
+
+
+
     }
 
     public void FixedUpdate()
     {
-        MovePlayer();
+        if (ContinuousData.instance.allowMovement)
+        {
+            MovePlayer();
+        }
+            
     }
     private void MyInput()
     {
@@ -104,18 +116,32 @@ public class Player : MonoBehaviour
 
         movementInput.Normalize();
 
+        animator.SetFloat("MoveX", movementInput.x);
+        animator.SetFloat("MoveY", movementInput.y);
+
         if (movementInput.magnitude > 0)
         {
             animator.SetBool("isWalking", true);
-
+            
         }
         else
         {
-            animator.SetBool("isWalking",false);
+            animator.SetBool("isWalking", false);
         }
+
     }
 
-    public void MovePlayer()
+    public void TriggerInvis()
+    {
+               animator.SetTrigger("Invisible");
+    }
+
+    public void TriggerVisible()
+    {
+               animator.SetTrigger("Visible");
+    }
+
+    public void MovePlayer() 
     {
         if(rb!= null)
         {
@@ -153,69 +179,6 @@ public class Player : MonoBehaviour
             Vector2 limitedVel = flatVel.normalized * walkSpeed;
             rb.velocity = new Vector2(limitedVel.x, limitedVel.y);
         }
-    }
-
-    public void InteractionCheck()
-    {
-
-        /*IORadiusCheck();
-        if(currentlyInteractingObject != null)
-        {
-            Debug.Log("Interaction Enabled On: " + gameObject.name);
-            currentlyInteractingObject.GetComponent<InteractableObject>().InteractionActivated(currentlyInteractingObject);
-        }
-        else
-        {
-            Debug.Log("No Object Located");
-        }*/
-
-    }
-
-    private void IORadiusCheck()
-    {
-        Physics2D.OverlapCircle(playerLocation, searchRadius, contactFilter, collidingObjects);
-        if (collidingObjects != null)
-        {
-            for (int i=0; i > collidingObjects.Length; i++)
-            {
-                if (i == 0)
-                {
-                    currentlyInteractingObject = collidingObjects[0].GetComponent<GameObject>();
-                    shortestDistance = Vector2.Distance(player.transform.position, currentlyInteractingObject.transform.position);
-                }
-                else
-                {
-                    currentObjectVector = collidingObjects[i].transform.position;
-                    float comparingDistance = Vector2.Distance(player.transform.position, currentObjectVector);
-                    if (comparingDistance < shortestDistance)
-                    {
-                        shortestDistance = comparingDistance;
-                        currentlyInteractingObject = collidingObjects[i].GetComponent<GameObject>();
-                    }
-                }
-                
-                
-            }
-        }
-        else
-        {
-            //currentlyInteractingObject = null;
-            if (ContinuousData.instance.currentSceneName == "CampusGrounds")
-            {
-                currentlyInteractingObject = DetectionFix.Instance.closestChar;
-            }
-            else
-            {
-                currentlyInteractingObject = null;
-            }
-        }
-
-        if(currentlyInteractingObject==null && ContinuousData.instance.currentSceneName == "CampusGrounds")
-        {
-            currentlyInteractingObject=DetectionFix.Instance.closestChar;
-        }
-        
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

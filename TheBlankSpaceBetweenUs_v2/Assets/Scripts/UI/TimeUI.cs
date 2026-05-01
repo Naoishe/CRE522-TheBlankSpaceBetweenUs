@@ -8,81 +8,37 @@ using TMPro;
 public class TimeUI : MonoBehaviour
 {
     
-    //public TextMeshProUGUI timeText;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI dayText;
     public Animator sundialAnimator;
-    private float staticTimeFeedingVar;
-    //public TimeManager timeManager;
+    public TimeManager timeManager;
     private int timeIndex;
-    private int day;
-    private string timeframe;
-    private Timer staticTimer;
 
     private void OnEnable()
     {
-        TimeManager.OnTimeFrameChanged += SundialStatic;
+        TimeManager.OnTimeFrameChanged += UpdateTime;
     }
     private void OnDisable()
     {
-        TimeManager.OnTimeFrameChanged -= SundialStatic;
+        TimeManager.OnTimeFrameChanged -= UpdateTime;
     }
 
     public void Update()
     {
-        timeIndex = TimeManager.TimeFrameIndex;  
-        day= TimeManager.Day;
-        timeframe = TimeManager.TimeFrame[timeIndex];
-        //UpdateTime();
-        UpdateSundial();
-
     }
-    
+
+    public void FixedUpdate()
+    {
+        timeIndex = TimeManager.TimeFrameIndex;
+        UpdateTime();
+    }
+
     private void UpdateTime()
     {
-        //timeText.text = $"Day {day}: {TimeManager.TimeFrame[timeIndex]}";
-        //Debug.Log("TimeUpdated");
-        //Debug.Log("timeIndex = " + timeIndex);
-        //Debug.Log("Day = " + day);
+        timeText.text = $" {TimeManager.TimeFrame[timeIndex]} ";
+        dayText.text = $"Day + {TimeManager.Day}";
     }
 
-    private void UpdateSundial()
-    {
-        if (timeframe == "Morning")
-        {
-            sundialAnimator.SetTrigger("Morning");
-        }
-        if (timeframe == "Midday")
-        {
-            sundialAnimator.SetTrigger("Midday");
-        }
-        if (timeframe == "Early Evening")
-        {
-            sundialAnimator.SetTrigger("EarlyEvening");
-        }
-        if (timeframe == "Late Evening")
-        {
-            sundialAnimator.SetTrigger("LateEvening");
-        }
-        if (timeframe == "Night")
-        {
-            sundialAnimator.SetTrigger("Night");
-        }
-    }
-
-    private void SundialStatic()
-    {
-        sundialAnimator.SetTrigger("Static");
-        staticTimer = new Timer(2500); 
-        staticTimer.Start();
-        //staticTimer.Elapsed += StopStatic;
-
-        
-    }
-
-    private void StopStatic(ElapsedEventArgs e)
-    {
-        Console.WriteLine("Time Returned"+e.SignalTime);
-        sundialAnimator.SetTrigger("StaticReset");
-    }
 
     
  
