@@ -1,5 +1,7 @@
 ﻿title: SalemDay0Start
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 The campus café was a hot spot for students during lunch time,
 but now as it's only morning, it was calm. The soft jazz music
 set the atmosphere, and as you entered, you saw only one worker

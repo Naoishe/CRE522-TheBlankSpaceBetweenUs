@@ -66,12 +66,13 @@ public class Library : MonoBehaviour
         Debug.Log("Processed Value: " + nikoImageBoolRead);
         if (nikoImageBoolRead)
         {
-
-            nikoImage.color=new Color(nikoImage.color.r,nikoImage.color.g,nikoImage.color.b,255);
+            nikoImage.gameObject.SetActive(true);
+            //nikoImage.color=new Color(nikoImage.color.r,nikoImage.color.g,nikoImage.color.b,255);
         }
         else
         {
-            nikoImage.color = new Color(nikoImage.color.r, nikoImage.color.g, nikoImage.color.b, 0);
+            nikoImage.gameObject.SetActive(false);
+            //nikoImage.color = new Color(nikoImage.color.r, nikoImage.color.g, nikoImage.color.b, 0);
         }
     }
 }

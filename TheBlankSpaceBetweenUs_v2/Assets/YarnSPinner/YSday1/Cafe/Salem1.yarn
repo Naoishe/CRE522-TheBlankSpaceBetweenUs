@@ -1,5 +1,7 @@
 ﻿title: SalemDay1Start
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 Entering Poem and Prose, the wind chime sang a soft tune as you walked inside. You expected to see Salem, but instead was met with another worker who was wiping down counters. You seemed to have came in a bit too late, and it had you sighing in disappointment. Suddenly you heard a rumble, signifying it was time to eat. You were here, you might as well eat.
 You approached the counter, the sounds of someone approaching making the server lift their head. The sight of a customer made the server smile, one that was a very obvious cooperate smile "Hello, welcome to Poem and Prose, what would you like?" Her voice was curated to be kind, and it had you smiling politely back.
 You looked at the menu at the top of the "Hi, I'd like a toastie...and also a coffee," You said what type of coffee you wanted, and she wrote it down and gestured to take a seat.

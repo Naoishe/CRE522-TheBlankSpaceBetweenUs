@@ -1,5 +1,7 @@
 ﻿title: IntroDialogue
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 <<declare $WakeAnimBool = true>>
 It bleared in your ears invasively, your beloved alarm...
 A groan slipped out as you blinked away the sleep in order to slap the stop button. 

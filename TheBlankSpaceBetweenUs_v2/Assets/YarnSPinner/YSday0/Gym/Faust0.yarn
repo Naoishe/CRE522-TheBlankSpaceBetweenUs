@@ -1,5 +1,7 @@
 ﻿title: Faust0Start
 ---
+<<declare $playerName == player>>
+<<gatherVars>>
 You pass by a door, but stop at the sound of shouts from
 inside. You peer in, seeing a crowd, mostly men, cheering on a
 fight. A loud round of cheers erupts as a guy in the middle

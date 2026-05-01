@@ -1,6 +1,7 @@
 ﻿title: Salem2Start
 ---
-<<declare $playerName>>
+<<declare $playerName="player">>
+<<gatherVars>>
 
 Entering the cafe this time had you salivating at the sight of
 the desserts that were just baked. Salem was there, giggling as

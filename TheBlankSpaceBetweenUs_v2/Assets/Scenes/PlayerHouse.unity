@@ -14380,7 +14380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12ee30d49b4aa640b19cd0954558583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeText: {fileID: 0}
+  dayText: {fileID: 0}
   sundialAnimator: {fileID: 761042029}
+  timeManager: {fileID: 0}
 --- !u!1 &1199197290
 GameObject:
   m_ObjectHideFlags: 0
@@ -15448,7 +15451,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16926,6 +16929,14 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 598314479}
+    - target: {fileID: 4533974367051567520, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
+      propertyPath: m_Priority
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533974367051567520, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7242007035173751278, guid: 73f52d9ed4383d64a9baac415ae82ccb, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
