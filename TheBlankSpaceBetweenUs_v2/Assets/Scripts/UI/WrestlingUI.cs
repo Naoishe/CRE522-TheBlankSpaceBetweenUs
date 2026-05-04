@@ -65,7 +65,6 @@ public class WrestlingUI : MonoBehaviour
     private void Awake()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
-        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
         activeRoundSpotlight.SetActive(false);
         victory.SetActive(false);
         youLose.SetActive(false);
