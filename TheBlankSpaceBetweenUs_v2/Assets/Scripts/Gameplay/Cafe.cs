@@ -36,6 +36,7 @@ public class Cafe : MonoBehaviour
 
     void Start()
     {
+        dialogueRunner.AddCommandHandler("allowExit", AllowExit);
         if (ContinuousData.instance.CDdayIndex==0)
         {
             dialogueRunner.StartDialogue("SalemDay0Start");
@@ -53,8 +54,6 @@ public class Cafe : MonoBehaviour
     {
 
     }
-
-    [YarnCommand("allowExit")]
     public void AllowExit()
     {
         dialogueRunner.Stop();

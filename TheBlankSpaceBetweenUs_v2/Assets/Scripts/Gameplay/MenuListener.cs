@@ -17,8 +17,6 @@ public class MenuListener : MonoBehaviour
     public float maxOpacity = 1.0f;
     public GameObject MenuScript;
 
-    static float lerpT = 0.0f;
-    static float volumeLerp = 0.0f;
     void Start()
     {
         MainMusic.Play();
@@ -26,27 +24,19 @@ public class MenuListener : MonoBehaviour
     private void OnEnable()
     {
         MainMenu.startButtonPressed += PlaySoundEffect;
-        MainMenu.startButtonPressed += LerpMusic;
+        MainMenu.newGameTriggered += BeginGame;
     }
 
     private void OnDisable()
     {
         MainMenu.startButtonPressed -= PlaySoundEffect;
-        MainMenu.startButtonPressed -= LerpMusic;
     }
     void Update()
     {
         
     }
-
-    public void LerpMusic()
+    public void BeginGame()
     {
-        /*MainMusic.volume = Mathf.Lerp(1f, 0f, volumeLerp);
-        volumeLerp += 0.5f * Time.deltaTime;
-        if (MainMusic.volume == 0f)
-        {
-            LoadGame();
-        }*/
         StartCoroutine(LoadGame());
     }
 
@@ -59,6 +49,7 @@ public class MenuListener : MonoBehaviour
 
     IEnumerator LoadGame()
     {
+
         yield return new WaitForSeconds(2);
         ContinuousData.instance.SceneChangeDetected("PlayerHouse", ContinuousData.instance.playerHouse_MorningSpawn);
     }

@@ -14,13 +14,29 @@ public class NikoInteract : InteractableObject
     public override void Interaction()
     {
         watchBool = true;
-        if (ContinuousData.instance.CDdayIndex==0)
+        switch (ContinuousData.instance.CDdayIndex)
         {
-            dialogueRunner.StartDialogue("MeetingNiko");
-        }
-        else
-        {
-            // Not day 0
+            case 0:
+                dialogueRunner.StartDialogue("MeetingNiko");
+                break;
+            case 1:
+                dialogueRunner.StartDialogue("Niko1");
+                break;
+            case 2:
+                dialogueRunner.StartDialogue("Niko2");
+                break;
+            case 3:
+                dialogueRunner.StartDialogue("Niko3");
+                break;
+            case 4:
+                dialogueRunner.StartDialogue("Niko4");
+                break;
+            case 5:
+                dialogueRunner.StartDialogue("Niko5");
+                break;
+            default:
+                dialogueRunner.StartDialogue("MeetingNiko");
+                break;
         }
     }
 

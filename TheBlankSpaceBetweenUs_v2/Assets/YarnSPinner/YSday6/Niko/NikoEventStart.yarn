@@ -1,5 +1,7 @@
 ﻿title: NikoEventStart
 ---
+<<declare $playerName = "Holder">>
+<<gathervars>>
 Recalling what happened through the haze of your pounding head was
 a struggle. Like any other day, it started with your routine.
 
@@ -171,6 +173,7 @@ Niko: "We'll be together forever now."
 <<setBool NikoDiaImageState true>>
 Niko: "Won't we?"
 <<setBool NikoDiaImageState false>>
+<<determineNikoEnd>>
 ===
 
 title: CannibalismEnd
@@ -216,9 +219,10 @@ Niko: "I will not abandon you."
 <<setBool NikoDiaImageState true>>
 Niko: "You'll always be a part of me."
 <<setBool NikoDiaImageState false>>
+<<gameFinished>>
 ===
 
-title: StockholmSyndromeEndPart1
+title: StockholmSyndromeEndPart
 ---
 You: "You're more myself than I."
 
@@ -261,5 +265,6 @@ Niko: "You'll always be a part of me."
 <<setBool NikoDiaImageState true>>
 Niko: "My soul."
 <<setBool NikoDiaImageState false>>
+<<gameFinished>>
 ===
 

@@ -22,7 +22,7 @@ public class PlayerHouse : MonoBehaviour
     void Awake()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
-        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
+        
     }
 
     void OnEnable()
@@ -74,7 +74,7 @@ public class PlayerHouse : MonoBehaviour
         }
          else
         {
-            Debug.Log("Other days not added");
+            StartCoroutine(MorningNorm());
         }
     }
 
@@ -84,23 +84,26 @@ public class PlayerHouse : MonoBehaviour
         dialogueRunner.StartDialogue("IntroDialogue");
         yield return new WaitForSeconds(10f);
         bed.SetTrigger("WakePlayer");
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(10f);
         TurnOnPlayer();
 
+    }
+
+    public IEnumerator MorningNorm()
+    {
+        yield return new WaitForSeconds(2f);
+        dialogueRunner.StartDialogue("MorningNorm");
+        yield return new WaitForSeconds(10f);
+        bed.SetTrigger("WakePlayer");
+        yield return new WaitForSeconds(8f);
+        TurnOnPlayer();
     }
 
     void NightLoad() 
     {
         player.transform.position = new Vector3(-2.4f, -28.5f, 0f);
         breakfastDone = true;
-        if (ContinuousData.instance.CDdayIndex == 0 ) //
-        {
-            //StartCoroutine(Night0());
-        }
-        else
-        {
-            Debug.Log("Other days not added");
-        }
+
     }
 
     public void UpdateBreakfastStatus(bool boolState)

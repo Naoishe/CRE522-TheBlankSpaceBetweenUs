@@ -76,7 +76,7 @@ He lights up.
 Faust: "Of course!"
 <<setBool FaustDiaImageBool false>>
 
-<<setBool FaustMinigameBool true>>
+<<startEventGame>>
 ===
 
 title: GameOn
@@ -91,7 +91,7 @@ He smirks, excited.
 Faust: "Game on."
 <<setBool FaustDiaImageBool false>>
 
-<<setBool FaustMinigameBool true>>
+<<startEventGame>>
 ===
 
 title: EhOkay
@@ -104,7 +104,7 @@ You: "I guess I have time...okay."
 Faust: "Nice."
 <<setBool FaustDiaImageBool false>>
 
-<<setBool FaustMinigameBool true>>
+<<startEventGame>>
 ===
 
 title: NoNotFair
@@ -124,7 +124,7 @@ You give in.
 
 You: "Fine."
 
-<<setBool FaustMinigameBool true>>
+<<startEventGame>>
 ===
 
 title: PlayerWins

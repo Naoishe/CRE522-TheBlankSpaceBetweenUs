@@ -1,5 +1,7 @@
 ﻿title: Niko1
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 You found Niko again in the library, still reading the book he had picked.
 His eyes were so focused he hadn't noticed you were there.
 

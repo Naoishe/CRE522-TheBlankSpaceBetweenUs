@@ -26,6 +26,7 @@ public class ObjectBed : InteractableObject
     {
         //dialogueRunner.StartDialogue("");
         playeranim.SetTrigger("Invisible");
+
         this.GetComponent<Animator>().SetTrigger("PlayerSleep");
     }
 

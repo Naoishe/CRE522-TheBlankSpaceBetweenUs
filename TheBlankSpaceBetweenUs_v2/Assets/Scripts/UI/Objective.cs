@@ -43,6 +43,12 @@ public class Objective
     {
         currentIndex++;
         currentDescription = descriptions[currentIndex];
+        if (currentIndex >= segmentCount)
+        {
+            completed = true;
+            notificationType = "Completed";
+            
+        }
     }
 
 }

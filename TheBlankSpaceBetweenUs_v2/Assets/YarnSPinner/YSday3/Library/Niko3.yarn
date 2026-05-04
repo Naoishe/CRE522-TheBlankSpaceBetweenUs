@@ -1,5 +1,7 @@
 ﻿title: Niko3
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 Lunch time at last. The day was bright for once, so you chose a spot under a
 tree for shade. As you pulled out your notes, you felt eyes on you.
 

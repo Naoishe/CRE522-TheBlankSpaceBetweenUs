@@ -1,5 +1,7 @@
 ﻿title: Niko4
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 Here you were at the library again. It felt almost mechanical, the way your
 feet brought you here without thought.
 

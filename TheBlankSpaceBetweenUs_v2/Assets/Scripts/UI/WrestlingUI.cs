@@ -93,14 +93,30 @@ public class WrestlingUI : MonoBehaviour
         music.Stop();
         victorySFX.Play();
         victory.SetActive(true);
-        StartCoroutine(DelaySceneChange());
         audience.SetTrigger("Cheer");
+
+        if(ContinuousData.instance.CDdayIndex == 4 && ContinuousData.instance.playerClub == "Wrestling")
+        {
+            StartCoroutine(OtherSceneChange());
+        }
+        else
+        {
+            StartCoroutine(DelaySceneChange());
+        }
+
     }
 
     private IEnumerator DelaySceneChange()
     {
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("CampusGrounds"); //Change to Gym Scene
+        SceneManager.LoadScene("CampusGrounds"); //Change to Gym Scene for Faust Event
+    }
+
+    private IEnumerator OtherSceneChange()
+    {
+        yield return new WaitForSeconds(5f);
+        ContinuousData.instance.EndingIndex = 7;
+        SceneManager.LoadScene("Gym"); 
     }
 
     public void YouLose()
@@ -108,8 +124,22 @@ public class WrestlingUI : MonoBehaviour
         music.Stop();
         youLoseSFX.Play();
         youLose.SetActive(true);
-        StartCoroutine(DelaySceneChange());
         audience.SetTrigger("Still");
+        if (ContinuousData.instance.CDdayIndex == 4 && ContinuousData.instance.playerClub == "Wrestling")
+        {
+            StartCoroutine(OtherOtherSceneChange());
+        }
+        else
+        {
+            StartCoroutine(DelaySceneChange());
+        }
+    }
+
+    private IEnumerator OtherOtherSceneChange()
+    {
+        yield return new WaitForSeconds(5f);
+        ContinuousData.instance.EndingIndex = 8;
+        SceneManager.LoadScene("Gym");
     }
 
     public void TickerHit()

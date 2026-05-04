@@ -14,6 +14,7 @@ public class ContinuousData : MonoBehaviour
     //Controling Variables
     [SerializeField] public bool newGame=true;
     public static ContinuousData instance;
+    public int EndingIndex;
 
     //Currently Playing Scene Variables
     public int CDtimeIndex;
@@ -125,8 +126,6 @@ public class ContinuousData : MonoBehaviour
         diaRunner.AddCommandHandler<string, string>("setAnimTrigger", SetAnimTrigger);
         diaRunner.AddCommandHandler("feedPlayerNameToYarn", FeedPlayerNameToYarn);
         diaRunner.AddCommandHandler<string, int>("alterPlayerAttribute", AlterPlayerAttribute);
-        diaRunner.AddCommandHandler("playSoundEffect", PlayHurtSoundEffect);
-
 
         allowMovement = true;
         NikoDiaImageState = false;
@@ -156,6 +155,12 @@ public class ContinuousData : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
         currentSceneName = currentScene.name;
         currentSceneBuildIndex = currentScene.buildIndex;
+    }
+
+
+    public void SetEnding(int endingIndex)
+    {
+        EndingIndex = endingIndex;
     }
 
     public void LocatePlayerObject()

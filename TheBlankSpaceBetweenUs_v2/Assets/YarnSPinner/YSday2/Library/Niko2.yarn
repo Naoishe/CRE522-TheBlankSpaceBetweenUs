@@ -134,6 +134,8 @@ He repeated, more insistently this time.
 
 title: Agree1
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 You: "Yes."
 
 The answer came out as a whisper, drawn out by the intensity of his amber

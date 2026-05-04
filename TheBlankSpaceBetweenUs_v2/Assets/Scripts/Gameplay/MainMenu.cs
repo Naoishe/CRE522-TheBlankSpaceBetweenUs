@@ -10,12 +10,15 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Button startButton;
-    public Image screen;
+    public Image screen1;
+    public Image screen2;
     public GameObject newNameObject;
     public GameObject confirmButtons;
-    public GameObject scoredOut;
+    public GameObject submitButton;
+    public GameObject nameRequest;
     public TextMeshProUGUI askingText;
     public string submittedName;
+    public GameObject inputFieldObject;
     public InputField inputField;
     public float minOpacity=0f;
     public float maxOpacity=255f;
@@ -24,6 +27,8 @@ public class MainMenu : MonoBehaviour
 
     public static Action startButtonPressed;
     public static Action newGameTriggered;
+
+    private bool buttonDisable;
 
 
 
@@ -35,9 +40,10 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        scoredOut.SetActive(true);
         newNameObject.SetActive(false);
         confirmButtons.SetActive(false);
+        submitButton.SetActive(false);
+        buttonDisable = false;
     }
     void Update()
     {
@@ -47,43 +53,52 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
-        startButtonPressed?.Invoke();
-        scoredOut.SetActive(false);
-        LerpScreen();
+        if (!buttonDisable)
+        {
+            startButtonPressed?.Invoke();
+            LerpScreen();
+            RequestName();
+        }
     }
 
     public void LerpScreen()
     {
-        screen.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT),1);
+        screen1.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT),1);
+        screen2.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT),1);
         lerpT -= 0.5f * Time.deltaTime;
 
-        if (lerpT == 0f)
-        {
-            //RequestName();
-        }
+        
 
     }
 
     public void RequestName()
     {
+        nameRequest.SetActive(true);
+        buttonDisable = true;
+        inputFieldObject.SetActive(true);
+        submitButton.SetActive(false);
         newNameObject.SetActive(true);
-        confirmButtons.SetActive(false);
+        confirmButtons.SetActive(true);
         askingText.text = "What is your name?";
     }
 
     public void SubmitName()
     {
         submittedName = inputField.text;
+        inputFieldObject.SetActive(false);
         newNameObject.SetActive(false);
+        confirmButtons.SetActive(false);
         askingText.text = submittedName + "...Is that right?...";
-        confirmButtons.SetActive(true);
+        submitButton.SetActive(true);
+
 
 
     }
 
     public void ConfirmName()
     {
-        confirmButtons.SetActive(false);
+       
+        submitButton.SetActive(false);
         askingText.text = "Alright...I'll remember that.";
         ContinuousData.instance.UpdatePlayerName(submittedName);
         StartCoroutine(TimeForWords());
@@ -95,6 +110,7 @@ public class MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         newGameTriggered?.Invoke();
+        nameRequest.SetActive(true);
 
     }
 

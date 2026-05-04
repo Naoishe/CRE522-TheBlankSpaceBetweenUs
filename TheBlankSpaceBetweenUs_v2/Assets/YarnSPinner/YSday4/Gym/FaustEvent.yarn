@@ -1,5 +1,7 @@
 ﻿title: FaustEventStart
 ---
+<<declare $playerName = "Holder">>
+<<gathervars>>
 Faust messaged you to meet him at the gym. He said it was about
 training.
 
@@ -227,16 +229,13 @@ You: "....s-...stop..."
 He smiled. Satisfied, and sure in his actions...
 
 Faust: "You should've stayed out of it,"
-<<playSoundEffect "hurtSound">>
 
 Faust: "This is just how it has to be,"
-<<playSoundEffect "hurtSound">>
 
 Your body went still...
 
 Faust: "Goodbye, {$playerName}..."
-<<playSoundEffect "hurtSound">>
-<<loadScene "Murdered">>
+<<loadScene "Endings">>
 ===
 
 title: MercyEnd
@@ -264,17 +263,12 @@ someone is on their way. Wiping some blood from your
 own nose, you turned to look down at him. 
 
 You: "...Your life, Faust."
-<<loadScene "Graduation">>
+<<updateInt "endingNumber" 2
+<<loadScene "Endings">>
 ===
 
 title: FinishEnd
 ---
-<<playSoundEffect "hurtSound">>
-...
-<<playSoundEffect "hurtSound">>
-...
-<<playSoundEffect "hurtSound">>
-...
 
 You watched the red pool grow larger around his head.
 You foot having crushed his skull against the ground.
@@ -282,5 +276,5 @@ His pulse stopped, his eyes closed, and at last...
 
 Faust lost. 
 <<updateInt "endingNumber" 1>>
-<<loadScene "Graduation">>
+<<loadScene "Endings">>
 ===

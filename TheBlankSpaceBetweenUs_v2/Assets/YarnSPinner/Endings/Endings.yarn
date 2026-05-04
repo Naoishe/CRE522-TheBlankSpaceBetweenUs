@@ -1,0 +1,223 @@
+﻿title: Graduation
+---
+<<declare $playerName = "Holder">>
+<<gathervars>>
+After everything this year, you did it. You scraped your grade
+together enough to graduate!
+
+As others threw their hats in the air, you held onto yours,
+preferring something solid. A reminder that even when things
+were rough, you still made it.
+
+<<jump FullEnd>>
+===
+
+title: GraduationWithFaust
+---
+After everything this year, you did it. You scraped your grade
+together enough to graduate!
+
+As others threw their hats in the air, you held onto yours,
+preferring something solid. A reminder that even when things
+were rough, you still made it.
+<<moodSwitch>>
+<<jump GoodFaust>>
+===
+
+title: GoodNiko
+---
+Birds tweet softly as a summer breeze moves the trees outside.
+Swallows loop across the blue sky beyond the locked window.
+
+Niko: "Are you admiring the birds, my dove?" He approaches
+quietly.
+
+Niko: "You look breathtaking,"
+
+You are dressed carefully, styled exactly how he likes. To him,
+you are delicate. Precious.
+
+His dove. His dove in a gilded cage.
+
+Niko: "Don't you like it?" He gestures to the table.
+
+Croissants, pain au chocolat, and pastries cover it.
+
+Niko: "I wanted you to feel like you were in Paris, dining
+beside La Seine."
+
+Niko: "Because, ma chérie, you deserve the best,"
+
+He lifts your hand, kissing each knuckle slowly. A quiet
+reminder of who you belong to.
+
+He listens to distant church bells.
+
+Niko: "Isn't today your graduation?" He tilts his head.
+
+You: "It was. I forgot about it,"
+
+He smiles brightly.
+
+Niko: "An éclair?" He offers it gently.
+
+You: "Could we go for a walk today?" You miss the outside air.
+
+He sets the éclair down, displeased.
+
+Niko: "I can open the window. It might feel like a walk by a
+river."
+
+Niko: "You know why you can't go out,"
+
+He stands, kissing your forehead.
+
+Niko: "It's alright. We all make mistakes,"
+
+He cracks the window open slightly, the key resting around his
+neck.
+
+Niko: "It's a beautiful day,"
+
+You smile. You agree. It is a beautiful day.
+
+And maybe this isn't so bad.
+<<jump FullEnd>>
+===
+
+title: GoodFaust
+---
+You stop by the cafe for one last campus coffee when Faust
+approaches you.
+
+Faust: "Those answers I gave you? Most of them were lies."
+
+You stare at him as he looks away, shifting.
+
+Faust: "I cared too much about how I looked. Even answering
+your questions felt...wrong."
+
+He hesitates.
+
+Faust: "I didn't want to seem weak. So I lied."
+
+Silence lingers between you.
+<<jump FullEnd>>
+===
+
+title: SalemRift
+---
+A terrible feeling grips you, the need to find Salem becoming
+unbearable. You decide to go to her dorm.
+
+Something flickers at the edge of your vision, glitching. You
+turn quickly. Nothing.
+
+Your heart pounds. You feel watched.
+
+A voice whispers.
+
+"Find me,"
+
+Your mind dulls, your body moving on its own. The panic fades
+as you follow.
+
+At the rift, everything is wrong. A dark space stretches
+endlessly, a rocky hill leading toward a dim blue light.
+
+Whispers fill your ears, unknowable, your mind rejecting them.
+
+You walk forward anyway.
+
+You: "Why am I walking?"
+
+The thought feels distant. Not yours.
+
+You climb the hill, stone shifting beneath your feet.
+
+Then you see it. A massive archway glowing blue, dust swirling
+around it like light.
+
+It feels wrong. Too big. Too alive.
+
+The whispers urge you closer.
+
+Then—
+
+You see her.
+
+Salem.
+
+Your trance breaks. You gasp and run toward her.
+
+She turns.
+
+Salem: "{$playerName}, you came!"
+
+Her voice echoes. Her pupils are blown wide as she sways,
+smiling too wide.
+
+Something is wrong.
+
+Salem: "I'm so happy...you came. You cared...you spoke up for
+me,"
+
+She drifts closer.
+
+You: "Salem...what are you doing?"
+
+Salem: "I'm going to a new dream. All my sadness will disappear,"
+
+Her eyes snap open.
+
+Salem: "A fresh start...a better world,"
+
+She laughs, unstable, grabbing your arms tightly.
+
+Salem: "I'm so tired of this dream. So much pain...I want
+something happy,"
+
+She looks at you.
+
+Salem: "You're happy for me, right?"
+
+You frown.
+
+You: "Don't do it,"
+
+She freezes.
+
+Salem: "What?"
+
+You: "You'll lose everything. Your friends, your family...me."
+
+You: "Without pain, you lose everything else too."
+
+Silence.
+
+Then she cries.
+
+Salem: "I'm just so tired. Why is everything so cruel?"
+
+She sobs. You pull her into a hug.
+
+You: "I know,"
+
+You hold her as she cries.
+
+You: "Let's leave together,"
+
+She looks up and nods.
+
+You guide her away. Behind you, the gate goes silent.
+<<jump FullEnd>>
+===
+
+title: FullEnd
+---
+<<darkScreen>>
+
+The End...
+
+<<gameFinished>>
+===

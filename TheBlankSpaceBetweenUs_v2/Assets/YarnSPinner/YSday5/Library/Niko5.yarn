@@ -1,5 +1,7 @@
 ﻿title: Niko5
 ---
+<<declare $playerName="player">>
+<<gatherVars>>
 Niko was at the library again, staring out the window deep in thought. He
 looked troubled, his brow twitching as his finger tapped an uneven rhythm.
 
