@@ -1,31 +1,30 @@
 ﻿title: Faust0Start
 ---
-<<declare $playerName == player>>
+<<declare $playerName = "player">>
 <<gatherVars>>
-You pass by a door, but stop at the sound of shouts from
-inside. You peer in, seeing a crowd, mostly men, cheering on a
-fight. A loud round of cheers erupts as a guy in the middle
-raises his fist in triumph. He basks in the crowd's admiration,
-and you find yourself staring.
+<<freezePlayer>>
+You pass by a door but stop at loud shouts from inside.
+You peer in and see a crowd cheering around a fight.
 
-When the next match starts, you find the same guy again. He is
-still in his wrestling attire, a towel over his shoulders as he
-rests.
+A roar erupts as a man raises his fist in victory.
+He basks in the admiration, and you stare.
 
-He notices you and turns, his eyes lighting up.
+The next match begins. You spot him again,
+still in wrestling gear, a towel over his shoulders.
 
+He notices you and turns, eyes lighting up.
+
+<<setBool FaustDiaImageBool true>>
 Faust: "Hello! Are you a member here?"
+<<setBool FaustDiaImageBool false>>
 
-His voice is bubbly. He looks at what you're wearing and seems
-confused.
+He looks at your outfit, clearly confused.
 
 -> Say You're a Fan
     <<incRelationship "Faust" 1>>
     <<jump AFan>>
-
 -> Tell The Truth
     <<jump TellTruth>>
-
 -> Lie
     <<decRelationship "Faust" 1>>
     <<jump LieNode>>
@@ -33,203 +32,207 @@ confused.
 
 title: AFan
 ---
-You look at him and make a quick decision.
+You decide quickly.
 
-You: "I'm sorry. I'm just such a big fan of you. I had to talk
-to you. You did so well today."
+You: "I'm sorry. I'm a big fan of you.
+You did amazing today."
 
-You smile, and his grin widens instantly.
+He grins instantly, eyes lighting up.
 
-His eyes light up as he basks in your praise. Ah...one of those
-people.
+<<setBool FaustDiaImageBool true>>
+Faust: "Really? That means a lot, thank you!"
+<<setBool FaustDiaImageBool false>>
 
 <<jump MyNameIs>>
 ===
 
 title: TellTruth
 ---
-You: "I need your help with something,"
+You: "I need your help with something."
 
-You decide to be honest. His posture relaxes and his energy
-drops.
+His posture relaxes, energy dropping.
 
+<<setBool FaustDiaImageBool true>>
 Faust: "Oh? You need my help? Why?"
+<<setBool FaustDiaImageBool false>>
 
-His voice deflates like a balloon. He seems disappointed.
+He seems slightly disappointed.
 
 <<jump MyNameIs>>
 ===
 
 title: LieNode
 ---
-You: "Oh yeah I'm in the club too,"
+You: "Oh yeah, I'm in the club too."
 
-The lie escapes before you can think. You stand there awkwardly.
+The lie slips out. You stand awkwardly.
 
-He furrows his brows, looking you up and down repeatedly. You
-feel self conscious under his gaze.
+He studies you carefully.
 
-Faust: "Yeah...I don't believe you. Why are you really here?"
+<<setBool FaustDiaImageBool true>>
+Faust: "Yeah...I don't believe you. Why are you here?"
+<<setBool FaustDiaImageBool false>>
 
-You sigh. Lying was a bad idea.
+You sigh. That was a bad idea.
 
 <<jump MyNameIs>>
 ===
 
 title: MyNameIs
 ---
-You: "Hi, my name is {$playerName}. I need volunteers for my
-last essay in Philosophy, and I was wondering if you'd be
-interested in being one,"
+You: "Hi, I'm {$playerName}. I need volunteers
+for my philosophy essay."
 
-His expression shifts from curiosity to realization.
+You: "Would you be interested?"
 
-Faust: "Of course! I'd love to help you. I'm Faust. Let's
-discuss the details,"
+He perks up instantly.
 
-He radiates energy and kindness as he smiles.
+<<setBool FaustDiaImageBool true>>
+Faust: "Of course! I'd love to help. I'm Faust."
+<<setBool FaustDiaImageBool false>>
 
-Before you can reply, voices grow louder. A group of girls push
-through the room, clearly looking for someone.
+Before you reply, voices grow louder.
 
-His demeanor brightens as if he forgot you were there. He
-straightens and starts walking toward them.
+A group of girls push through, looking for him.
 
--> 
+He brightens, almost forgetting you.
+
+-> Let him go
     <<incRelationship "Faust" 1>>
     <<jump LetHimGo>>
-
--> 
+-> Tug his shirt
     <<jump TugHisShirt>>
-
--> 
+-> Say excuse me
     <<decRelationship "Faust" 1>>
     <<jump SayExcuseMe>>
 ===
 
 title: LetHimGo
 ---
-You watch him walk away, hands twitching at your sides. You
-want to stop him, but seeing him so happy makes you hesitate.
+You watch him walk away, hesitant to stop him.
 
-Faust: "The match was challenging! Thank you for asking,"
+<<setBool FaustDiaImageBool true>>
+Faust: "The match was tough! Thanks for asking!"
+<<setBool FaustDiaImageBool false>>
 
-He beams warmly, filling the room with energy.
+The girls giggle, crowding him.
 
-The girls giggle, asking questions and offering gifts. He
-accepts them politely but does not dwell on them.
+After a while, they leave. He notices you.
 
-After a few minutes, the crowd disperses. Faust glances back
-absently and notices you.
+<<setBool FaustDiaImageBool true>>
+Faust: "Oh...sorry about that."
+<<setBool FaustDiaImageBool false>>
 
-Faust: "Oh...sorry about that,"
+You: "It's fine..."
 
-You nod, looking away awkwardly.
-
-You: "It's fine...,"
-
-You lead him to a quieter part of the room.
+You both move somewhere quieter.
 
 <<jump SoDoYou>>
 ===
 
 title: TugHisShirt
 ---
-You panic as he walks away. Acting on impulse, you rush forward
-and grab his shirt.
+You panic and grab his shirt.
 
 You: "Wait! We still need to talk!"
 
-He startles, as if he forgot you were there. He turns to you,
-something dark flashing in his eyes before he forces a smile.
+He startles, then forces a smile.
 
-Faust: "Oh! Apologies, let's go,"
+<<setBool FaustDiaImageBool true>>
+Faust: "Oh! Apologies, let's go."
+<<setBool FaustDiaImageBool false>>
 
-He glances at the crowd reluctantly before following you to a
-quiet corner.
+He reluctantly follows you away.
 
 <<jump SoDoYou>>
 ===
 
 title: SayExcuseMe
 ---
-You frown, watching him walk away. The audacity irritates you.
+You frown as he walks off.
 
-You: "Uh...Excuse me?"
+You: "Uh...excuse me?"
 
-He turns, his excitement fading when he sees your expression.
+He turns, excitement fading.
 
-Faust: "Ahh...apologies. I got ahead of myself,"
+<<setBool FaustDiaImageBool true>>
+Faust: "Ah...sorry. I got carried away."
+<<setBool FaustDiaImageBool false>>
 
-He turns away from the crowd and focuses on you.
-
-You both move to a quieter part of the room.
+You both step aside to talk.
 
 <<jump SoDoYou>>
 ===
 
 title: SoDoYou
 ---
-You nod, smiling slightly. At least he now understands the
-importance of your questions.
+You: "So, you'll answer questions weekly?"
 
--> 
+He nods.
+
+You: "Actually two a week for more detail."
+
+He looks at the paper, then laughs.
+
+You frown, confused.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Sorry...but aren't these kinda cringe?"
+<<setBool FaustDiaImageBool false>>
+
+-> Explain your questions
     <<incRelationship "Faust" 1>>
-    <<jump >>
-
--> 
-    <<jump >>
-
--> 
+    <<jump ExplainQs>>
+-> Ask what's wrong
+    <<jump AskWhat>>
+-> Defend your questions
     <<decRelationship "Faust" 1>>
-    <<jump >>
+    <<jump Defend>>
 ===
 
 title: ExplainQs
 ---
-You: "Ah...well... 'Would you sacrifice one person to save many
-people?' is a common philosophy question. It comes from the
-trolley problem and shows what someone values,"
+You: "It's a classic dilemma. Sacrifice one
+to save many."
 
-Faust grows quiet, thinking carefully.
+You: "It shows what people value."
 
-Faust: "Ahh...I see, that makes sense,"
+He thinks it over.
 
-You nod, satisfied.
-
+<<setBool FaustDiaImageBool true>>
+Faust: "Ahh...I see. That makes sense."
+<<setBool FaustDiaImageBool false>>
 ===
 
 title: AskWhat
 ---
 You: "What's wrong with them?"
 
-You glance at your questions. They are standard philosophical
-topics, but not everyone dwells on them like you do.
+He looks away briefly.
 
-Faust: "Nothing, nothing. They're fine,"
+<<setBool FaustDiaImageBool true>>
+Faust: "Nothing. They're fine."
+<<setBool FaustDiaImageBool false>>
 
-He answers quickly, clearing his throat. That only confuses you
-more.
-
+That doesn't convince you.
 ===
 
 title: Defend
 ---
 You: "Cringe?"
 
-You repeat, surprised.
+You narrow your eyes.
 
-You: "Last time I checked, I was the Philosophy student, not
-you. These are very common questions,"
+You: "I'm the philosophy student here."
 
-Your patience begins to thin.
+He raises his hands.
 
-Faust raises his hands defensively.
+<<setBool FaustDiaImageBool true>>
+Faust: "Woah, okay. My bad."
+<<setBool FaustDiaImageBool false>>
 
-Faust: "Woah okay. Sorry, my fault. You're the one asking the
-questions, I get it,"
+You decide to drop it.
 
-It doesn't fully address your frustration, but you decide to
-move on.
-
+<<allowPlayerToMove>>
+<<loadScene "CampusGrounds">>
 ===

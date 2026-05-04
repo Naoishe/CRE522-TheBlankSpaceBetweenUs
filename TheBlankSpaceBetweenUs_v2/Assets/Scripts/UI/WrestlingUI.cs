@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class WrestlingUI : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class WrestlingUI : MonoBehaviour
     public Slider fighterSlider;
     public Slider playerSlider;
 
+    public DialogueRunner dialogueRunner;
+    public YarnProject[] yarnProjects;
+
 
     void Start()
     {
@@ -60,6 +64,8 @@ public class WrestlingUI : MonoBehaviour
 
     private void Awake()
     {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
         activeRoundSpotlight.SetActive(false);
         victory.SetActive(false);
         youLose.SetActive(false);

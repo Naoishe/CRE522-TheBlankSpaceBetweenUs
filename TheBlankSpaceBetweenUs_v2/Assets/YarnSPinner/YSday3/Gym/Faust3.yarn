@@ -1,0 +1,247 @@
+﻿title: Faust3
+---
+<<declare $playerName = "Holder">>
+<<gathervars>>
+<<freezePlayer>>
+Faust messaged you to meet him at the gym. You gripped your
+phone, scrolling as you waited for him.
+
+Hanging out wasn't something you did often, so his invite was a
+surprise. Footsteps made you look up. Faust approached.
+
+You: "Oh hey,"
+
+You tucked your phone away. He lit up, stopping in front of you.
+His grey hair was neatly combed this time.
+
+<<setBool FaustDiaImageBool false>>
+Faust: "You're here,"
+
+He sounded surprised. You nodded, unsure why he said that. He
+checked his watch, humming.
+
+Faust: "Let's go to the campus cafe. My class starts soon,"
+
+You: "That's fine,"
+
+He beamed, and you both headed there.
+
+It wasn't a long walk. Leaving the gym, you made your way to
+the cafe together.
+
+Your mind wandered. He had said he had class soon. You forgot
+he was a student too.
+
+You: "Hey Faust,"
+
+Faust: "Yeah? What is it?"
+
+You glanced at the sky, now bright and sunny.
+
+You: "We've known each other two weeks, but I don't know what
+you're studying,"
+
+He processed it, then laughed sheepishly.
+
+Faust: "Oh god, you're right,"
+
+You reached the cafe. He opened the door for you.
+
+Faust: "I study computer science,"
+
+His smile dropped slightly. You looked surprised. He noticed.
+
+Faust: "Did you think I did sport?"
+
+You sighed. He laughed.
+
+Faust: "Most people do. I don't blame you,"
+
+You ordered and sat down.
+
+You: "You do spend a lot of time in the gym,"
+
+Faust nodded, eating.
+
+Faust: "...I do wish I did sport,"
+
+His voice was quiet, almost sad. His eyes darkened.
+
+Then suddenly, he smiled again.
+
+Faust: "Ignore me. I shouldn't have said that,"
+
+The topic dropped quickly.
+
+-> Pry further
+    <<incRelationship "Faust" 1>>
+    <<jump PryFurther>>
+-> Leave it be
+    <<jump LeaveBe>>
+===
+
+title: PryFurther
+---
+You took a bite, glancing at him.
+
+You: "I don't mind. You can talk about it,"
+
+Faust stayed quiet. Only chatter filled the space. He sighed.
+
+Faust: "I grew up playing a lot of sport. I loved it. I wanted
+to keep doing tennis,"
+
+He paused, looking away.
+
+Faust: "Life caught up. Sports wouldn't sustain me,"
+
+His tone was flat, distant. Not like him.
+
+You frowned, uneasy.
+
+He saw your expression and smiled again.
+
+Faust: "But that's enough sad talk,"
+
+Something told you not to push further.
+===
+
+title: LeaveBe
+---
+Faust always seemed secretive. This topic was clearly sensitive.
+
+You chose not to ask more, eating quietly.
+
+You respected his space.
+
+Faust shifted the conversation, and you let it go.
+===
+
+title: Faust3Continue
+---
+Faust: "Enough about me. How's your essay going?"
+
+You groaned. He laughed lightly.
+
+You looked away, annoyed.
+
+The thought made you grimace. You'd rather talk to your parents
+about it.
+
+-> Can we talk about something else?
+    <<incRelationship "Faust" 1>>
+    <<jump CanWeTalk>>
+-> Lie about how you're doing
+    <<jump LieDoing>>
+-> Confide in him
+    <<jump ConfideFaust>>
+===
+
+title: CanWeTalk
+---
+You: "I'm not in the mood to discuss it,"
+
+Faust stared briefly, unreadable. Then he smiled.
+
+He didn't push, but stayed silent.
+
+It grew tense.
+
+Faust: "Want to see my childhood dog?"
+
+You played along.
+
+You: "Yeah? Is that even a question?"
+
+He moved closer, showing his phone.
+
+A white and tan dog lay on grass, tongue out, smiling.
+
+You: "They're adorable!"
+
+Faust smiled proudly.
+
+Faust: "His name is Jack. He's a Jack Russel,"
+
+You snorted.
+
+You: "Very creative,"
+
+Faust: "I was nine!"
+
+You both laughed, the tension gone.
+
+<<jump F3End>>
+===
+
+title: LieDoing
+---
+You didn't feel like opening up.
+
+You: "Pretty good. Everyone's responses are interesting,"
+
+Faust paused, then continued eating.
+
+Faust: "Who's doing your questionnaire besides me?"
+
+You thought briefly.
+
+You: "Sorry Faust, that's confidential,"
+
+You smiled playfully.
+
+Faust sighed dramatically, slumping.
+
+<<jump F3End>>
+===
+
+title: ConfideFaust
+---
+You thought it over while drinking.
+
+He had opened up a little. Maybe you could too.
+
+You: "It's a mess,"
+
+Faust perked up, listening.
+
+You: "Some participants are difficult,"
+
+Faust hummed.
+
+You: "There's this guy who's always brooding. So rude,"
+
+Faust: "That sounds hard,"
+
+You kept going.
+
+You: "He's always in the library. Wearing heavy clothes even
+now,"
+
+You were ranting now.
+
+Faust didn't interrupt.
+
+But he had stopped eating.
+
+He was glaring at you.
+
+<<jump F3End>>
+===
+
+title: F3End
+---
+An alarm went off. Faust jumped.
+
+Faust: "Ah—"
+
+He groaned, checking his phone.
+
+Faust: "Class is starting soon,"
+
+He sighed, clearly annoyed.
+<<setBool FaustDiaImageBool false>>
+<<allowPlayerToMove>>
+
+<<loadScene "CampusGrounds">>
+===

@@ -1,0 +1,147 @@
+﻿title: Niko4
+---
+Here you were at the library again. It felt almost mechanical, the way your
+feet brought you here without thought.
+
+Somewhere deep down, you longed to see Niko. To hear his thoughts again.
+There was something about the way he spoke that pulled at you, something
+dark and fascinating that made you want to know everything about him.
+
+As usual, he sat at the same secluded table tucked into the corner.
+
+His eyes met yours before you could even speak.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Have you come for more pestering?"
+<<setBool NikoDiaImageState false>>
+
+He greeted you with a lopsided smile, closing his book. The cover was a
+limited edition of Frankenstein, one you'd admired before.
+
+You: "Is it any good?"
+
+You gestured toward the book as you set your bag down.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I don't mind it. Shelley makes interesting points about abandonment
+and nature versus nurture."
+<<setBool NikoDiaImageState false>>
+
+You: "I don't believe in the nature versus nurture argument."
+
+You turned your nose up slightly.
+
+You: "Everyone has a choice to act differently. Some have it easier, but in
+the end everything comes down to choice. Though the debate is fascinating.
+Don't..."
+
+You trailed off as his intense glare made you shiver.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Not everything is a choice."
+<<setBool NikoDiaImageState false>>
+
+His tone was sharp, almost angry.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Some things are beyond a person's control. If they had a choice, they
+would have chosen differently."
+<<setBool NikoDiaImageState false>>
+
+He slammed his book onto the table. The sound echoed through the library,
+drawing a few glances from nearby students.
+
+You felt uneasy, realizing you had upset him.
+
+-> Apologise profusely
+    <<incRelationship "Niko" 1>>
+    <<jump ApologiseN4>>
+-> Pull out books and ignore it
+    <<jump PullBooks>>
+-> Ask what's wrong
+    <<decRelationship "Niko" 1>>
+    <<jump AskN4>>
+===
+
+title: ApologiseN4
+---
+You: "I'm so sorry."
+
+The apology came out quickly.
+
+You: "Please, don't be mad at me. I would never want to upset you."
+
+You reached for his hands, hoping to show your sincerity.
+
+You: "I'm sorry."
+
+You repeated, more quietly.
+
+<<jump EndNiko4>>
+===
+
+title: PullBooks
+---
+Unsure how to fix things, you quietly placed your books on the table.
+
+Ignoring his reaction seemed safest.
+
+You: "So... I have another question for you."
+
+<<jump EndNiko4>>
+===
+
+title: AskN4
+---
+You: "I can't apologise for something I don't understand."
+
+You kept your voice steady.
+
+You: "If I did, it wouldn't mean anything."
+
+You took a breath before continuing.
+
+You: "What's wrong?"
+
+Niko looked genuinely surprised, as if no one had asked him that before.
+
+For a moment, something shifted in him.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I lost my parents in a car accident."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "I was too young. I don't remember their faces."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "It wasn't their choice to die. It was the choice of a drunk driver."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "I'm glad he's dead."
+<<setBool NikoDiaImageState false>>
+
+You felt sick hearing it.
+
+Suddenly, everything about him made sense.
+
+Their death wasn't a choice, and neither was how it shaped him.
+
+<<jump EndNiko4>>
+===
+
+title: EndNiko4
+---
+<<setBool NikoDiaImageState true>>
+Niko: "Forget it. Ask your damn question. I'm over this."
+<<setBool NikoDiaImageState false>>
+
+He shoved the paper into your hands.
+
+Without another word, he grabbed his things and stormed out.
+
+You were left alone, unsettled and filled with guilt for what you might
+have caused.
+===

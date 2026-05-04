@@ -17,12 +17,12 @@ public class PlayerHouse : MonoBehaviour
 
     public bool breakfastDone;
 
-
-
+    public YarnProject[] yarnProjects;
     public DialogueRunner dialogueRunner;
-    void Start()
+    void Awake()
     {
-        
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
     }
 
     void OnEnable()

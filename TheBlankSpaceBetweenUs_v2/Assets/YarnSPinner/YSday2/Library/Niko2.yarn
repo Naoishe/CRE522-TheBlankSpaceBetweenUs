@@ -1,0 +1,173 @@
+﻿title: Niko2
+---
+Anxiety gnawed at your stomach as you settled in the library to work. You
+couldn't understand where it came from. You had never been stressed over
+grades and essays before, even when your degree depended on them.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Have you come to bother me again?"
+<<setBool NikoDiaImageState false>>
+
+The disgruntled voice interrupted your spiraling thoughts.
+
+You looked up and met Niko's displeased gaze.
+
+You: "I didn't expect you to be here."
+
+You spoke honestly, surprised by his rude interruption.
+
+<<setBool NikoDiaImageState true>>
+Niko: "You're the one following me."
+<<setBool NikoDiaImageState false>>
+
+He muttered crossly before returning to his reading: Othello.
+
+You: "Do you have a new book every day?"
+
+You blurted the first thing that came to mind. Seeing him here threw you
+off, and idle conversation was all you could think of.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I'm reading ahead on my syllabus."
+<<setBool NikoDiaImageState false>>
+
+He drawled as if your presence meant nothing.
+
+-> Apologise
+    <<incRelationship "Niko" 1>>
+    <<jump ApoloNiko1>>
+-> Don't react
+    <<jump DunnyReact>>
+-> Argue Back
+    <<decRelationship "Niko" 1>>
+    <<jump BitchBack>>
+===
+
+title: ApoloNiko1
+---
+You quickly tried to smooth things over.
+
+You: "I'm sorry."
+
+You whispered, shrinking back from his piercing glare. The last thing you
+wanted was to upset one of your candidates when you needed his cooperation.
+
+A flicker of pleasure glinted in his cold gaze, as if he enjoyed your
+submission.
+
+<<jump EndNiko2>>
+===
+
+title: DunnyReact
+---
+You didn't respond to his provocation. He wasn't worth your breath, you
+decided.
+
+<<jump EndNiko2>>
+===
+
+title: BitchBack
+---
+You: "There's hardly any need to take such an attitude."
+
+You scowled.
+
+You: "I didn't come here to argue. I came here to work. I'd rather spend
+my time in silence than deal with your snarkiness."
+
+You huffed and returned to your work.
+
+<<jump EndNiko2>>
+===
+
+title: EndNiko2
+---
+Niko seemed surprised by your response. It showed clearly on his face.
+
+Unsure how to respond, he returned to his work, though he continued to
+watch you from the corner of his eye.
+
+He noticed the way you nervously picked at your fingers, as if the brief
+confrontation had unsettled you deeply.
+
+That nervous habit seemed to spark something in him, a curiosity to learn
+more about you.
+
+<<setBool NikoDiaImageState true>>
+Niko: "What's the next question?"
+<<setBool NikoDiaImageState false>>
+
+He spoke, pulling your attention away from your thoughts.
+
+<<setBool NikoDiaImageState true>>
+Niko: "For your essay."
+<<setBool NikoDiaImageState false>>
+
+He clarified slowly, as if speaking to a child.
+
+At that, you decided to leave. You didn't want to spend any more time with
+him.
+
+You quickly packed your things into your bag.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Will you come back tomorrow?"
+<<setBool NikoDiaImageState false>>
+
+His voice cut through your thoughts.
+
+You froze, unsure how to respond.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Will you come back tomorrow?"
+<<setBool NikoDiaImageState false>>
+
+He repeated, more insistently this time.
+
+-> Yes
+    <<incRelationship "Niko" 1>>
+    <<jump Agree1>>
+-> No
+    <<decRelationship "Niko" 1>>
+    <<jump No1>>
+===
+
+title: Agree1
+---
+You: "Yes."
+
+The answer came out as a whisper, drawn out by the intensity of his amber
+eyes.
+
+You shook your head, trying to shake off the strange feeling building in
+your chest.
+
+There was something about him, something that pulled you in despite
+yourself.
+
+Niko smiled, pleased.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Good."
+<<setBool NikoDiaImageState false>>
+
+He purred softly, clearly satisfied.
+
+Embarrassment rose in your throat as you turned and hurried away.
+===
+
+title: No1
+---
+You: "No."
+
+You answered sharply, irritation rising within you. You disliked him more
+and more.
+
+There was little to admire about him, aside from his passion for books.
+
+He was rude, forceful, and gloomy.
+
+His expression twisted into something darker.
+
+Without waiting, you turned and hurried out.
+===

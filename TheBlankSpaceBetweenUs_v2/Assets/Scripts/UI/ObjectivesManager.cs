@@ -301,6 +301,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_2.descriptions[1] = "Collect Question Answers from Candidates (1/3)";
         objective_2.descriptions[2] = "Collect Question Answers from Candidates (2/3)";
         objective_2.segmentCount = 3;
+        objective_2.currentDescription = objective_2.descriptions[objective_2.currentIndex];
 
         objective_3 = new Objective(new string("Sun Down"), new string("Complete your nightly routine!"));
         objective_3.descriptions = new string[4];
@@ -309,6 +310,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_3.descriptions[2] = "Work On Essay";
         objective_3.descriptions[3] = "Go To Sleep";
         objective_3.segmentCount = 4;
+        objective_3.currentDescription = objective_3.descriptions[objective_3.currentIndex];
 
         objective_4 = new Objective(new string("Sun Down"), new string("Complete your nightly routine."));
         objective_4.descriptions = new string[5];
@@ -318,12 +320,14 @@ public class ObjectivesManager : MonoBehaviour
         objective_4.descriptions[3] = "Lock The Window";
         objective_4.descriptions[4] = "Go To Sleep";
         objective_4.segmentCount = 5;
+        objective_4.currentDescription = objective_4.descriptions[objective_4.currentIndex];
 
         objective_5 = new Objective(new string("Among the Stars"), new string("Get involved with club tournaments!"));
         objective_5.descriptions = new string[6];
         objective_5.descriptions[0] = "Enter a club tournament";
         objective_5.descriptions[1] = "Win A Club Tournament";
         objective_5.segmentCount = 2;
+        objective_5.currentDescription = objective_5.descriptions[objective_5.currentIndex];
 
         objective_6 = new Objective(new string("Have some Taste"), new string("Help Salem with the Cafe"));
         objective_6.descriptions = new string[3];
@@ -331,6 +335,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_6.descriptions[1] = "Put Rubbish in the Bin";
         objective_6.descriptions[2] = "Wipe Tables";
         objective_6.segmentCount = 3;
+        objective_6.currentDescription = objective_6.descriptions[objective_6.currentIndex];
 
         objective_7 = new Objective(new string("Lightspeed"), new string(""));
         objective_7.descriptions = new string[3];
@@ -338,6 +343,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_7.descriptions[1] = "Collect Question Answers from Candidates 1/3";
         objective_7.descriptions[2] = "Collect Question Answers from Candidates 2/3";
         objective_7.segmentCount = 3;
+        objective_7.currentDescription = objective_7.descriptions[objective_7.currentIndex];    
 
         objective_8 = new Objective(new string("Honey, I'm Home..."), new string(""));
         objective_8.descriptions = new string[6];
@@ -345,6 +351,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_8.descriptions[1] = "Check on the strange Sound";
         objective_8.descriptions[2] = "Save Salem";
         objective_8.segmentCount = 3;
+        objective_8.currentDescription = objective_8.descriptions[objective_8.currentIndex];
 
         objective_9 = new Objective(new string("Gone Girl"), new string(""));
         objective_9.descriptions = new string[3];
@@ -352,6 +359,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_9.descriptions[1] = "Check the Cafe";
         objective_9.descriptions[2] = "Locate Salem";
         objective_9.segmentCount = 3;
+        objective_9.currentDescription = objective_9.descriptions[objective_9.currentIndex];
 
         objective_10 = new Objective(new string("Unturned"), new string(""));
         objective_10.descriptions = new string[3];
@@ -359,6 +367,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_10.descriptions[1] = "Locate the dean's office";
         objective_10.descriptions[2] = "Find Information on Niko";
         objective_10.segmentCount = 3;
+        objective_10.currentDescription = objective_10.descriptions[objective_10.currentIndex];
 
         objective_11 = new Objective(new string("Racing Hearts"), new string(""));
         objective_11.descriptions = new string[3];
@@ -366,6 +375,7 @@ public class ObjectivesManager : MonoBehaviour
         objective_11.descriptions[1] = "Attend the date";
         objective_11.descriptions[2] = "Steal phone?";
         objective_11.segmentCount = 3;
+        objective_11.currentDescription = objective_11.descriptions[objective_11.currentIndex];
 
     }
 

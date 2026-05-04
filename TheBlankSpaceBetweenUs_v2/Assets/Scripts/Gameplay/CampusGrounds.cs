@@ -26,10 +26,13 @@ public class CampusGrounds : MonoBehaviour
     private GameObject cafeLabel;
 
     public DialogueRunner dialogueRunner;
+    public YarnProject[] yarnProjects;
 
     [SerializeField] bool developerMode;
     private void Awake()
     {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
         homeLabel = GameObject.Find("HomeLabel");
         libraryLabel = GameObject.Find("LibraryLabel");
     }

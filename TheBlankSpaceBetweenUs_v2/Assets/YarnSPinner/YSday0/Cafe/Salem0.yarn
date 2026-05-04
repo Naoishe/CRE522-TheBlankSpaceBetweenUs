@@ -2,107 +2,101 @@
 ---
 <<declare $playerName="player">>
 <<gatherVars>>
-The campus café was a hot spot for students during lunch time,
-but now as it's only morning, it was calm. The soft jazz music
-set the atmosphere, and as you entered, you saw only one worker
-on the floor. She was humming to yourself, a small smile on her
-face as she dried some glasses.
-She heard the chimes of windpipes clashing together in sync and
-she looked over to you, and now you could see her face. She had
-a dreamy look in her face, as if she were lost in thought.
 
-Salem: "Hiii, Welcome to Portal and Prose,"
+The campus café was a hotspot during lunch, but now it was calm.
+Soft jazz played as you entered, only one worker in sight.
 
-You looked at her, before approaching the counter. She was a
-soft looking person, soft smile adorning her face and wavy
-lavender hair. There was a welcoming energy emitting from her,
-and it drew you in almost immediately
+She hummed softly, drying glasses with a small smile.
+
+She heard the wind chimes and turned toward you.
+
+Her face looked dreamy, as if lost in thought.
+
+<<setBool SalemDiaImageState true>>
+Salem: "Hiii, welcome to Portal and Prose,"
+
+You approached the counter.
+
+She looked soft, with lavender hair and a warm smile.
+
+Her presence felt welcoming, drawing you in.
 
 -> Ask for her name
     <<incRelationship "Salem" 1>>
     <<jump AskName>>
-->Make small talk
+-> Make small talk
     <<jump MakeTalk>>
-->Immediately ask her to participate in the essays
+-> Immediately ask her to participate in the essays
     <<decRelationship "Salem" 1>>
     <<jump AskForParticipant>>
 ===
 
 title: AskName
 ---
-
 You: "Hi… How’re you?"
 
-The server blinked and smiled happily, as if no one had bothered
-to ask her that today. The thought made you feel a little bad,
-and she had enthusiastically giggled.
+She blinked, then smiled brightly, clearly happy you asked.
 
 Salem: "Im good, thank you so much!"
 
-The simple question made her so happy, it made you surprised.
+Her reaction surprised you.
 
 <<jump SinceYouNever>>
 ===
 
 title: MakeTalk
 ---
-Your fingers drummed on the counter, the server looking
-expectantly at you. The cafe was vacant other than you and her
-which seemed sort of peculiar.
+Your fingers drummed on the counter.
 
-You: "So... Are you the only one working?"
+She looked at you expectantly.
 
-Your attempt of making small talk seemed to fall on deaf ears as
-the server blinked and nodded slowly, seemingly confused. You
-got nervous, in hindsight, asking if someone is alone is...sort
-of concerning.
+You: "So... are you the only one working?"
 
-Salem: "Well yes I am. There are more but they're on their
-breaks now. Right now is our quietest hours so that's why I'm
-alone."
+She blinked, then nodded slowly.
 
-You nodded and hummed. Huh, you supposed in actuality she didn't
-mind the question. Thank god.
+Salem: "Well yes I am. Others are on break right now."
+
+Salem: "It's quiet hours, so I'm alone."
+
+You nodded, relieved she didn’t mind the question.
 
 <<jump SinceYouNever>>
 ===
 
-title:AskForParticipant
+title: AskForParticipant
 ---
-Not wasting any time, you drummed your fingers on the counter.
+You wasted no time.
 
-You: "Hi my name is Y/n. I need some volunteers for my last
-essay in Philosophy, and I was wondering if you'd be interested
-in being one."
+You: "Hi, I'm {$playerName}. I need volunteers for my Philosophy essay."
 
-The server looked at you, face contorting in an awkward smile as
-she looked away. Oh...maybe you came off too strong.
+You: "Would you be interested in participating?"
+
+She gave an awkward smile and looked away.
 
 Salem: "Are you here to order...?"
 
-She quickly diverted the conversation...and now you felt awkward
+That felt awkward.
 
 <<jump SinceYouNever>>
 ===
 
 title: SinceYouNever
 ---
-Since you never came to this cafe before, you didn't know
-exactly what was nice. With too much choice your eyes glided to
-the server who was waiting for what you wanted.
+You weren’t familiar with the menu.
 
-You: "Hmm...what would you recommend?"
+Too many options made you hesitate.
 
-For a second the server's eyes glimmered. She stopped what she
-was doing, humming in thought before she sat down the glass she
-was drying.
+You: "Hmm... what would you recommend?"
 
-Salem: "Ooooo, I'd recommend the caramel macchiato and the
-fudge brownie."
+Her eyes lit up instantly.
 
-Smiling, you nodded and ordered it, and she nodded with a happy
-smile. She seemed to be very friendly, this could be a chance to
-know more about her.
+She placed the glass down, thinking.
+
+Salem: "Oooo, caramel macchiato and fudge brownie!"
+
+You nodded and ordered.
+
+She smiled happily.
 
 -> Compliment her hair
     <<incRelationship "Salem" 1>>
@@ -116,54 +110,43 @@ know more about her.
 
 title: ComplimentHair
 ---
-You found their hair striking, the colour was very pretty, and
-before you knew it your mouth opened.
+You noticed her hair.
 
 You: "Your hair is really pretty."
 
-The server beamed happily at you, her fingers twirling her hair
-before giggling. You slowly blinked, she really liked the
-compliment.
+She beamed and twirled it happily.
 
 Salem: "Thank you!!"
 
-She hummed happily as she made your coffee and placed your
-brownie on your tray, and your initial nervousness disappeared.
-Her natural bright energy clouded whatever anxious thoughts you
-had; she seemed naturally bright and kind.
+She prepared your order cheerfully.
 
-You: "It's no bother."
-
-Still she beamed and giggled, eyes curving and looking like
-crescent moons.
+Your nerves faded.
 
 <<jump FoodArrives>>
 ===
 
 title: AskAboutJob
 ---
-You: "So... What's it like being a cafe barista?"
+You: "What's it like being a barista?"
 
-The server brewed your coffee and hummed as if to say she's
-listening. She turned around with the freshly made coffee in
-hand, placing it on a tray.
+She hummed while preparing your drink.
 
-Salem: "Hmm... It's nice. I do like it... sometimes it's
-stressful but that's like all jobs."
+She placed it on a tray.
 
-She takes some tongs, taking one muffin from the collection and
-setting it on a plate, moving it on the tray too.
+Salem: "Hmm... it's nice, sometimes stressful though."
+
+She added a brownie to the tray.
 
 <<jump FoodArrives>>
 ===
 
 title: StaySilent
 ---
-You decided against it. It seemed sort of early to ask about
-herself. Wouldn’t it be creepy? She placed the coffee on a tray,
-and then she placed the brownie down as well. She finally looked
-back at you, and with a soft, gentle smile tilted her head at
-your staring.
+You stayed quiet, unsure what to say.
+
+She placed your drink and brownie on the tray.
+
+She smiled softly at you.
 
 <<jump FoodArrives>>
 ===
@@ -172,8 +155,7 @@ title: FoodArrives
 ---
 Salem: "Here's your order, dear. That will be 11.99."
 
-You tapped your phone to the card reader, and she went back to
-tidying things up as you sat on an empty chair.
+You paid and sat down.
 
 -> Ask her about herself
     <<incRelationship "Salem" 1>>
@@ -189,106 +171,84 @@ title: AskAboutSalem
 ---
 You: "So..."
 
-The server looked at you while she worked. Looking up, she was
-currently wiping down the counter even when it still looked
-spotless.
+She looked at you while wiping the counter.
 
 You: "Are you in uni?"
 
-Her wiping slowed before she looked back at the counter.
+She slowed, then smiled.
 
 Salem: "I am actually!"
+Salem: "I study here, so working here is convenient."
 
-She sounded very happy as she spoke.
+You chatted more as you ate.
 
-Salem: "Im a student here, so its convenient that I work here,"
-
-She ended what she said with a giggle.
-
-From there you asked her more questions about herself. She
-seemed more than happy to share more information about herself
-to you, and her eyes seemed more relaxed the more you spoke.
-
-Eventually, your cup became empty and your brownie was in your
-stomach, and you were nice and full.
+Eventually, you finished.
 
 <<jump LookingBackAtHer>>
 ===
 
 title: AskAboutWeather
 ---
-You sat down at an empty chair, placing your tray of goods on
-the table. The atmosphere was suddenly quiet and you felt that
-you should say something.
+You sat down.
 
 You: "Nice weather we’re having huh?"
 
-You said it to pass the time, biting into the brownie. The
-server looked up from what she was doing, which was wiping down
-the counter, and she blinked in what seemed like confusion.
+She blinked, confused.
 
-You also blinked back, wondering why she wasn’t saying anything,
-before looking out the window. It was raining. Hard. Ah…so
-that’s why.
+You looked outside.
+
+Rain poured heavily.
 
 Salem: "It’s raining…"
 
-She said it bluntly, and you sighed and cringed. Yeah…you
-already knew.
+You winced.
 
-You: "Nice for uh the plants,"
+You: "Nice for the plants..."
 
-You added despite the embarrassment, and she just smiled and
-nodded. So much for making it less awkward, you just made it
-worse.
+She nodded politely.
 
 <<jump LookingBackAtHer>>
 ===
 
 title: EatYourFood
 ---
-You sat down at an empty chair, placing your tray of goods on
-the table. The atmosphere was suddenly quiet and you felt that
-you should say something.
+You sat quietly and ate.
 
-You thought about what to say and…nothing. You had an inkling
-you’d ruin the atmosphere so you sat there silently and ate
-your food.
+You decided not to risk awkward conversation.
 
 <<jump LookingBackAtHer>>
 ===
 
 title: LookingBackAtHer
 ---
-Looking back at her as you sat in your chair, you contemplated
-whether or not to ask her to be apart of your candidates. There
-was no limits on who you could ask, so you decided why not.
+You considered asking her to be a candidate.
 
-You approached the counter again after you were done with your
-food and she saw you waiting. Washing her hands and drying them
-off, she came over, showing you a kind smile once more.
+After finishing, you approached the counter.
+
+She washed her hands and came over.
 
 Salem: "Hi dear, did you want to order more?"
 
-She asked, and you shook your head.
+You shook your head.
 
-You: "Hi, I was just wondering,"
+You: "Hi, I was wondering..."
 
-You started after a weird period of silence. She stood up
-straighter at that, turning fully to face you.
+She straightened slightly.
 
-You: "My name is Y/n. I need some volunteers for my last essay
-in Philosophy, and I was wondering if you'd be interested in
-being one,"
+You: "I'm {$playerName}. I need volunteers for my Philosophy essay."
 
-She tilted her head, blinking at you as she considered your
-words.
+You: "Would you be interested?"
+
+She tilted her head thoughtfully.
 
 Salem: "Okay! I'll join,"
+<<setBool SalemDiaImageState false>>
 
-You smiled happily and gave her the first question you needed,
-explaining what it was for. She nodded eagerly, and you bid her
-a goodbye.
+You smiled and gave her the first question.
+
+She nodded eagerly.
+
+You said goodbye.
 
 She seemed nice.
 ===

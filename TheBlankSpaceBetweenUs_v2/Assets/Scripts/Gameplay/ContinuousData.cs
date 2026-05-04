@@ -1,12 +1,13 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using Yarn.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Yarn.Unity;
+using static Unity.Collections.Unicode;
 
 public class ContinuousData : MonoBehaviour
 {
@@ -67,8 +68,21 @@ public class ContinuousData : MonoBehaviour
     public int FaustRP;
     public int SalemRP;
 
+    //DialogueImage Variables
+    public bool NikoDiaImageState;
+    public bool SalemDiaImageState;
+    public bool FaustDiaImageState;
+
+    //Audio Variables
+    public AudioSource hurtSFX;
+    public AudioSource talkingSFX;
+
     private void Awake()
     {
+        if (playerName == null)
+        {
+            playerName = "Player";
+        }
         instance = this;
         allowInteracting = true;
         DontDestroyOnLoad(gameObject);
@@ -86,8 +100,38 @@ public class ContinuousData : MonoBehaviour
             SalemRP = 0;
         }
         shortestDistance = 1000f;
-        allowMovement = true;
+        
+    }
 
+    public void Start()
+    {
+        ///Publicise yarn methods
+        currentScene = SceneManager.GetActiveScene();
+        currentSceneName = currentScene.name;
+        currentSceneBuildIndex = currentScene.buildIndex;
+        diaRunner.AddCommandHandler<string>("joinClub", joinClub);
+        diaRunner.AddCommandHandler("leaveClub", LeaveClub);
+        diaRunner.AddCommandHandler<string, int>("incRelationship", IncRelationship);
+        diaRunner.AddCommandHandler<string, int>("decRelationship", DecRelationship);
+        diaRunner.AddCommandHandler("gatherVars", GatherVars);
+        diaRunner.AddCommandHandler("allowPlayerToMove", AllowPlayerToMove);
+        diaRunner.AddCommandHandler("freezePlayer", FreezePlayer);
+        diaRunner.AddCommandHandler<string>("loadScene", LoadScene);
+        diaRunner.AddCommandHandler("closeDialogue", CloseDialogue);
+        diaRunner.AddCommandHandler<string>("pushObjectiveIndex", PushObjectiveIndex);
+        diaRunner.AddCommandHandler<string, bool>("setBool", SetBool);
+        diaRunner.AddCommandHandler<string, int>("setInt", SetInt);
+        diaRunner.AddCommandHandler<string, string>("setString", SetString);
+        diaRunner.AddCommandHandler<string, string>("setAnimTrigger", SetAnimTrigger);
+        diaRunner.AddCommandHandler("feedPlayerNameToYarn", FeedPlayerNameToYarn);
+        diaRunner.AddCommandHandler<string, int>("alterPlayerAttribute", AlterPlayerAttribute);
+        diaRunner.AddCommandHandler("playSoundEffect", PlayHurtSoundEffect);
+
+
+        allowMovement = true;
+        NikoDiaImageState = false;
+        SalemDiaImageState = false;
+        FaustDiaImageState = false;
     }
 
     public void Update()
@@ -108,6 +152,7 @@ public class ContinuousData : MonoBehaviour
 
     public void FixedUpdate()
     {
+        diaRunner = FindObjectOfType<DialogueRunner>();
         currentScene = SceneManager.GetActiveScene();
         currentSceneName = currentScene.name;
         currentSceneBuildIndex = currentScene.buildIndex;
@@ -125,19 +170,17 @@ public class ContinuousData : MonoBehaviour
         previousScene = currentScene;
     }
 
+    public void UpdatePlayerName(string newName)
+    {
+        playerName = newName;
+    }
+
     public void UpdateSavedTime(int timeIndex, int dayIndex)
     {
         CDtimeIndex = TimeManager.TimeFrameIndex;
         CDdayIndex = TimeManager.Day;
     }
 
-
-    public void UpdatePlayerName(string name)
-    {
-        playerName = name;
-        variableStorage.SetValue("$playerName", playerName);
-
-    }
 
     public void FetchYarnStringVariable(string yarnVar, string unityVar)
     {
@@ -182,6 +225,8 @@ public class ContinuousData : MonoBehaviour
         NewSceneLoaded?.Invoke();
         SetSpawnPosition(nextSpawnPoint);
         diaRunner = FindObjectOfType<DialogueRunner>();
+        FeedPlayerNameToYarn();
+
     }
 
     public void SetSpawnPosition(Vector3 targetposition)
@@ -195,8 +240,11 @@ public class ContinuousData : MonoBehaviour
         player.transform.position = spawnPositionVector;
     }
 
-    [YarnCommand("incPlayerAttribute")]
-    public void IncPlayerAttribute(string attribute, int amount)
+    private void UpdateSpawnVector(Vector3 newSpawnVector)
+    {
+        spawnPositionVector = newSpawnVector;
+    }
+    public void AlterPlayerAttribute(string attribute, int amount)
     {
         switch (attribute)
         {
@@ -222,31 +270,18 @@ public class ContinuousData : MonoBehaviour
 
     ///YARN COMMANDS
 
-    [YarnCommand( "startPractice")]
-    public void StartPractice(string practiceScene)
-    {
-        SceneManager.LoadScene(practiceScene);
-    }
-
-    [YarnCommand( "endPractice")]
-    public void EndPractice()
-    {
-        SceneManager.LoadScene("CampusGrounds");
-    }
-
-    [YarnCommand("joinClub")]
     public void joinClub(string clubName)
     {
         playerClub = clubName;
     }
 
-    [YarnCommand("leaveClub")]
+ 
     public void LeaveClub()
     {
         playerClub = "None";
     }
 
-    [YarnCommand("incRelationship")]
+
     public void IncRelationship(string characterName, int amount)
     {
         if (characterName == "Niko")
@@ -267,7 +302,7 @@ public class ContinuousData : MonoBehaviour
         }
     }
 
-    [YarnCommand("decRelationship")]
+   
     public void DecRelationship(string characterName, int amount)
     {
         if (characterName == "Niko")
@@ -288,7 +323,7 @@ public class ContinuousData : MonoBehaviour
         }
     }
 
-    [YarnCommand("gatherVars")]
+  
     public void GatherVars()
     {
         diaRunner.VariableStorage.SetValue("$playerName", playerName);
@@ -300,19 +335,16 @@ public class ContinuousData : MonoBehaviour
 
     }
 
-    [YarnCommand("allowPlayerToMove")]
     public void AllowPlayerToMove()
     {
         allowMovement = true;
     }
 
-    [YarnCommand("freezePlayer")]
     public void FreezePlayer()
     {
         allowMovement = false;
     }
 
-    [YarnCommand("loadScene")]
     public void LoadScene(string sceneName)
     {
         nextSceneString = sceneName;
@@ -321,13 +353,11 @@ public class ContinuousData : MonoBehaviour
         diaRunner = FindObjectOfType<DialogueRunner>();
     }
 
-    [YarnCommand("closeDialogue")]
     public void CloseDialogue()
     {
         diaRunner.Stop();
     }
 
-    [YarnCommand("pushObjectiveIndex")]
     public void PushObjectiveIndex(string objectiveTitleString)
     {
         Objective targetObjective = null;
@@ -342,4 +372,85 @@ public class ContinuousData : MonoBehaviour
             Debug.Log("ERROR: No Matching Objective Found");
         }
     }
+
+    public void SetBool(string boolName, bool boolState)
+    {
+        var field = GetType().GetField(boolName);
+
+        if (field != null && field.FieldType == typeof(bool))
+        {
+            field.SetValue(this, boolState);
+        }
+        else
+        {
+            Debug.LogError($"Bool '{boolName}' not found!");
+        } 
+
+        
+    }
+
+    public void SetInt(string intName, int intSet)
+    {
+        var field = GetType().GetField(intName);
+
+        if (field != null && field.FieldType == typeof(int))
+        {
+            field.SetValue(this, intSet);
+        }
+        else
+        {
+            Debug.LogError($"Int '{intName}' not found!");
+        }
+    }
+
+    public void SetString(string stringName, string stringState)
+    {
+        var field = GetType().GetField(name);
+
+        if (field != null && field.FieldType == typeof(string))
+        {
+            field.SetValue(this, stringState);
+        }
+        else
+        {
+            Debug.LogError($"Bool '{stringName}' not found!");
+        }
+    }
+
+    public void SetAnimTrigger(string triggerName, string animatorName)
+    {
+        Animator controllingAnimator = GameObject.Find(animatorName).GetComponent<Animator>();
+        if (controllingAnimator != null)
+        {
+            controllingAnimator.SetTrigger(triggerName);
+        }
+        else
+        {
+            Debug.Log("ERROR: No Matching Animator Found");
+        }
+    }
+
+    public void FeedPlayerNameToYarn()
+    {
+
+        var storage = diaRunner.VariableStorage as InMemoryVariableStorage;
+
+        if (storage != null)
+        {
+            storage.SetValue("$playerName", playerName);
+        }
+
+    }
+
+    public void PlayHurtSoundEffect()
+    {
+        hurtSFX.Play();
+    }
+
+    public void PlayTalkSoundEffect()
+    {
+        talkingSFX.Play();
+    }
+
+
 }

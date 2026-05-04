@@ -5,14 +5,14 @@ using Yarn.Unity;
 public class Cafe : MonoBehaviour
 {
     DialogueRunner dialogueRunner;
-
+    public YarnProject[] yarnProjects;
     public bool allowExit;
-
     public GameObject playerObj;
     public void Awake()
     {
         dialogueRunner = GetComponent<DialogueRunner>();
-        playerObj= GameObject.Find("PlayerObj");
+        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
+        playerObj = GameObject.Find("PlayerObj");
         allowExit = false;
     }
 

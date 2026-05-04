@@ -26,11 +26,12 @@ public class InteractableObject : MonoBehaviour, Iinteractable
     }
     public void InteractionActivated() 
     {
+        player = GameObject.Find("PlayerObj");
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         distance = Vector2.Distance(player.transform.position, this.transform.position);
         if (distance<3f)
         {
-            Debug.Log("InteractionActivated_Object: " + this.name);
+            //Debug.Log("InteractionActivated_Object: " + this.name);
             objectActive= true;
             Interaction();
         }
@@ -50,7 +51,11 @@ public class InteractableObject : MonoBehaviour, Iinteractable
                 EndInteraction();
             }
         }
+
+        UpdateExtra();
     }
+
+    public virtual void UpdateExtra() { }
     public virtual void Interaction() { }
 
     public void EndInteraction()

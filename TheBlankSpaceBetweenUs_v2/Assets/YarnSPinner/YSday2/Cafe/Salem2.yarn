@@ -3,43 +3,42 @@
 <<declare $playerName="player">>
 <<gatherVars>>
 
-Entering the cafe this time had you salivating at the sight of
-the desserts that were just baked. Salem was there, giggling as
-two other girls darted around and chatted. As the wind chimes
-announced your arrival, the two girls turned to you and greeted
-you.
+Entering the café, the smell of fresh desserts made you
+salivate.
+
+Salem stood nearby, giggling with two coworkers.
+
+When the chimes rang, they turned to greet you.
 
 Salem: "Hi {$playerName}!"
 
-She walked over to you, seeming happier today. She had skull
-clips in her hair which complemented it.
+She walked over, looking brighter today.
 
-Salem: "Come, me and my co workers made goodies!"
+Skull clips decorated her hair.
 
-You were basically dragged to the counter, seeing racks of
-different desserts. There were brownies, fifteens and caramel
-squares.
+Salem: "Come, me and my coworkers made goodies!"
+
+She pulled you toward the counter.
+
+Desserts lined the racks—brownies, fifteens, caramel squares.
 
 Coworker: "Is this the person you've been talking about, Sal?"
 
-They walked over to you.
+They stepped closer.
 
 Coworker: "They seem nice,"
 
 Salem: "Yeah they're my friend,"
 
-She said easily, walking to the counter to get a plastic plate.
+She grabbed a plastic plate.
 
-You blinked at what she said. You wouldn’t consider yourself
-friends, maybe acquaintances.
+You blinked at that. Friends felt like a stretch.
 
 -> Set It Straight
     <<incRelationship "Salem" 1>>
     <<jump SetStraight>>
-
 -> Question Her
     <<jump Question>>
-
 -> Go with the Flow
     <<decRelationship "Salem" 1>>
     <<jump Flow>>
@@ -49,25 +48,23 @@ title: SetStraight
 ---
 You: "Friends?"
 
-You repeated, making Salem look over.
+Salem glanced over.
 
-You: "Salem...we have only known each other for a few days,"
+You: "Salem...we've only known each other a few days,"
 
-Salem suddenly looked flustered before the other two servers
-giggled.
+She flushed instantly.
+
+Coworkers giggled.
 
 Coworker: "Ah Salem, ever the sweetheart,"
 
-They rested their head on their hand while leaning over the
-counter.
+They leaned on the counter.
 
-Coworker: "You must like {$playerName} a lot if you already
-consider them a friend!"
+Coworker: "You must like {$playerName} a lot already!"
 
-The other teased, giggling as they leaned on Salem.
+They teased.
 
-Salem whined in embarrassment, but let her coworker lean on her.
-They seemed very close.
+Salem whined, letting one lean on her.
 
 <<jump Dragged>>
 ===
@@ -76,56 +73,55 @@ title: Question
 ---
 You: "You think we're friends?"
 
-This made Salem splutter before her coworkers started giggling.
+Salem spluttered.
+
+Her coworkers burst into giggles.
 
 Coworker: "Ah Salem, ever the sweetheart,"
 
-They leaned over the counter.
+They leaned over.
 
-Coworker: "You must like {$playerName} a lot if you already
-consider them a friend!"
+Coworker: "You must like {$playerName} a lot already!"
 
-Salem whined in embarrassment, letting her coworker lean on her.
-They seemed very close.
+Salem whined, letting one lean on her.
 
 <<jump Dragged>>
 ===
 
 title: Flow
 ---
-Despite not feeling the same about your relationship, you smiled
-and nodded, not denying it.
+You smiled and went along with it.
 
-Coworker: "You must like {$playerName} a lot if you already
-consider them a friend!"
+Coworker: "You must like {$playerName} a lot already!"
 
-They teased, giggling as they leaned on Salem.
+They teased.
 
-Salem whined in embarrassment, letting her coworker lean on her.
-They seemed very close.
+Salem whined, letting one lean on her.
 
 <<jump Dragged>>
 ===
 
 title: Dragged
 ---
-One of them dragged Salem off to cut the desserts. They chatted
-away, giggling together, and soon you forgot what happened
-yesterday.
+One coworker pulled Salem away to cut desserts.
+
+They laughed together.
+
+You almost forgot yesterday.
 
 Coworker: "I should thank you,"
 
-You turned around and saw Salem's other coworker watching them.
+You turned.
 
-Coworker: "You were there with Salem yesterday,"
+Another coworker watched Salem.
 
-You looked away and back to Salem, watching her laugh and squeak
-as someone grabbed a brownie and ran away.
+Coworker: "You were with her yesterday,"
+
+You glanced at Salem laughing nearby.
 
 -> I had to do something
     <<incRelationship "Salem" 1>>
     <<jump HadTo>>
-
 -> It wasn't that bad
     <<decRelationship "Salem" 1>>
     <<jump NotBad>>
@@ -133,72 +129,78 @@ as someone grabbed a brownie and ran away.
 
 title: HadTo
 ---
-You couldn't have stayed still seeing how that server treated
-Salem. It was wrong and made your blood boil.
+You couldn't ignore how Salem was treated.
 
 You: "I had to do something,"
 
-The server looked at you and nodded in agreement.
+The coworker nodded.
 
 <<jump OneByOne>>
 ===
 
 title: NotBad
 ---
-You looked back to the day before, then to the server.
+You thought back.
 
-You: "I didn't think what happened yesterday was that bad,"
+You: "It wasn't that bad,"
 
-An awkward silence followed.
+Silence followed.
 
 <<jump OneByOne>>
 ===
 
 title: OneByOne
 ---
-One by one, each batch of desserts was cut, and Salem picked up
-a piece and walked over.
+Desserts were cut one by one.
+
+Salem picked a piece and approached.
 
 Salem: "Here {$playerName}, try some!"
 
-She beamed, holding the snack up to your mouth.
+She held it up.
 
-You bit into it, and it tasted divine. She was a wonderful
-baker.
+You took a bite—it was delicious.
 
 You: "This is really good Salem,"
 
-You said, taking another bite.
+You ate more.
 
-Salem didn't reply, so you looked at her. She gazed softly at
-you with a gentle blush.
+She didn’t respond.
 
-One of the girls nudged her, snapping her out of her daydream.
-Stuttering, she pulled out a piece of paper from her apron.
+You looked up.
+
+She stared softly, cheeks flushed.
+
+A coworker nudged her.
+
+She startled and pulled out a paper.
 
 <<jump LookingUp>>
 ===
 
 title: LookingUp
 ---
-Looking up, you were about to thank Salem before noticing how
-nervous she looked. Her face tilted toward the window, eyes not
-meeting yours.
+You were about to thank her.
 
-Salem: "I feel like I may have answered a bit too seriously,"
+Then you noticed her nervousness.
 
-She held her hands together.
+She avoided your gaze.
 
-Salem: "The question made me think a lot admittedly,"
+Salem: "I feel like I answered too seriously,"
+She clasped her hands.
 
-You smiled and shook your head.
+Salem: "The question made me think a lot,"
+<<setBool SalemDiaImageState false>>
 
-You: "Oh that's fine, it's what I need anyway,"
+You smiled.
 
-You slipped the note into your folder.
+You: "That's fine, it's what I need,"
 
-With that, Salem packed more desserts for you to take home. You
-said goodbye before walking out.
+You stored the note.
+
+She packed extra desserts for you.
+
+You said goodbye and left.
 
 <<pushObjectiveIndex "Doing the Rounds">>
 ===

@@ -1,0 +1,234 @@
+﻿title: Faust1
+---
+<<declare $playerName = "Holder">>
+<<gathervars>>
+<<freezePlayer>>
+You enter the gym and head to the wrestling room.
+
+You expected it to be empty, but it's packed.
+
+"Oh, {$playerName}!"
+
+Faust jogs over in full gear, waving.
+
+You wave back.
+
+You: "Sorry...bad time?"
+
+You feel out of place in your normal clothes.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Did you not get the email?"
+<<setBool FaustDiaImageBool false>>
+
+You blink blankly.
+
+You: "Uhh..."
+
+<<setBool FaustDiaImageBool true>>
+Faust: "We're doing sparring matches today."
+Faust: "It's optional, don't worry."
+<<setBool FaustDiaImageBool false>>
+
+You relax slightly.
+
+Before you speak, he grabs your shoulder.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "I want you to watch my match."
+<<setBool FaustDiaImageBool false>>
+
+You blink in surprise.
+
+-> Refuse him
+    <<incRelationship "Faust" 1>>
+    <<jump RefuseHim>>
+-> Go along with it
+    <<jump GoAlongWith>>
+-> Stay for his match
+    <<decRelationship "Faust" 1>>
+    <<jump Stay4Match>>
+===
+
+title: RefuseHim
+---
+You shrug his hand off.
+
+You: "Sorry, I'm busy."
+
+<<setBool FaustDiaImageBool true>>
+Faust: "It won't take long."
+<<setBool FaustDiaImageBool false>>
+
+Before you reply, he moves you anyway.
+
+<<jump Faust1Next>>
+===
+
+title: GoAlongWith
+---
+You let him guide you.
+
+His grip is firm, controlling.
+
+You hesitate to pull away.
+
+He places you where you can see clearly.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Stay here. It won't take long."
+<<setBool FaustDiaImageBool false>>
+
+You could leave...but don't.
+
+<<jump Faust1Next>>
+===
+
+title: Stay4Match
+---
+You nod.
+
+You: "Who are you fighting?"
+
+<<setBool FaustDiaImageBool true>>
+Faust: "One of the strongest here."
+<<setBool FaustDiaImageBool false>>
+
+He looks completely calm.
+
+You: "You don't know his name?"
+
+<<setBool FaustDiaImageBool true>>
+Faust: "I don't need to."
+Faust: "It'll be over quickly."
+<<setBool FaustDiaImageBool false>>
+
+He places you to watch.
+
+<<jump Faust1Next>>
+===
+
+title: Faust1Next
+---
+Faust gets into position and winks.
+
+Then his expression shifts—cold, focused.
+
+The whistle blows.
+
+The match begins instantly.
+
+Faust dodges fast, striking back quickly.
+
+Both circle each other carefully.
+
+Then—he sweeps and pins.
+
+The coach slaps the mat.
+
+Match over.
+
+The crowd praises him.
+
+Faust beams at them.
+
+You approach.
+
+He notices you instantly.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Told you it'd be quick."
+Faust: "How did I do?"
+<<setBool FaustDiaImageBool false>>
+
+-> You did well
+    <<incRelationship "Faust" 1>>
+    <<jump YouDidWell>>
+-> You were good
+    <<jump YouWereGood>>
+-> Why do you need my opinion?
+    <<decRelationship "Faust" 1>>
+    <<jump WhyDoYouNeed>>
+===
+
+title: YouDidWell
+---
+You: "You did well!"
+
+He lights up even more.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Heh, I knew it."
+<<setBool FaustDiaImageBool false>>
+
+<<jump EndF1>>
+===
+
+title: YouWereGood
+---
+You: "You were good."
+
+His smile dips slightly.
+
+Then others praise him again.
+
+He perks right back up.
+
+<<jump EndF1>>
+===
+
+title: WhyDoYouNeed
+---
+You: "Why do you need my opinion?"
+
+He frowns briefly.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Oh...okay."
+<<setBool FaustDiaImageBool false>>
+
+He turns back to others.
+
+<<jump EndF1>>
+===
+
+title: EndF1
+---
+Matches continue as Faust cleans up.
+
+You wait outside on your phone.
+
+He comes out, hair damp.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Hey...thanks for watching."
+<<setBool FaustDiaImageBool false>>
+
+You: "No problem."
+
+He rummages in his pocket.
+
+He hands you a note.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "Your answer. Figured that's why you came."
+<<setBool FaustDiaImageBool false>>
+
+You nod, reading quickly.
+
+Satisfied, you smile.
+
+You: "Thank you."
+
+You grab your things.
+
+<<setBool FaustDiaImageBool true>>
+Faust: "No problem."
+<<setBool FaustDiaImageBool false>>
+
+He waves.
+
+You leave the gym.
+<<allowPlayerToMove>>
+<<loadScene "CampusGrounds">>
+===

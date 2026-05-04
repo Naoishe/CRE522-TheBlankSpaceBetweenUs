@@ -1,0 +1,82 @@
+﻿title: Salem4
+---
+This time when you visited the cafe, Salem was sitting in that same
+corner she liked, her lunch laid out with small, sweet snacks.
+
+She looked up at you, more rested, smiling brightly and gesturing
+to the seat in front of her.
+
+Salem: "{$playerName}!"
+Salem: "You always come at the same time, that's good,"
+
+You watched her hands as they reached into your bag.
+
+You: "Why's that?"
+
+Your answer came when she pulled out a premade lunch and pushed
+it toward you.
+
+She smiled bashfully, playing with her hair as you opened it.
+
+The food was fresh and smelled amazing. Your mouth watered.
+
+Salem: "I... made this for you,"
+
+Her voice rose into a soft squeak.
+
+You smiled and took a fork, digging in.
+
+Salem: "So, how was your day?"
+-> Realist view
+    <<incRelationship "Salem" 1>>
+    <<jump RealistView>>
+-> Optimistic view
+    <<jump OptimistView>>
+-> Pessimistic View
+    <<decRelationship "Salem" 1>>
+    <<jump PessimistView>>
+===
+
+title: RealistView
+---
+You: "Well..."
+You: "I've been stressed about the essay and how to write it."
+You: "Once I get through the brunt of it, I'll be fine."
+
+<<jump EndSalem4>>
+===
+
+title: OptimistView
+---
+You: "Actually everything is going well!"
+You: "I've been doing good today."
+
+<<jump EndSalem4>>
+===
+
+title: PessimistView
+---
+You: "It's been tough."
+You: "Honestly I'm pretty stressed, but I'll figure it out."
+
+<<jump EndSalem4>>
+===
+
+title: EndSalem4
+---
+Salem nodded as you spoke, then her eyes widened.
+
+Salem: "Oh! I almost forgot,"
+
+She dug into her bag and pulled out her notebook.
+
+She ripped out a page and handed it to you.
+
+Salem: "My answer, like always,"
+
+You took it and looked back at her.
+
+She watched you with a dreamy expression, waiting.
+
+'Okay then,' you thought before reading.
+===

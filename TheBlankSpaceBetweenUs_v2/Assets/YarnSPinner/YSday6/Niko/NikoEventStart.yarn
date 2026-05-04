@@ -1,0 +1,265 @@
+﻿title: NikoEventStart
+---
+Recalling what happened through the haze of your pounding head was
+a struggle. Like any other day, it started with your routine.
+
+Wake up, breakfast, ride the bus...
+
+You were heading to class when something sharp struck your head.
+
+You tried to reach back, but felt nothing. Your body was numb.
+
+A faint tingling spread beneath your skin.
+
+Panic struck as you realized you couldn’t see.
+
+Slowly, your senses returned. A fabric was tied over your eyes.
+
+Feeling returned to your body. You weren’t paralyzed, just bound.
+
+Plastic bit into your wrists as you struggled. Zip ties, likely.
+
+Panic rose into a choked sob. You were bound, bruised, terrified.
+
+You tried to scream, but your mouth was gagged with silk.
+
+<<setBool NikoDiaImageState true>>
+Niko: "You asked me yesterday, 'Should one outweigh many?'"
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "Do you remember that?"
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "It got me thinking... you agreed with me."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "So I was foolish not to act on it."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "Why let this opportunity slip through my fingers?"
+<<setBool NikoDiaImageState false>>
+
+Hands loosened the blindfold.
+
+<<setBool NikoDiaImageState true>>
+Niko: "There. Isn't it good to see again?"
+<<setBool NikoDiaImageState false>>
+
+You recognized the voice immediately.
+
+Niko.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Ah-ah. No noise."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "We wouldn't want anyone finding you."
+<<setBool NikoDiaImageState false>>
+
+-> Muffled Scream
+    <<jump NEchoice1>>
+-> Headbutt him
+    <<incRelationship "Niko" 1>>
+    <<jump NEchoice2>>
+-> Accept
+    <<decRelationship "Niko" 1>>
+    <<jump NEchoice3>>
+===
+
+title: NEchoice1
+---
+You screamed into the gag, hoping it wasn’t as muffled as he claimed.
+
+<<jump NE2>>
+===
+
+title: NEchoice2
+---
+Your head slammed into his nose.
+
+Blood spilled instantly.
+
+<<setBool NikoDiaImageState true>>
+Niko: "You fucking brat!"
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "All I want is for us to be together."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "Don't you want that?"
+<<setBool NikoDiaImageState false>>
+
+You shook your head violently.
+
+<<jump NE2>>
+===
+
+title: NEchoice3
+---
+You lowered your head in acceptance.
+
+What was the point in fighting?
+
+You were tired.
+
+Exams. Essays. Everything.
+
+But you also hated losing control.
+
+<<jump NE2>>
+===
+
+title: NE2
+---
+Niko’s expression darkened.
+
+<<setBool NikoDiaImageState true>>
+Niko: "It would be easier if you stopped resisting."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "This is your life now."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "My happiness matters more. You agreed!"
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "You agreed!"
+<<setBool NikoDiaImageState false>>
+
+He struck a vase. It shattered.
+
+Glass scattered. Blood dripped from his hand.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Now look what you made me do."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "It's alright."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "I forgive you."
+<<setBool NikoDiaImageState false>>
+
+He adjusted your shirt.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Always look your best for your love."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "It's okay. It's okay."
+<<setBool NikoDiaImageState false>>
+
+His amber eyes locked onto yours.
+
+<<setBool NikoDiaImageState true>>
+Niko: "We'll be together forever now."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "Won't we?"
+<<setBool NikoDiaImageState false>>
+===
+
+title: CannibalismEnd
+---
+<<setBool NikoDiaImageState true>>
+Niko: "Misery made me a wretch."
+<<setBool NikoDiaImageState false>>
+
+He sliced into a peach.
+
+Juice ran down his fingers.
+
+He licked them clean.
+
+Fruits lay across the table.
+
+Apples. Pomegranates. Peaches.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Misery made me a wretch."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "But I won't let it consume me."
+<<setBool NikoDiaImageState false>>
+
+He tore a pomegranate apart.
+
+Seeds scattered like blood.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I admired Frankenstein once."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "But he abandoned his creation."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "I will not abandon you."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "You'll always be a part of me."
+<<setBool NikoDiaImageState false>>
+===
+
+title: StockholmSyndromeEndPart1
+---
+You: "You're more myself than I."
+
+<<setBool NikoDiaImageState true>>
+Niko: "You know Wuthering Heights well."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "But that's not quite right."
+<<setBool NikoDiaImageState false>>
+
+You: "I know."
+
+You: "I'm speaking of us."
+
+You: "Our souls are intertwined."
+
+You reached for him.
+
+His hair was soft beneath your fingers.
+
+You: "I want to stay with you."
+
+You: "If you'll have me?"
+
+<<setBool NikoDiaImageState true>>
+Niko: "I'll have only you."
+<<setBool NikoDiaImageState false>>
+
+He embraced you.
+
+<<setBool NikoDiaImageState true>>
+Niko: "We will be together now."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "You'll always be a part of me."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "My soul."
+<<setBool NikoDiaImageState false>>
+===
+

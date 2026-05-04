@@ -1,0 +1,183 @@
+﻿title: Niko3
+---
+Lunch time at last. The day was bright for once, so you chose a spot under a
+tree for shade. As you pulled out your notes, you felt eyes on you.
+
+You looked up quickly, but the campus was clear. Only a few groups lingered
+nearby. No one seemed to be watching you.
+
+Blaming it on yesterday, you returned to your work.
+
+It was easy to get absorbed when focused. That must be why you didn't hear
+the footsteps.
+
+<<setBool NikoDiaImageState true>>
+Niko: "How is it that everywhere I go you're there too?"
+<<setBool NikoDiaImageState false>>
+
+His gravelly voice brushed your ear. You jumped, scattering your notes.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Wow, you'd think I'd just said boo with your reaction."
+<<setBool NikoDiaImageState false>>
+
+He laughed softly, clearly amused.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I mean c'mon, are you that obsessed you're following me now?"
+<<setBool NikoDiaImageState false>>
+
+-> Fluster
+    <<incRelationship "Niko" 1>>
+    <<jump FlusterN3>>
+-> Accuse him
+    <<decRelationship "Niko" 1>>
+    <<jump AccuseN3>>
+===
+
+title: FlusterN3
+---
+You: "W-what?"
+
+You gasped. Follow him? You weren't even sure if you liked him.
+
+You: "I definitely didn't! Are you sure you didn't follow me?"
+
+You cringed immediately after saying it.
+
+<<jump Niko3Continue>>
+===
+
+title: AccuseN3
+---
+You: "Hey! When I came here, no one was around. I'm working on my essay, so
+why would I seek someone out to interrupt myself?"
+
+You pointed at him sharply.
+
+You: "If I didn't know better, I'd say you followed me."
+
+You glanced behind him. Only thick bushes stood beyond the tree.
+
+He had approached from behind.
+
+He had been watching you the entire time.
+
+You: "You... didn't, right?"
+
+You spoke quietly, oddly satisfied at the thought.
+
+<<jump Niko3Continue>>
+===
+
+title: Niko3Continue
+---
+<<setBool NikoDiaImageState true>>
+Niko: "Why would I follow you?"
+<<setBool NikoDiaImageState false>>
+
+He sat beside you without asking.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I come here to read on sunny days. You, however, have never sat here
+before. So I conclude you're pursuing me."
+<<setBool NikoDiaImageState false>>
+
+You: "Pursuing you?"
+
+You echoed, alarmed.
+
+<<setBool NikoDiaImageState true>>
+Niko: "First you harass me for your essay, and now you stalk me."
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "Why... {$playerName}, do you have a crush on me?"
+<<setBool NikoDiaImageState false>>
+
+-> Confess
+    <<incRelationship "Niko" 1>>
+    <<jump ConfessNiko3>>
+-> Deny
+    <<decRelationship "Niko" 1>>
+    <<jump DenyNiko3>>
+===
+
+title: ConfessNiko3
+---
+You: "Truthfully?"
+
+You hesitated, almost asking permission.
+
+He stared at you.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I think you owe me the truth."
+<<setBool NikoDiaImageState false>>
+
+You couldn't argue.
+
+You: "There's a desire... something I can't explain. I didn't follow you,
+but being near you is all I want."
+
+Niko covered his face slightly.
+
+<<setBool NikoDiaImageState true>>
+Niko: "I hadn't expected you to be so honest. Are you that desperate?"
+<<setBool NikoDiaImageState false>>
+
+<<setBool NikoDiaImageState true>>
+Niko: "You don't know me. You don't know what I want."
+<<setBool NikoDiaImageState false>>
+
+You: "I want to know you."
+
+<<jump EndNiko3>>
+===
+
+title: DenyNiko3
+---
+You: "Have a crush on you?"
+
+You scoffed.
+
+You: "I'm not even sure I like you as a person."
+
+His face fell slightly.
+
+A sinking feeling grew in your chest.
+
+You: "I'm sorry. Your attitude just rubs me the wrong way."
+
+<<jump EndNiko3>>
+===
+
+title: EndNiko3
+---
+Niko seemed pleased, like he understood more than you said. After a pause,
+he spoke again.
+
+<<setBool NikoDiaImageState true>>
+Niko: "You're not the worst company. How's your essay coming?"
+<<setBool NikoDiaImageState false>>
+
+The shift in tone caught you off guard.
+
+You: "It's a struggle."
+
+You admitted honestly.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Alright, hit me. Give me the next question."
+<<setBool NikoDiaImageState false>>
+
+He seemed unusually cooperative.
+
+<<setBool NikoDiaImageState true>>
+Niko: "Next question."
+<<setBool NikoDiaImageState false>>
+
+He demanded again, his tone shifting back.
+
+You handed him the next question and took the completed one.
+===

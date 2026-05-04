@@ -1,0 +1,286 @@
+﻿title: FaustEventStart
+---
+Faust messaged you to meet him at the gym. He said it was about
+training.
+
+That wasn't unusual, so you went.
+
+The gym doors creaked as you pushed them open.
+
+Inside, it was empty.
+
+No team. No coach.
+
+Just Faust.
+
+He stood in the center of the mat, back turned.
+
+You: "Faust?"
+
+He turned slowly.
+
+<<setBool FaustDiaImageBool true>>
+
+Faust: "{$playerName}, good. You're here,"
+
+His tone was calm. Too calm.
+
+You stepped closer, uneasy.
+
+You: "Where is everyone?"
+
+Faust smiled faintly.
+
+Faust: "I told them not to come,"
+
+Your stomach dropped.
+
+You: "Why?"
+
+He exhaled, like this was obvious.
+
+Faust: "Because I needed to deal with something,"
+
+Silence hung between you.
+
+You: "Deal with what?"
+
+His eyes locked onto you.
+
+Faust: "You,"
+
+Your breath caught.
+
+You: "What are you talking about?"
+
+He tilted his head, studying you.
+
+Faust: "You've improved faster than expected,"
+
+Faust: "Your stance, your reactions...your timing,"
+
+His tone was analytical. Detached.
+
+Faust: "You're becoming a problem,"
+
+You took a step back.
+
+You: "A problem?"
+
+He stepped forward.
+
+Faust: "I don't lose, {$playerName},"
+
+His smile didn't reach his eyes.
+
+Faust: "I can't afford to,"
+
+You: "This isn't a competition like that—"
+
+Faust: "Everything is,"
+
+He cut you off instantly.
+
+Faust: "Matches, rankings, attention...control,"
+
+Another step closer.
+
+Faust: "You're getting in the way of that,"
+
+Your pulse spiked.
+
+You: "So what? You're going to scare me off?"
+
+He laughed softly.
+
+Faust: "If that worked, I wouldn't be doing this,"
+
+His stance lowered slightly.
+
+Familiar.
+
+Like a match.
+
+Faust: "You keep coming back,"
+
+Faust: "So I'll make sure you can't,"
+
+Your body tensed.
+
+You: "Faust, stop—"
+
+He moved.
+
+Fast.
+
+Faust: "Show me how far you've come,"
+
+He lunged.
+
+<<setBool FaustDiaImageBool false>>
+<<startEventGame>>
+===
+
+title: PlayerWinsEvent
+---
+Faust hit the mat hard.
+
+The impact echoed through the empty gym.
+
+You staggered back, breathing heavily.
+
+You had won.
+
+For a moment, there was only silence.
+
+Faust lay still.
+
+Then he laughed.
+
+Faust: "Heh...so you actually did it, {$playerName},"
+
+He pushed himself up slowly, wincing.
+
+Faust: "Guess I miscalculated,"
+
+You: "This is over, Faust,"
+
+He looked up at you.
+
+For the first time, he didn’t look in control.
+
+Faust: "Over?"
+
+He wiped blood from his lip, smiling faintly.
+
+Faust: "No...not quite,"
+
+You tensed, but he didn’t move.
+
+Faust: "You beat me. Fair and square,"
+
+His voice was quieter now.
+
+Faust: "So what now?"
+
+He met your eyes.
+
+Faust: "Are you going to end it?"
+
+Your heart pounded.
+
+Faust: "Or are you going to hesitate?"
+
+Silence stretched between you.
+
+-> Show mercy
+    <<jump MercyEnd>>
+-> Finish him off
+    <<jump FinishEnd>>
+===
+
+title: PlayerLosesEvent
+---
+Your back hit the mat.
+
+Hard.
+
+The air left your lungs in one sharp gasp.
+
+Before you could recover, Faust was on you.
+
+Pinning you down.
+
+You struggled, but it was useless.
+
+He was stronger.
+
+Faster.
+
+Better.
+
+Faust: "I told you, {$playerName},"
+
+His voice was calm again.
+
+Controlled.
+
+Faust: "I don't lose,"
+
+You tried to push him off.
+
+He didn’t budge.
+
+Faust: "You improved too quickly,"
+
+Faust: "That made you dangerous,"
+
+Your vision blurred.
+
+Faust leaned closer.
+
+Faust: "I can't have that,"
+
+You: "Faust...
+You: "....s-...stop..."
+
+He smiled. Satisfied, and sure in his actions...
+
+Faust: "You should've stayed out of it,"
+<<playSoundEffect "hurtSound">>
+
+Faust: "This is just how it has to be,"
+<<playSoundEffect "hurtSound">>
+
+Your body went still...
+
+Faust: "Goodbye, {$playerName}..."
+<<playSoundEffect "hurtSound">>
+<<loadScene "Murdered">>
+===
+
+title: MercyEnd
+---
+
+You: "...Stay down...I'm gonna call an ambulance..."
+
+You say with a hint of bitter resignation.
+But you weren't a murderer, even being attacked
+wasn't gonna change that for you. 
+That was something Faust couldn't understand.
+
+Faust: "Wh-..."
+Faust: "What?..."
+Faust: "You're-...an idiot..."
+
+You ignored him, took out your phone and 
+dialed for an ambulance.
+
+Faust: "...Why didn't you take the chance?..."
+Faust: "...What have you possibly achieved with MERCY!?..."
+
+You sigh and thank the operator as they assures you 
+someone is on their way. Wiping some blood from your 
+own nose, you turned to look down at him. 
+
+You: "...Your life, Faust."
+<<loadScene "Graduation">>
+===
+
+title: FinishEnd
+---
+<<playSoundEffect "hurtSound">>
+...
+<<playSoundEffect "hurtSound">>
+...
+<<playSoundEffect "hurtSound">>
+...
+
+You watched the red pool grow larger around his head.
+You foot having crushed his skull against the ground.
+His pulse stopped, his eyes closed, and at last...
+
+Faust lost. 
+<<updateInt "endingNumber" 1>>
+<<loadScene "Graduation">>
+===

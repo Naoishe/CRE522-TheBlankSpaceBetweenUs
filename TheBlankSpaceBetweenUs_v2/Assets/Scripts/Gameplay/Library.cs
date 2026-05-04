@@ -5,19 +5,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class Library : MonoBehaviour
 {
     public Collider2D toCampus;
     public Collider2D playerCollider;
     public GameObject playerObj;
-    public Image nikoImage;
-    public YarnCommsLibrary yarnComms;
-
-    public bool nikoImageBoolRead;
-    public bool holderBool;
+    public DialogueRunner dialogueRunner;
+    public YarnProject[] yarnProjects;
 
     public static Action ReturnToCampus;
+
+
+    private void Awake()
+    {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
+    }
     void Start()
     {
         
@@ -25,14 +30,10 @@ public class Library : MonoBehaviour
 
     private void OnEnable()
     {
-        ContinuousData.ReturnYarnAsTrue += AssignNikoTrue;
-        ContinuousData.ReturnYarnAsFalse += AssignNikoFalse;
     }
 
     private void OnDisable()
     {
-        ContinuousData.ReturnYarnAsTrue -= AssignNikoTrue;
-        ContinuousData.ReturnYarnAsFalse -= AssignNikoFalse;
     }
 
 
@@ -44,35 +45,8 @@ public class Library : MonoBehaviour
             ContinuousData.instance.SceneChangeDetected("CampusGrounds", ContinuousData.instance.campusGrounds_LibrarySpawn);
         }
 
-
-        ContinuousData.instance.FetchYarnBoolVariable("$nikoImageActive", holderBool);
     }
 
-    public void AssignNikoFalse()
-    {
-        nikoImageBoolRead = false;
-        NikoImageStatus();
-    }
-    public void AssignNikoTrue()
-    {
-        nikoImageBoolRead = true;
-        NikoImageStatus();
-    }
 
-    public void NikoImageStatus()
-    {
-        //ContinuousData.instance.FetchYarnBoolVariable("$nikoImageActive", nikoImageBoolRead);
-
-        Debug.Log("Processed Value: " + nikoImageBoolRead);
-        if (nikoImageBoolRead)
-        {
-            nikoImage.gameObject.SetActive(true);
-            //nikoImage.color=new Color(nikoImage.color.r,nikoImage.color.g,nikoImage.color.b,255);
-        }
-        else
-        {
-            nikoImage.gameObject.SetActive(false);
-            //nikoImage.color = new Color(nikoImage.color.r, nikoImage.color.g, nikoImage.color.b, 0);
-        }
-    }
+    
 }
