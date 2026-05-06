@@ -632,6 +632,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7658643845452797051, guid: a5dede3af4268af4197610b391e5962d, type: 3}
+      propertyPath: startNode
+      value: SalemDay0Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658643845452797051, guid: a5dede3af4268af4197610b391e5962d, type: 3}
+      propertyPath: yarnProject
+      value: 
+      objectReference: {fileID: 7545569452688597077, guid: fc0707e0ba02c1147bcfb071483c955a, type: 3}
     - target: {fileID: 8526637814636860871, guid: a5dede3af4268af4197610b391e5962d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -1249,8 +1257,8 @@ SceneRoots:
   - {fileID: 1086443528}
   - {fileID: 1171282640}
   - {fileID: 752453612}
-  - {fileID: 1150439466}
   - {fileID: 1390119656}
   - {fileID: 336839389}
   - {fileID: 1808676090}
   - {fileID: 23025239}
+  - {fileID: 1150439466}
