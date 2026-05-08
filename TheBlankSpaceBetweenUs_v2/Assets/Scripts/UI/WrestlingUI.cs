@@ -46,6 +46,7 @@ public class WrestlingUI : MonoBehaviour
         StartCoroutine(ActivateTicker());
         fighterSlider.value = 1;
         playerSlider.value = 1;
+        dialogueRunner.SetProject(yarnProjects[0]);
 
     }
 
