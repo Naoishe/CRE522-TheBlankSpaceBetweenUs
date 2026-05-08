@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-public class Objective 
+public class Objective
 {
     //Base Class for Objective objects 
 
@@ -29,12 +24,12 @@ public class Objective
         currentIndex = 0;
     }
 
-    public void UpdateNotificationType( string typeUpdate)
+    public void UpdateNotificationType(string typeUpdate)
     {
-       notificationType = typeUpdate;
+        notificationType = typeUpdate;
     }
 
-    public void UpdateNotificationType( bool completedUpdate)
+    public void UpdateNotificationType(bool completedUpdate)
     {
         completed = completedUpdate;
     }
@@ -47,7 +42,7 @@ public class Objective
         {
             completed = true;
             notificationType = "Completed";
-            
+
         }
     }
 

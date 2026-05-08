@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-using Yarn;
 using Yarn.Unity;
 
 public class PlayerHouse : MonoBehaviour
@@ -21,6 +18,7 @@ public class PlayerHouse : MonoBehaviour
     public DialogueRunner dialogueRunner;
     void Awake()
     {
+        // Initialize DialogueRunner and assign the relevant Yarn project
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         dialogueRunner.SetProject(yarnProjects[0]);
 
@@ -28,6 +26,7 @@ public class PlayerHouse : MonoBehaviour
 
     void OnEnable()
     {
+        // Setup scene-specific player placement based on time and subscribe to day changes
         if (ContinuousData.instance.CDtimeIndex <= 3)
         {
             MorningLoad();
@@ -48,9 +47,10 @@ public class PlayerHouse : MonoBehaviour
     void Update()
     {
 
+        // Monitor colliders to trigger scene transitions or local movement
         if (Physics2D.IsTouching(leavingCollider, playerCollider))
         {
-            ContinuousData.instance.SceneChangeDetected("Midday",ContinuousData.instance.campusGrounds_BridgeSpawn);
+            ContinuousData.instance.SceneChangeDetected("Midday", ContinuousData.instance.campusGrounds_BridgeSpawn);
             LeavingForClass();
         }
         if (Physics2D.IsTouching(toDownStairs, playerCollider))
@@ -66,21 +66,23 @@ public class PlayerHouse : MonoBehaviour
 
     void LeavingForClass()
     {
-        screenCover.SetActive(true); 
+        // Show screen cover and start the 'leaving for class' dialogue
+        screenCover.SetActive(true);
         dialogueRunner.StartDialogue("LeavingForClass");
     }
 
     void MorningLoad()
     {
+        // Position player for morning and start the appropriate morning sequence
         player.transform.position = new Vector3(-6.7f, -0.2f, 0f);
         TurnOffPlayer();
         breakfastDone = false;
-        if (ContinuousData.instance.CDdayIndex == 0 ) //
+        if (ContinuousData.instance.CDdayIndex == 0) //
         {
             ContinuousData.instance.newGame = false;
             StartCoroutine(Morning0());
         }
-         else
+        else
         {
             StartCoroutine(MorningNorm());
         }
@@ -99,6 +101,7 @@ public class PlayerHouse : MonoBehaviour
 
     public IEnumerator MorningNorm()
     {
+        // Play the normal morning sequence for subsequent days
         yield return new WaitForSeconds(2f);
         dialogueRunner.StartDialogue("MorningNorm");
         yield return new WaitForSeconds(10f);
@@ -107,8 +110,9 @@ public class PlayerHouse : MonoBehaviour
         TurnOnPlayer();
     }
 
-    void NightLoad() 
+    void NightLoad()
     {
+        // Position player for nighttime
         player.transform.position = new Vector3(-2.4f, -28.5f, 0f);
         breakfastDone = true;
 
@@ -116,16 +120,19 @@ public class PlayerHouse : MonoBehaviour
 
     public void UpdateBreakfastStatus(bool boolState)
     {
+        // Update the breakfast completion flag
         breakfastDone = boolState;
     }
 
     private void TurnOffPlayer()
     {
+        // Make the player invisible via animator
         player.GetComponent<Animator>().SetBool("Invisible", true);
     }
 
     private void TurnOnPlayer()
     {
+        // Make the player visible via animator
         player.GetComponent<Animator>().SetBool("Invisible", false);
     }
 

@@ -1,9 +1,5 @@
-using UnityEngine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Yarn.Unity;
-using System.Linq.Expressions;
+using UnityEngine;
 
 public class TickerControl : MonoBehaviour
 {
@@ -18,7 +14,7 @@ public class TickerControl : MonoBehaviour
     public GameObject fullObject;
     public GameObject MinigameManager;
 
-    private bool isSubscribed=false;
+    private bool isSubscribed = false;
     private bool gameStarted = false;
 
     //Serialized Inspector variables
@@ -31,7 +27,7 @@ public class TickerControl : MonoBehaviour
     {
         tickerAnim.SetFloat("tickerSpeedMultiplier", 1);
         player = GameObject.Find("PlayerObj");
-        
+
 
     }
 
@@ -45,16 +41,16 @@ public class TickerControl : MonoBehaviour
 
         //Club Dependent Code, changes reference depending on scene's specific script
 
-        if(WrestlingSceneActive)
+        if (WrestlingSceneActive)
         {
             WrestlingUI.WrestlingUpdate += UpdateGameBool;
             WrestlingUI.WrestlingEnded += GameEnded;
         }
-         if(DebateSceneActive)
+        if (DebateSceneActive)
         {
             //DebateUI.DebateUpdate += UpdateGameBool;
         }
-         if(TheatreSceneActive)
+        if (TheatreSceneActive)
         {
             //TheatreUI.TheatreUpdate += UpdateGameBool;
         }
@@ -104,7 +100,7 @@ public class TickerControl : MonoBehaviour
     {
         if (gameStarted)
         {
-           
+
             if (Physics2D.IsTouching(safeZoneCollider, tickerTipCollider))
             {
 
@@ -118,9 +114,9 @@ public class TickerControl : MonoBehaviour
         }
         else
         {
-           Debug.Log("Game Not Started");
+            Debug.Log("Game Not Started");
         }
-        
+
     }
 
     private void UpdateGameBool()
@@ -129,12 +125,12 @@ public class TickerControl : MonoBehaviour
         {
             gameStarted = false;
         }
-        
+
         if (!gameStarted)
         {
             gameStarted = true;
         }
-            
+
     }
 
     private void GameEnded()
@@ -144,6 +140,6 @@ public class TickerControl : MonoBehaviour
 
 
 
-    
+
 
 }

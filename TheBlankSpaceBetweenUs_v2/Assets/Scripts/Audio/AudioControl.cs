@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioControl : MonoBehaviour
 {
@@ -14,9 +13,5 @@ public class AudioControl : MonoBehaviour
         music.volume = 0.2f;
     }
 
-    public void Update()
-    {
-        //if game started
-        //music.volume = 0.2f;
-    }
+    
 }

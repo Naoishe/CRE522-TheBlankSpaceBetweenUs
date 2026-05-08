@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -20,8 +17,8 @@ public class MainMenu : MonoBehaviour
     public string submittedName;
     public GameObject inputFieldObject;
     public InputField inputField;
-    public float minOpacity=0f;
-    public float maxOpacity=255f;
+    public float minOpacity = 0f;
+    public float maxOpacity = 255f;
 
     static float lerpT = 0.0f;
 
@@ -40,19 +37,17 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        // Initialize menu UI state
         newNameObject.SetActive(false);
         confirmButtons.SetActive(false);
         submitButton.SetActive(false);
         buttonDisable = false;
     }
-    void Update()
-    {
-        
-
-    }
+    
 
     public void StartNewGame()
     {
+        // Trigger start of a new game and show the name request UI
         if (!buttonDisable)
         {
             startButtonPressed?.Invoke();
@@ -63,16 +58,17 @@ public class MainMenu : MonoBehaviour
 
     public void LerpScreen()
     {
-        screen1.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT),1);
-        screen2.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT),1);
+        screen1.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), 1);
+        screen2.color = new Color(Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), Mathf.Lerp(minOpacity, maxOpacity, lerpT), 1);
         lerpT -= 0.5f * Time.deltaTime;
 
-        
+
 
     }
 
     public void RequestName()
     {
+        // Show UI elements to request a player name
         nameRequest.SetActive(true);
         buttonDisable = true;
         inputFieldObject.SetActive(true);
@@ -84,6 +80,7 @@ public class MainMenu : MonoBehaviour
 
     public void SubmitName()
     {
+        // Store submitted name and update UI for confirmation
         submittedName = inputField.text;
         inputFieldObject.SetActive(false);
         newNameObject.SetActive(false);
@@ -97,7 +94,7 @@ public class MainMenu : MonoBehaviour
 
     public void ConfirmName()
     {
-       
+        // Confirm name and notify ContinuousData, then proceed
         submitButton.SetActive(false);
         askingText.text = "Alright...I'll remember that.";
         ContinuousData.instance.UpdatePlayerName(submittedName);

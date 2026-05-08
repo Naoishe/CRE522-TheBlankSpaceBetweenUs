@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -43,27 +41,31 @@ public class WrestlingUI : MonoBehaviour
 
     void Start()
     {
+        // Initialize UI and start the match ticker
         countdown.GetComponent<Animator>().SetTrigger("StartCount");
         StartCoroutine(ActivateTicker());
         fighterSlider.value = 1;
-        playerSlider.value= 1;
+        playerSlider.value = 1;
 
     }
 
     private void OnEnable()
     {
+        // Subscribe to ticker events for hit/miss callbacks
         this.GetComponent<TickerControl>().OnHit += TickerHit;
         this.GetComponent<TickerControl>().OnMiss += TickerMiss;
     }
 
     public void OnDisable()
     {
+        // Unsubscribe from ticker events
         this.GetComponent<TickerControl>().OnHit -= TickerHit;
         this.GetComponent<TickerControl>().OnMiss -= TickerMiss;
     }
 
     private void Awake()
     {
+        // Cache DialogueRunner and initialize UI elements hidden state
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         activeRoundSpotlight.SetActive(false);
         victory.SetActive(false);
@@ -77,6 +79,7 @@ public class WrestlingUI : MonoBehaviour
 
     void Update()
     {
+        // Check for win/lose conditions each frame
         if (fighterSlider.value <= 0)
         {
             Victory();
@@ -89,12 +92,13 @@ public class WrestlingUI : MonoBehaviour
 
     public void Victory()
     {
+        // Handle victory sequence and transition to the next scene
         music.Stop();
         victorySFX.Play();
         victory.SetActive(true);
         audience.SetTrigger("Cheer");
 
-        if(ContinuousData.instance.CDdayIndex == 4 && ContinuousData.instance.playerClub == "Wrestling")
+        if (ContinuousData.instance.CDdayIndex == 4 && ContinuousData.instance.playerClub == "Wrestling")
         {
             StartCoroutine(OtherSceneChange());
         }
@@ -107,19 +111,22 @@ public class WrestlingUI : MonoBehaviour
 
     private IEnumerator DelaySceneChange()
     {
+        // Wait then load campus grounds
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("CampusGrounds"); //Change to Gym Scene for Faust Event
     }
 
     private IEnumerator OtherSceneChange()
     {
+        // Wait then set ending and load gym scene
         yield return new WaitForSeconds(5f);
         ContinuousData.instance.EndingIndex = 7;
-        SceneManager.LoadScene("Gym"); 
+        SceneManager.LoadScene("Gym");
     }
 
     public void YouLose()
     {
+        // Handle defeat sequence and scene transitions
         music.Stop();
         youLoseSFX.Play();
         youLose.SetActive(true);
@@ -136,6 +143,7 @@ public class WrestlingUI : MonoBehaviour
 
     private IEnumerator OtherOtherSceneChange()
     {
+        // Wait then set lose ending and load gym
         yield return new WaitForSeconds(5f);
         ContinuousData.instance.EndingIndex = 8;
         SceneManager.LoadScene("Gym");
@@ -143,6 +151,7 @@ public class WrestlingUI : MonoBehaviour
 
     public void TickerHit()
     {
+        // Show hit feedback and reduce fighter health
         hitTxt.SetActive(true);
         hitTxt.GetComponent<Animator>().SetTrigger("HitLanded");
         player.GetComponent<Animator>().SetTrigger("Attack");
@@ -160,14 +169,14 @@ public class WrestlingUI : MonoBehaviour
 
         PrepareFighter();
 
-        
+
     }
 
     private void FighterTurn()
     {
         fullObject.transform.position = new Vector3(0, -7, 0);
         WrestlingUpdate?.Invoke();
-        
+
         fighter.GetComponent<Animator>().SetTrigger("Attack");
         StartCoroutine(WaitForAnimationToFinish(fighterAnim, "Attack"));
 
@@ -203,26 +212,29 @@ public class WrestlingUI : MonoBehaviour
     public void PrepareFighter()
     {
         StartCoroutine(DelayTurn());
-   
+
     }
 
     private IEnumerator DelayTurn()
     {
+        // Delay then perform fighter turn actions
         yield return new WaitForSeconds(3f);
         FighterTurn();
     }
 
     public void ResetTicker()
     {
+        // Restart the match ticker
         StartCoroutine(ActivateTicker());
     }
 
     public IEnumerator ActivateTicker()
     {
+        // Activate the ticker after a short delay and notify listeners
         yield return new WaitForSeconds(2f);
         activeRoundSpotlight.SetActive(true);
         yield return new WaitForSeconds(1f);
-        fullObject.transform.position= new Vector3(0, -3, 0);
+        fullObject.transform.position = new Vector3(0, -3, 0);
         WrestlingUpdate?.Invoke();
     }
 
@@ -266,7 +278,7 @@ public class WrestlingUI : MonoBehaviour
         hitTxt.SetActive(false);
         missTxt.SetActive(false);
         fullObject.transform.position = new Vector3(0, -7, 0);
-        
+
 
     }
 }

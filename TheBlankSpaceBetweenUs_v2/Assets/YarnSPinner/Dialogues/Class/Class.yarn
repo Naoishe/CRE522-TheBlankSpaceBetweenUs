@@ -64,3 +64,17 @@ You had nodded, looking at him before you found yourself out of the building.
 You: "Well, time to get to work I suppose..."
 <<set $EndClass to true>>
 ===
+
+title: ClassOther
+---
+<<set $EndClass = false>>
+You submitted your last week's work,
+your professor was impressed and 
+encouraged you to keep up the work.
+
+Prof: You're doing well, keep it up.
+
+You got the next week's assignment question, 
+and now had to go give them out to your subjects.
+<<set $EndClass = true>>
+===

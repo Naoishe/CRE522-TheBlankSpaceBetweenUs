@@ -20,7 +20,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Library.unity
     guid: 5bd2120ee03563b458f5cadbaf227218
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HolderScene.unity
     guid: cb0c5784e4db6354780535695a246431
+  - enabled: 1
+    path: Assets/Scenes/Cafe.unity
+    guid: 18b3532ea801fb44bb571e4b82de7739
+  - enabled: 1
+    path: Assets/Scenes/Endings.unity
+    guid: 829970e6c75bc194ebce7e0f0a3870cd
+  - enabled: 1
+    path: Assets/Scenes/Gym.unity
+    guid: ab66a0e0568abb342b30b79baafd4909
+  - enabled: 1
+    path: Assets/Scenes/Wrestling.unity
+    guid: 09b0d3f14bb0fd6479518d88fde24a94
   m_configObjects: {}

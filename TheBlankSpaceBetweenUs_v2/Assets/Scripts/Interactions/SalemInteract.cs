@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Yarn.Unity;
 
 public class SalemInteract : InteractableObject
 {
@@ -9,11 +6,13 @@ public class SalemInteract : InteractableObject
     public bool watchBool;
     public void Start()
     {
+        // Cache the Salem dialogue image and hide it on start
         salemDiaImage = GameObject.Find("SalemDiaImage");
         salemDiaImage.SetActive(false);
     }
     public override void Interaction()
     {
+        // Trigger Salem dialogue if it's the correct day
         watchBool = true;
         if (ContinuousData.instance.CDdayIndex == 0)
         {
@@ -35,6 +34,7 @@ public class SalemInteract : InteractableObject
 
     public override void EndSpecifics()
     {
+        // End Salem dialogue and clear watch state
         dialogueRunner.Stop();
         watchBool = false;
     }

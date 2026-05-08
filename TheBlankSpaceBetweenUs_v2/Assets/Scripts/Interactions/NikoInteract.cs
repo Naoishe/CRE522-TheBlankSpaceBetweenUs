@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -10,6 +8,7 @@ public class NikoInteract : InteractableObject
     public YarnProject[] yarnProjects;
     public void Start()
     {
+        // Initialize dialogue runner and hide dialogue image
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         dialogueRunner.SetProject(yarnProjects[0]);
         nikoDiaImage = GameObject.Find("NikoDiaImage");
@@ -17,6 +16,7 @@ public class NikoInteract : InteractableObject
     }
     public override void Interaction()
     {
+        // Start the appropriate Niko dialogue for the current day
         watchBool = true;
         if (ContinuousData.instance.CDdayIndex == 0)
         {
@@ -54,12 +54,13 @@ public class NikoInteract : InteractableObject
 
     public override void EndSpecifics()
     {
+        // Stop dialogue and reset watch flag
         dialogueRunner.Stop();
         watchBool = false;
     }
 
     public void WatchImageBool()
     {
-       nikoDiaImage.SetActive(ContinuousData.instance.NikoDiaImageState);
+        nikoDiaImage.SetActive(ContinuousData.instance.NikoDiaImageState);
     }
 }

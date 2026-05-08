@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -12,6 +10,7 @@ public class Gym : MonoBehaviour
     public GameObject FaustDiaImage;
     public void Awake()
     {
+        // Initialize the dialogue runner and player references
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         dialogueRunner.SetProject(yarnProjects[0]);
         playerObj = GameObject.Find("PlayerObj");
@@ -30,6 +29,7 @@ public class Gym : MonoBehaviour
 
     private void HandleExitButton()
     {
+        // Handle player exit input and route scene change appropriately
         if (allowExit)
         {
             if (ContinuousData.instance.CDtimeIndex < 3)
@@ -46,6 +46,7 @@ public class Gym : MonoBehaviour
 
     void Start()
     {
+        // Register command handlers and start appropriate Faust dialogues
         dialogueRunner.AddCommandHandler("allowExit", AllowExit);
         dialogueRunner.AddCommandHandler("startEventGame", StartEventGame);
         if (ContinuousData.instance.CDdayIndex == 0)
@@ -58,7 +59,7 @@ public class Gym : MonoBehaviour
         }
         if (ContinuousData.instance.CDdayIndex == 2)
         {
-            if(ContinuousData.instance.FaustRP>0 && ContinuousData.instance.playerClub=="Wrestling")
+            if (ContinuousData.instance.FaustRP > 0 && ContinuousData.instance.playerClub == "Wrestling")
             {
                 dialogueRunner.StartDialogue("Faust2Positive");
             }
@@ -88,14 +89,16 @@ public class Gym : MonoBehaviour
 
     public void FixedUpdate()
     {
+        // Update Faust dialogue image visibility each fixed update
         FaustDiaImage.SetActive(ContinuousData.instance.FaustDiaImageState);
     }
 
     public void AllowExit()
     {
+        // Stop any running dialogue and allow the player to exit
         dialogueRunner.Stop();
         allowExit = true;
-        
+
     }
 
     public void LoadPlayerWinAgainstFaust()
@@ -128,10 +131,10 @@ public class Gym : MonoBehaviour
 
     public void StartEventGame()
     {
-               ContinuousData.instance.LoadScene("Wrestling");
+        ContinuousData.instance.LoadScene("Wrestling");
     }
 
-  
+
 
 
 }

@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 public class CampusGrounds : MonoBehaviour
@@ -44,8 +41,8 @@ public class CampusGrounds : MonoBehaviour
         libraryLabel.SetActive(false);
 
     }
-        
-    
+
+
 
     private void DeveloperModeCheck()
     {
@@ -62,7 +59,7 @@ public class CampusGrounds : MonoBehaviour
 
     private void Update()
     {
-        
+
 
     }
 
@@ -85,7 +82,7 @@ public class CampusGrounds : MonoBehaviour
         {
             dialogueRunner.StartDialogue("EnterPlayerHouse");
             ContinuousData.instance.SetMovementLock(false);
-            
+
         }
         if (Physics2D.IsTouching(toTheatre, playerCollider))
         {
@@ -105,7 +102,7 @@ public class CampusGrounds : MonoBehaviour
             dialogueRunner.StartDialogue("EnterGym");
             ContinuousData.instance.SetMovementLock(false);
         }
-        
+
     }
 
     public void MapLabelControls()
@@ -127,7 +124,7 @@ public class CampusGrounds : MonoBehaviour
         }
         if (Vector3.Distance(ContinuousData.instance.player.transform.position, libraryTP.transform.position) < 10f)
         {
-           libraryLabel.SetActive(true);
+            libraryLabel.SetActive(true);
         }
         else
         {
@@ -160,8 +157,8 @@ public class CampusGrounds : MonoBehaviour
 
     }
 
-   
-    
 
-   
+
+
+
 }

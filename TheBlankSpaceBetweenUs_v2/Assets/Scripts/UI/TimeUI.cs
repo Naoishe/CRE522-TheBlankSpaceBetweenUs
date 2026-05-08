@@ -1,13 +1,9 @@
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Timers;
 using TMPro;
+using UnityEngine;
 
 public class TimeUI : MonoBehaviour
 {
-    
+
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI dayText;
     public TimeManager timeManager;
@@ -40,8 +36,8 @@ public class TimeUI : MonoBehaviour
     }
 
 
-    
- 
+
+
 
 }
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 public class Cafe : MonoBehaviour
@@ -10,6 +8,7 @@ public class Cafe : MonoBehaviour
     public GameObject playerObj;
     public void Awake()
     {
+        // Initialize dialogue runner and player reference
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         dialogueRunner.SetProject(yarnProjects[0]);
         playerObj = GameObject.Find("PlayerObj");
@@ -28,7 +27,8 @@ public class Cafe : MonoBehaviour
 
     private void HandleExitButton()
     {
-        if(allowExit)
+        // Exit the cafe if allowed, routing based on time of day
+        if (allowExit)
         {
             if (ContinuousData.instance.CDtimeIndex < 3)
             {
@@ -39,14 +39,15 @@ public class Cafe : MonoBehaviour
                 ContinuousData.instance.UpdateNextScene("CampusGrounds");
                 ContinuousData.instance.SceneLoad(new Vector3(9.5f, 41.5f, 0f));
             }
-           
+
         }
     }
 
     void Start()
     {
+        // Register exit command and start the day's Salem dialogue where applicable
         dialogueRunner.AddCommandHandler("allowExit", AllowExit);
-        if (ContinuousData.instance.CDdayIndex==0)
+        if (ContinuousData.instance.CDdayIndex == 0)
         {
             dialogueRunner.StartDialogue("SalemDay0Start");
         }
@@ -54,7 +55,7 @@ public class Cafe : MonoBehaviour
         {
             dialogueRunner.StartDialogue("SalemDay1Start");
         }
-         if (ContinuousData.instance.CDdayIndex == 2)
+        if (ContinuousData.instance.CDdayIndex == 2)
         {
             dialogueRunner.StartDialogue("Salem2Start");
         }
@@ -70,18 +71,16 @@ public class Cafe : MonoBehaviour
         {
             dialogueRunner.StartDialogue("Salem5");
         }
-        if (ContinuousData.instance.CDdayIndex == 6 && ContinuousData.instance.SalemRP>0 && ContinuousData.instance.EndingIndex == -1)
+        if (ContinuousData.instance.CDdayIndex == 6 && ContinuousData.instance.SalemRP > 0 && ContinuousData.instance.EndingIndex == -1)
         {
             dialogueRunner.StartDialogue("Salem6Cafe");
         }
     }
-     void Update()
-    {
-
-    }
+    
     public void AllowExit()
     {
+        // Stop dialogue and trigger scene change to campus grounds
         dialogueRunner.Stop();
-        ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(9.5f,41.5f,0f));
+        ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(9.5f, 41.5f, 0f));
     }
 }

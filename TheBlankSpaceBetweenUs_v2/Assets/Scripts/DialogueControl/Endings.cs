@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using Yarn.Unity;
-using TMPro;
 
 public class Endings : MonoBehaviour
 {
@@ -24,6 +21,7 @@ public class Endings : MonoBehaviour
 
     private void Awake()
     {
+        // Initialize dialogue runner, audio sources and UI elements for endings
         dialogueRunner = GetComponent<DialogueRunner>();
         dialogueRunner.SetProject(yarnProjects[0]);
         RiftBG = GameObject.Find("TheRift");
@@ -51,7 +49,7 @@ public class Endings : MonoBehaviour
 
     void Start()
     {
-        switch(ContinuousData.instance.EndingIndex)
+        switch (ContinuousData.instance.EndingIndex)
         {
             case 0:
                 EndingGraduation();
@@ -71,17 +69,18 @@ public class Endings : MonoBehaviour
             case 5:
                 NikoEvent();
                 break;
-            case 6: 
+            case 6:
                 EndingGraduationWithFaust();
                 break;
             case 7:
-                GameFinished(); 
+                GameFinished();
                 break;
             default:
                 GameFinished();
                 break;
         }
 
+        // Register dialogue command handlers used in ending sequences
         dialogueRunner.AddCommandHandler("gameFinished", GameFinished);
         dialogueRunner.AddCommandHandler("moodSwitch", MoodSwitch);
         dialogueRunner.AddCommandHandler("darkScreen", DarkScreen);
@@ -93,22 +92,26 @@ public class Endings : MonoBehaviour
 
     public void DarkScreen()
     {
+        // Show a black full-screen background
         BlackBG.SetActive(true);
     }
 
     public void WhiteScreen()
     {
+        // Show a white full-screen background
         WhiteBG.SetActive(true);
     }
 
     public void MoodSwitch()
     {
+        // Stop the graduation music
         Graduation.Stop();
 
     }
 
     public void EndingGraduation()
     {
+        // Play graduation ending: background and dialogue
         BlackBG.SetActive(true);
         Graduation.Play();
         Graduation.loop = true;
@@ -117,6 +120,7 @@ public class Endings : MonoBehaviour
 
     public void EndingGraduationWithFaust()
     {
+        // Play graduation ending variant with Faust
         BlackBG.SetActive(true);
         Graduation.Play();
         Graduation.loop = true;
@@ -125,6 +129,7 @@ public class Endings : MonoBehaviour
 
     public void EndingGoodNiko()
     {
+        // Trigger the Good Niko ending dialogue and visuals
         dialogueRunner.StartDialogue("GoodNiko");
         BadEndings.Play();
         nikoImage.SetActive(true);
@@ -132,24 +137,28 @@ public class Endings : MonoBehaviour
 
     public void GoodFaust()
     {
+        // Trigger the Faust good ending dialogue
         dialogueRunner.StartDialogue("GoodFaust");
     }
 
     public void SalemRift()
     {
+        // Trigger the Salem rift ending sequence
         BadEndings.Play();
         dialogueRunner.StartDialogue("SalemEndStart");
     }
 
     public void NikoEvent()
     {
+        // Trigger the Niko event ending sequence
         BadEndings.Play();
         dialogueRunner.StartDialogue("NikoEventStart");
     }
 
     public void DetermineNikoEnd()
     {
-        if(ContinuousData.instance.NikoRP>0)
+        // Choose Niko's final scene based on relationship points
+        if (ContinuousData.instance.NikoRP > 0)
         {
             dialogueRunner.StartDialogue("StockholmSyndromeEndPart");
             nikoImage.SetActive(true);
@@ -163,6 +172,7 @@ public class Endings : MonoBehaviour
 
     public void GameFinished()
     {
+        // Clear ending visuals and display final message
         RiftBG.SetActive(false);
         WhiteBG.SetActive(false);
         BlackBG.SetActive(false);

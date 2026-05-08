@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
 using TMPro;
-using TMPro.EditorUtilities;
+using UnityEngine;
 
 public class ObjectivesManager : MonoBehaviour
 {
     public static ObjectivesManager instance;
-    
+
 
 
     //Hierarchy Vars
@@ -65,10 +63,10 @@ public class ObjectivesManager : MonoBehaviour
 
     private void Awake()
     {
+        // Initialize singleton, UI state and base objectives
         instance = this;
         DontDestroyOnLoad(gameObject);
         ObjScrActive = false;
-
 
         objectiveUpdatedText.SetActive(false);
         objectiveFailedText.SetActive(false);
@@ -88,29 +86,22 @@ public class ObjectivesManager : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    { 
-
-    }
-
-    private void OnDisable()
-    {
-        
-    }
+    
 
     private void Start()
     {
-        if(ContinuousData.instance.CDdayIndex==0)
+        // Add the initial objective for the current day and show notification
+        if (ContinuousData.instance.CDdayIndex == 0)
         {
             activeObjectives.Add(objective_3);
-             AssignDisplayVariables(objective_3);
-             OutputNotification(objective_3);
+            AssignDisplayVariables(objective_3);
+            OutputNotification(objective_3);
         }
         else
         {
-                activeObjectives.Add(objective_2);
-                AssignDisplayVariables(objective_2);
-                OutputNotification(objective_2);
+            activeObjectives.Add(objective_2);
+            AssignDisplayVariables(objective_2);
+            OutputNotification(objective_2);
         }
 
         objectiveUpdatedText.SetActive(false);
@@ -120,7 +111,7 @@ public class ObjectivesManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-                PushUpdateNotification(objective_0);
+            PushUpdateNotification(objective_0);
         }
 
         /*if (disable1!)
@@ -144,13 +135,14 @@ public class ObjectivesManager : MonoBehaviour
                 PushCompletedNotification(objective_0);
             }
         }*/
-        
-        
+
+
 
     }
 
     public void PushUpdateNotification(Objective objective)
     {
+        // Show an update notification for the given objective
         objectiveUpdatedText.SetActive(true);
         SetNotificationType(objective, new string("Update"));
         SetObjectiveActive(objective);
@@ -158,6 +150,7 @@ public class ObjectivesManager : MonoBehaviour
     }
     public void PushCompletedNotification(Objective objective)
     {
+        // Show a completed notification for the given objective
         objectiveCompletedText.SetActive(true);
         SetNotificationType(objective, new string("Completed"));
         SetObjectiveActive(objective);
@@ -166,14 +159,16 @@ public class ObjectivesManager : MonoBehaviour
 
     public void OutputNotification(Objective objective)
     {
+        // Play the notification animation and start its lifecycle coroutine
         notifImage.SetActive(true);
-        animator=notifImage.GetComponent<Animator>();
+        animator = notifImage.GetComponent<Animator>();
         animator.SetTrigger("Form");
         StartCoroutine(NotificationHold(objective));
     }
 
     public void SetObjectiveActive(Objective objective)
     {
+        // Add objective to active list and prepare display variables
         activeObjectives.Add(objective);
         AssignDisplayVariables(objective);
     }
@@ -195,15 +190,15 @@ public class ObjectivesManager : MonoBehaviour
             ObjectivesScreen.GetComponent<Animator>().SetTrigger("form");
             StartCoroutine(HeaderHold(true));
         }
-       
-        
+
+
 
 
     }
 
     public void PrintToScreen()
     {
-        for (int i = 0;  i < activeObjectives.Count; i++)
+        for (int i = 0; i < activeObjectives.Count; i++)
         {
             //
         }
@@ -212,6 +207,7 @@ public class ObjectivesManager : MonoBehaviour
 
     public void AssignDisplayVariables(Objective fetchedObjective)
     {
+        // Configure UI elements based on the objective's notification type
         notificationType = fetchedObjective.notificationType;
         //Decide which notification appearance type is used to show the objective with on screen [Update,Completed,Failed]
         if (notificationType == "Update")
@@ -254,6 +250,7 @@ public class ObjectivesManager : MonoBehaviour
 
     private IEnumerator NotificationHold(Objective objective)
     {
+        // Show notification text and hide it after a delay
         yield return new WaitForSeconds(0.25f);
         notifTitle.GetComponent<TextMeshProUGUI>().text = objective.objectiveTitle;
         displayedDescription.text = objective.currentDescription;
@@ -269,7 +266,8 @@ public class ObjectivesManager : MonoBehaviour
     }
     private IEnumerator HeaderHold(bool state)
     {
-        if (state==true)
+        // Hold the objectives header visible briefly when opening/closing
+        if (state == true)
         {
             yield return new WaitForSeconds(0.25f);
             ObjectivesScreenTitles.SetActive(true);
@@ -299,12 +297,12 @@ public class ObjectivesManager : MonoBehaviour
         {
             Debug.Log("ERROR: No Matching Objective Found");
         }
-        
+
     }
     public void IncObjectiveIndex(Objective objective)
     {
         objective.UpdateCurrentIndex();
-        
+
     }
 
 
@@ -320,7 +318,7 @@ public class ObjectivesManager : MonoBehaviour
     //Objective Generation
     public void GenerateObjectiveZero()
     {
-       
+
         //Objective 0: Pull Up Your Boötes
         objective_0 = new Objective(new string("Pull Up Your Boötes"), new string("Start your assignment and complete your day."));
         objective_0.descriptions = new string[6];
@@ -360,7 +358,7 @@ public class ObjectivesManager : MonoBehaviour
     }
 
     public void GenerateObjectiveTutorial()
-    { 
+    {
 
         objective_3 = new Objective(new string("Tutorial"), new string("Complete your nightly routine!"));
         objective_3.descriptions = new string[3];

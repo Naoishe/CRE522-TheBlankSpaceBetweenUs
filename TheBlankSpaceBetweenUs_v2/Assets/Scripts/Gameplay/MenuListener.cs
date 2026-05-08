@@ -1,12 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Unity.Collections.AllocatorManager;
-using TMPro;
-using System;
-using UnityEngine.UI;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 public class MenuListener : MonoBehaviour
 {
@@ -19,40 +12,43 @@ public class MenuListener : MonoBehaviour
 
     void Start()
     {
+        // Start main menu music
         MainMusic.Play();
     }
     private void OnEnable()
     {
+        // Subscribe to main menu events
         MainMenu.startButtonPressed += PlaySoundEffect;
         MainMenu.newGameTriggered += BeginGame;
     }
 
     private void OnDisable()
     {
+        // Unsubscribe from events
         MainMenu.startButtonPressed -= PlaySoundEffect;
     }
-    void Update()
-    {
-        
-    }
+    
     public void BeginGame()
     {
+        // Start asynchronous game loading transition
         StartCoroutine(LoadGame());
     }
 
     public void PlaySoundEffect()
     {
+        // Play UI click sound effect
         SoundEffect.Play();
     }
 
-    
+
 
     IEnumerator LoadGame()
     {
 
+        // Delay then move to the player's house scene
         yield return new WaitForSeconds(2);
         ContinuousData.instance.SceneChangeDetected("PlayerHouse", ContinuousData.instance.playerHouse_MorningSpawn);
     }
-    
+
 
 }

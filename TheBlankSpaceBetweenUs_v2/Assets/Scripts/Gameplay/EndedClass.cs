@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using Yarn.Unity;
-using static Unity.Collections.AllocatorManager;
 
 public class EndedClass : MonoBehaviour
 {
-    
+
     private bool endingclass;
     public YarnProject[] yarnProjects;
     public DialogueRunner dialogueRunner;
@@ -21,13 +17,13 @@ public class EndedClass : MonoBehaviour
 
     private void Start()
     {
-        
+
         endingclass = false;
     }
 
     private void Update()
     {
-
+        endingclass = ContinuousData.instance.MonitorBool("$EndClass");
 
         if (endingclass)
         {
