@@ -1,0 +1,1267 @@
+﻿title: Faust0Start
+---
+
+<<gatherVars>>
+<<freezePlayer>>
+You pass by a door but stop at loud shouts from inside.
+You peer in and see a crowd cheering around a fight.
+
+A roar erupts as a man raises his fist in victory.
+He basks in the admiration, and you stare.
+
+The next match begins. You spot him again,
+still in wrestling gear, a towel over his shoulders.
+
+He notices you and turns, eyes lighting up.
+
+<<set $FaustDiaImage = true>>
+Faust: "Hello! Are you a member here?"
+<<set $FaustDiaImage = false>>
+
+He looks at your outfit, clearly confused.
+
+-> Say You're a Fan
+    <<incRelationship "Faust" 1>>
+    <<jump AFan>>
+-> Tell The Truth
+    <<jump TellTruth>>
+-> Lie
+    <<decRelationship "Faust" 1>>
+    <<jump LieNode>>
+===
+
+title: AFan
+---
+You decide quickly.
+
+You: "I'm sorry. I'm a big fan of you.
+You did amazing today."
+
+He grins instantly, eyes lighting up.
+
+<<set $FaustDiaImage = true>>
+Faust: "Really? That means a lot, thank you!"
+<<set $FaustDiaImage = false>>
+
+<<jump MyNameIs>>
+===
+
+title: TellTruth
+---
+You: "I need your help with something."
+
+His posture relaxes, energy dropping.
+
+<<set $FaustDiaImage = true>>
+Faust: "Oh? You need my help? Why?"
+<<set $FaustDiaImage = false>>
+
+He seems slightly disappointed.
+
+<<jump MyNameIs>>
+===
+
+title: LieNode
+---
+You: "Oh yeah, I'm in the club too."
+
+The lie slips out. You stand awkwardly.
+
+He studies you carefully.
+
+<<set $FaustDiaImage = true>>
+Faust: "Yeah...I don't believe you. Why are you here?"
+<<set $FaustDiaImage = false>>
+
+You sigh. That was a bad idea.
+
+<<jump MyNameIs>>
+===
+
+title: MyNameIs
+---
+You: "Hi, I'm {$playerName}. I need volunteers
+for my philosophy essay."
+
+You: "Would you be interested?"
+
+He perks up instantly.
+
+<<set $FaustDiaImage = true>>
+Faust: "Of course! I'd love to help. I'm Faust."
+<<set $FaustDiaImage = false>>
+
+Before you reply, voices grow louder.
+
+A group of girls push through, looking for him.
+
+He brightens, almost forgetting you.
+
+-> Let him go
+    <<incRelationship "Faust" 1>>
+    <<jump LetHimGo>>
+-> Tug his shirt
+    <<jump TugHisShirt>>
+-> Say excuse me
+    <<decRelationship "Faust" 1>>
+    <<jump SayExcuseMe>>
+===
+
+title: LetHimGo
+---
+You watch him walk away, hesitant to stop him.
+
+<<set $FaustDiaImage = true>>
+Faust: "The match was tough! Thanks for asking!"
+<<set $FaustDiaImage = false>>
+
+The girls giggle, crowding him.
+
+After a while, they leave. He notices you.
+
+<<set $FaustDiaImage = true>>
+Faust: "Oh...sorry about that."
+<<set $FaustDiaImage = false>>
+
+You: "It's fine..."
+
+You both move somewhere quieter.
+
+<<jump SoDoYou>>
+===
+
+title: TugHisShirt
+---
+You panic and grab his shirt.
+
+You: "Wait! We still need to talk!"
+
+He startles, then forces a smile.
+
+<<set $FaustDiaImage = true>>
+Faust: "Oh! Apologies, let's go."
+<<set $FaustDiaImage = false>>
+
+He reluctantly follows you away.
+
+<<jump SoDoYou>>
+===
+
+title: SayExcuseMe
+---
+You frown as he walks off.
+
+You: "Uh...excuse me?"
+
+He turns, excitement fading.
+
+<<set $FaustDiaImage = true>>
+Faust: "Ah...sorry. I got carried away."
+<<set $FaustDiaImage = false>>
+
+You both step aside to talk.
+
+<<jump SoDoYou>>
+===
+
+title: SoDoYou
+---
+You: "So, you'll answer questions weekly?"
+
+He nods.
+
+You: "Actually two a week for more detail."
+
+He looks at the paper, then laughs.
+
+You frown, confused.
+
+<<set $FaustDiaImage = true>>
+Faust: "Sorry...but aren't these kinda cringe?"
+<<set $FaustDiaImage = false>>
+
+-> Explain your questions
+    <<incRelationship "Faust" 1>>
+    <<jump ExplainQs>>
+-> Ask what's wrong
+    <<jump AskWhat>>
+-> Defend your questions
+    <<decRelationship "Faust" 1>>
+    <<jump Defend>>
+===
+
+title: ExplainQs
+---
+You: "It's a classic dilemma. Sacrifice one
+to save many."
+
+You: "It shows what people value."
+
+He thinks it over.
+
+<<set $FaustDiaImage = true>>
+Faust: "Ahh...I see. That makes sense."
+<<set $FaustDiaImage = true>>
+===
+
+title: AskWhat
+---
+You: "What's wrong with them?"
+
+He looks away briefly.
+
+<<set $FaustDiaImage = true>>
+Faust: "Nothing. They're fine."
+<<set $FaustDiaImage = false>>
+
+That doesn't convince you.
+===
+
+title: Defend
+---
+You: "Cringe?"
+
+You narrow your eyes.
+
+You: "I'm the philosophy student here."
+
+He raises his hands.
+
+<<set $FaustDiaImage = true>>
+Faust: "Woah, okay. My bad."
+<<set $FaustDiaImage = false>>
+
+You decide to drop it.
+
+<<allowPlayerToMove>>
+<<loadScene "CampusGrounds">>
+===
+
+//Day 1
+
+title: Faust1
+---
+
+<<gathervars>>
+<<freezePlayer>>
+You enter the gym and head to the wrestling room.
+
+You expected it to be empty, but it's packed.
+
+"Oh, {$playerName}!"
+
+Faust jogs over in full gear, waving.
+
+You wave back.
+
+You: "Sorry...bad time?"
+
+You feel out of place in your normal clothes.
+
+<<set $FaustDiaImage = true>>
+Faust: "Did you not get the email?"
+<<set $FaustDiaImage = false>>
+
+You blink blankly.
+
+You: "Uhh..."
+
+<<set $FaustDiaImage = true>>
+Faust: "We're doing sparring matches today."
+Faust: "It's optional, don't worry."
+<<set $FaustDiaImage = false>>
+
+You relax slightly.
+
+Before you speak, he grabs your shoulder.
+
+<<set $FaustDiaImage = true>>
+Faust: "I want you to watch my match."
+<<set $FaustDiaImage = false>>
+
+You blink in surprise.
+
+-> Refuse him
+    <<incRelationship "Faust" 1>>
+    <<jump RefuseHim>>
+-> Go along with it
+    <<jump GoAlongWith>>
+-> Stay for his match
+    <<decRelationship "Faust" 1>>
+    <<jump Stay4Match>>
+===
+
+title: RefuseHim
+---
+You shrug his hand off.
+
+You: "Sorry, I'm busy."
+
+<<set $FaustDiaImage = true>>
+Faust: "It won't take long."
+<<set $FaustDiaImage = false>>
+
+Before you reply, he moves you anyway.
+
+<<jump Faust1Next>>
+===
+
+title: GoAlongWith
+---
+You let him guide you.
+
+His grip is firm, controlling.
+
+You hesitate to pull away.
+
+He places you where you can see clearly.
+
+<<set $FaustDiaImage = true>>
+Faust: "Stay here. It won't take long."
+<<set $FaustDiaImage = false>>
+
+You could leave...but don't.
+
+<<jump Faust1Next>>
+===
+
+title: Stay4Match
+---
+You nod.
+
+You: "Who are you fighting?"
+
+<<set $FaustDiaImage = true>>
+Faust: "One of the strongest here."
+<<set $FaustDiaImage = false>>
+
+He looks completely calm.
+
+You: "You don't know his name?"
+
+<<set $FaustDiaImage = true>>
+Faust: "I don't need to."
+Faust: "It'll be over quickly."
+<<set $FaustDiaImage = false>>
+
+He places you to watch.
+
+<<jump Faust1Next>>
+===
+
+title: Faust1Next
+---
+Faust gets into position and winks.
+
+Then his expression shifts—cold, focused.
+
+The whistle blows.
+
+The match begins instantly.
+
+Faust dodges fast, striking back quickly.
+
+Both circle each other carefully.
+
+Then—he sweeps and pins.
+
+The coach slaps the mat.
+
+Match over.
+
+The crowd praises him.
+
+Faust beams at them.
+
+You approach.
+
+He notices you instantly.
+
+<<set $FaustDiaImage = true>>
+Faust: "Told you it'd be quick."
+Faust: "How did I do?"
+<<set $FaustDiaImage = false>>
+
+-> You did well
+    <<incRelationship "Faust" 1>>
+    <<jump YouDidWell>>
+-> You were good
+    <<jump YouWereGood>>
+-> Why do you need my opinion?
+    <<decRelationship "Faust" 1>>
+    <<jump WhyDoYouNeed>>
+===
+
+title: YouDidWell
+---
+You: "You did well!"
+
+He lights up even more.
+
+<<set $FaustDiaImage = true>>
+Faust: "Heh, I knew it."
+<<set $FaustDiaImage = false>>
+
+<<jump EndF1>>
+===
+
+title: YouWereGood
+---
+You: "You were good."
+
+His smile dips slightly.
+
+Then others praise him again.
+
+He perks right back up.
+
+<<jump EndF1>>
+===
+
+title: WhyDoYouNeed
+---
+You: "Why do you need my opinion?"
+
+He frowns briefly.
+
+<<set $FaustDiaImage = true>>
+Faust: "Oh...okay."
+<<set $FaustDiaImage = false>>
+
+He turns back to others.
+
+<<jump EndF1>>
+===
+
+title: EndF1
+---
+Matches continue as Faust cleans up.
+
+You wait outside on your phone.
+
+He comes out, hair damp.
+
+<<set $FaustDiaImage = true>>
+Faust: "Hey...thanks for watching."
+<<set $FaustDiaImage = false>>
+
+You: "No problem."
+
+He rummages in his pocket.
+
+He hands you a note.
+
+<<set $FaustDiaImage = true>>
+Faust: "Your answer. Figured that's why you came."
+<<set $FaustDiaImage = false>>
+
+You nod, reading quickly.
+
+Satisfied, you smile.
+
+You: "Thank you."
+
+You grab your things.
+
+<<set $FaustDiaImage = true>>
+Faust: "No problem."
+<<set $FaustDiaImage = false>>
+
+He waves.
+
+You leave the gym.
+<<allowPlayerToMove>>
+<<loadScene "CampusGrounds">>
+===
+
+//Day 2
+
+title: Faust2Positive
+---
+
+<<gathervars>>
+<<freezePlayer>>
+You enter the gym and head to the wrestling room.
+
+Faust is hitting a punching bag, focused.
+
+The door shuts.
+
+He looks up, and the cold look fades.
+
+<<set $FaustDiaImage = true>>
+Faust: "Hi, {$playerName}!"
+<<set $FaustDiaImage = false>>
+
+You wave and walk over.
+
+He grabs a towel, wiping his face.
+
+<<set $FaustDiaImage = true>>
+Faust: "Good timing. I wanted to ask you something."
+<<set $FaustDiaImage = false>>
+
+You: "Go on."
+
+He drinks from his bottle and grins.
+
+<<set $FaustDiaImage = true>>
+Faust: "I want to see how good you are now."
+Faust: "Care to train with me?"
+<<set $FaustDiaImage = false>>
+
+-> Game on
+    <<incRelationship "Faust" 1>>
+    <<jump GameOn>>
+-> Eh, okay
+    <<jump EhOkay>>
+-> No, that's not fair
+    <<decRelationship "Faust" 1>>
+    <<jump NoNotFair>>
+===
+
+title: Faust2Negative
+---
+You enter the gym and see Faust training.
+
+He hits the punching bag, focused.
+
+The door shuts.
+
+He looks up, expression softening.
+
+<<set $FaustDiaImage = true>>
+Faust: "Hi, {$playerName}!"
+<<set $FaustDiaImage = false>>
+
+You wave and walk over.
+
+He wipes his face.
+
+<<set $FaustDiaImage = true>>
+Faust: "How are you?"
+<<set $FaustDiaImage = false>>
+
+You: "I'm fine..."
+
+He looks at you curiously.
+
+You: "Actually, want a practice match?"
+
+He lights up.
+
+<<set $FaustDiaImage = true>>
+Faust: "Of course!"
+<<set $FaustDiaImage = false>>
+
+<<startEventGame>>
+===
+
+title: GameOn
+---
+You grin.
+
+You: "Deal. Let's go."
+
+He smirks, excited.
+
+<<set $FaustDiaImage = true>>
+Faust: "Game on."
+<<set $FaustDiaImage = false>>
+
+<<startEventGame>>
+===
+
+title: EhOkay
+---
+You hesitate.
+
+You: "I guess I have time...okay."
+
+<<set $FaustDiaImage = true>>
+Faust: "Nice."
+<<set $FaustDiaImage = false>>
+
+<<startEventGame>>
+===
+
+title: NoNotFair
+---
+You sigh.
+
+You: "You're basically a pro. That's not fair."
+
+He pouts.
+
+<<set $FaustDiaImage = true>>
+Faust: "Come on. It'll be good practice."
+Faust: "I'll give pointers."
+<<set $FaustDiaImage = false>>
+
+You give in.
+
+You: "Fine."
+
+<<startEventGame>>
+===
+
+title: PlayerWins
+---
+<<incRelationship "Faust" 1>>
+Your heart pounds.
+
+'I...won?'
+
+Faust is still on the ground.
+
+He slowly stands, staring.
+
+<<set $FaustDiaImage = true>>
+Faust: "You...won."
+<<set $FaustDiaImage = false>>
+
+You nod, dazed.
+
+He forces a smile.
+
+<<set $FaustDiaImage = true>>
+Faust: "That was amazing."
+<<set $FaustDiaImage = false>>
+
+He turns away.
+
+<<set $FaustDiaImage = true>>
+Faust: "I'll get your answer."
+<<set $FaustDiaImage = false>>
+
+He grabs it from his bag.
+
+He returns and hands it over.
+
+<<jump F2End>>
+===
+
+title: PlayerLoses
+---
+<<incRelationship "Faust" 1>>
+You hit the mat.
+
+You: "Time! I said time!"
+
+He laughs and steps back.
+
+You breathe heavily.
+
+He offers his hand.
+
+<<set $FaustDiaImage = true>>
+Faust: "Come on."
+<<set $FaustDiaImage = false>>
+
+You take it. He pulls you up.
+
+He walks you to a bench.
+
+<<set $FaustDiaImage = true>>
+Faust: "Your stance was weak."
+Faust: "Keep your feet spread."
+<<set $FaustDiaImage = false>>
+
+You sigh.
+
+You: "I keep forgetting..."
+
+He sits beside you and hands you water.
+
+You drink gratefully.
+
+He rummages in his bag.
+
+<<set $FaustDiaImage = true>>
+Faust: "Here. My answer."
+<<set $FaustDiaImage = false>>
+
+You take it.
+
+<<jump F2End>>
+===
+
+title: F2End
+---
+<<alterPlayerAttribute "Strength" 1>>
+You: "Thanks."
+
+He drinks water, then looks at you.
+
+<<set $FaustDiaImage = true>>
+Faust: "No problem."
+<<set $FaustDiaImage = false>>
+
+He looks relaxed.
+
+You hand him the next question.
+
+You gather your things.
+
+<<set $FaustDiaImage = true>>
+Faust: "Actually..."
+<<set $FaustDiaImage = false>>
+
+You turn back.
+
+He hesitates.
+
+<<set $FaustDiaImage = true>>
+Faust: "Want to meet tomorrow?"
+Faust: "Just to hang out."
+<<set $FaustDiaImage = false>>
+
+You: "That should be fine."
+
+He smiles and nods.
+
+You leave.
+
+Something rushes past you.
+
+It's Faust.
+
+<<set $FaustDiaImage = true>>
+Faust: "It's a date then!"
+<<set $FaustDiaImage = false>>
+
+He laughs and disappears.
+
+A date?
+
+<<allowPlayerToMove>>
+<<loadScene "CampusGrounds">>
+===
+
+//Day 3
+
+title: Faust3
+---
+
+<<gathervars>>
+<<freezePlayer>>
+Faust messaged you to meet him at the gym. You gripped your
+phone, scrolling as you waited for him.
+
+Hanging out wasn't something you did often, so his invite was a
+surprise. Footsteps made you look up. Faust approached.
+
+You: "Oh hey,"
+
+You tucked your phone away. He lit up, stopping in front of you.
+His grey hair was neatly combed this time.
+
+<<set $FaustDiaImage = true>>
+Faust: "You're here,"
+
+He sounded surprised. You nodded, unsure why he said that. He
+checked his watch, humming.
+
+Faust: "Let's go to the campus cafe. My class starts soon,"
+
+You: "That's fine,"
+
+He beamed, and you both headed there.
+
+It wasn't a long walk. Leaving the gym, you made your way to
+the cafe together.
+
+Your mind wandered. He had said he had class soon. You forgot
+he was a student too.
+
+You: "Hey Faust,"
+
+Faust: "Yeah? What is it?"
+
+You glanced at the sky, now bright and sunny.
+
+You: "We've known each other two weeks, but I don't know what
+you're studying,"
+
+He processed it, then laughed sheepishly.
+
+Faust: "Oh god, you're right,"
+
+You reached the cafe. He opened the door for you.
+
+Faust: "I study computer science,"
+
+His smile dropped slightly. You looked surprised. He noticed.
+
+Faust: "Did you think I did sport?"
+
+You sighed. He laughed.
+
+Faust: "Most people do. I don't blame you,"
+
+You ordered and sat down.
+
+You: "You do spend a lot of time in the gym,"
+
+Faust nodded, eating.
+
+Faust: "...I do wish I did sport,"
+
+His voice was quiet, almost sad. His eyes darkened.
+
+Then suddenly, he smiled again.
+
+Faust: "Ignore me. I shouldn't have said that,"
+
+The topic dropped quickly.
+
+-> Pry further
+    <<incRelationship "Faust" 1>>
+    <<jump PryFurther>>
+-> Leave it be
+    <<jump LeaveBe>>
+===
+
+title: PryFurther
+---
+You took a bite, glancing at him.
+
+You: "I don't mind. You can talk about it,"
+
+Faust stayed quiet. Only chatter filled the space. He sighed.
+
+Faust: "I grew up playing a lot of sport. I loved it. I wanted
+to keep doing tennis,"
+
+He paused, looking away.
+
+Faust: "Life caught up. Sports wouldn't sustain me,"
+
+His tone was flat, distant. Not like him.
+
+You frowned, uneasy.
+
+He saw your expression and smiled again.
+
+Faust: "But that's enough sad talk,"
+
+Something told you not to push further.
+<<jump Faust3Continue>>
+===
+
+title: LeaveBe
+---
+Faust always seemed secretive. This topic was clearly sensitive.
+
+You chose not to ask more, eating quietly.
+
+You respected his space.
+
+Faust shifted the conversation, and you let it go.
+<<jump Faust3Continue>>
+===
+
+title: Faust3Continue
+---
+Faust: "Enough about me. How's your essay going?"
+
+You groaned. He laughed lightly.
+
+You looked away, annoyed.
+
+The thought made you grimace. You'd rather talk to your parents
+about it.
+
+-> Can we talk about something else?
+    <<incRelationship "Faust" 1>>
+    <<jump CanWeTalk>>
+-> Lie about how you're doing
+    <<jump LieDoing>>
+-> Confide in him
+    <<jump ConfideFaust>>
+===
+
+title: CanWeTalk
+---
+You: "I'm not in the mood to discuss it,"
+
+Faust stared briefly, unreadable. Then he smiled.
+
+He didn't push, but stayed silent.
+
+It grew tense.
+
+Faust: "Want to see my childhood dog?"
+
+You played along.
+
+You: "Yeah? Is that even a question?"
+
+He moved closer, showing his phone.
+
+A white and tan dog lay on grass, tongue out, smiling.
+
+You: "They're adorable!"
+
+Faust smiled proudly.
+
+Faust: "His name is Jack. He's a Jack Russel,"
+
+You snorted.
+
+You: "Very creative,"
+
+Faust: "I was nine!"
+
+You both laughed, the tension gone.
+
+<<jump F3End>>
+===
+
+title: LieDoing
+---
+You didn't feel like opening up.
+
+You: "Pretty good. Everyone's responses are interesting,"
+
+Faust paused, then continued eating.
+
+Faust: "Who's doing your questionnaire besides me?"
+
+You thought briefly.
+
+You: "Sorry Faust, that's confidential,"
+
+You smiled playfully.
+
+Faust sighed dramatically, slumping.
+
+<<jump F3End>>
+===
+
+title: ConfideFaust
+---
+You thought it over while drinking.
+
+He had opened up a little. Maybe you could too.
+
+You: "It's a mess,"
+
+Faust perked up, listening.
+
+You: "Some participants are difficult,"
+
+Faust hummed.
+
+You: "There's this guy who's always brooding. So rude,"
+
+Faust: "That sounds hard,"
+
+You kept going.
+
+You: "He's always in the library. Wearing heavy clothes even
+now,"
+
+You were ranting now.
+
+Faust didn't interrupt.
+
+But he had stopped eating.
+
+He was glaring at you.
+
+<<jump F3End>>
+===
+
+title: F3End
+---
+An alarm went off. Faust jumped.
+
+Faust: "Ah—"
+
+He groaned, checking his phone.
+
+Faust: "Class is starting soon,"
+
+He sighed, clearly annoyed.
+<<set $FaustDiaImage = false>>
+<<allowPlayerToMove>>
+
+<<loadScene "CampusGrounds">>
+===
+
+//Day 4
+
+title: FaustEventStart
+---
+
+<<gathervars>>
+Faust messaged you to meet him at the gym. He said it was about
+training.
+
+That wasn't unusual, so you went.
+
+The gym doors creaked as you pushed them open.
+
+Inside, it was empty.
+
+No team. No coach.
+
+Just Faust.
+
+He stood in the center of the mat, back turned.
+
+You: "Faust?"
+
+He turned slowly.
+
+<<set $FaustDiaImage = true>>
+
+Faust: "{$playerName}, good. You're here,"
+
+His tone was calm. Too calm.
+
+You stepped closer, uneasy.
+
+You: "Where is everyone?"
+
+Faust smiled faintly.
+
+Faust: "I told them not to come,"
+
+Your stomach dropped.
+
+You: "Why?"
+
+He exhaled, like this was obvious.
+
+Faust: "Because I needed to deal with something,"
+
+Silence hung between you.
+
+You: "Deal with what?"
+
+His eyes locked onto you.
+
+Faust: "You,"
+
+Your breath caught.
+
+You: "What are you talking about?"
+
+He tilted his head, studying you.
+
+Faust: "You've improved faster than expected,"
+
+Faust: "Your stance, your reactions...your timing,"
+
+His tone was analytical. Detached.
+
+Faust: "You're becoming a problem,"
+
+You took a step back.
+
+You: "A problem?"
+
+He stepped forward.
+
+Faust: "I don't lose, {$playerName},"
+
+His smile didn't reach his eyes.
+
+Faust: "I can't afford to,"
+
+You: "This isn't a competition like that—"
+
+Faust: "Everything is,"
+
+He cut you off instantly.
+
+Faust: "Matches, rankings, attention...control,"
+
+Another step closer.
+
+Faust: "You're getting in the way of that,"
+
+Your pulse spiked.
+
+You: "So what? You're going to scare me off?"
+
+He laughed softly.
+
+Faust: "If that worked, I wouldn't be doing this,"
+
+His stance lowered slightly.
+
+Familiar.
+
+Like a match.
+
+Faust: "You keep coming back,"
+
+Faust: "So I'll make sure you can't,"
+
+Your body tensed.
+
+You: "Faust, stop—"
+
+He moved.
+
+Fast.
+
+Faust: "Show me how far you've come,"
+
+He lunged.
+
+<<set $FaustDiaImage = false>>
+<<startEventGame>>
+===
+
+title: PlayerWinsEvent
+---
+Faust hit the mat hard.
+
+The impact echoed through the empty gym.
+
+You staggered back, breathing heavily.
+
+You had won.
+
+For a moment, there was only silence.
+
+Faust lay still.
+
+Then he laughed.
+
+Faust: "Heh...so you actually did it, {$playerName},"
+
+He pushed himself up slowly, wincing.
+
+Faust: "Guess I miscalculated,"
+
+You: "This is over, Faust,"
+
+He looked up at you.
+
+For the first time, he didn’t look in control.
+
+Faust: "Over?"
+
+He wiped blood from his lip, smiling faintly.
+
+Faust: "No...not quite,"
+
+You tensed, but he didn’t move.
+
+Faust: "You beat me. Fair and square,"
+
+His voice was quieter now.
+
+Faust: "So what now?"
+
+He met your eyes.
+
+Faust: "Are you going to end it?"
+
+Your heart pounded.
+
+Faust: "Or are you going to hesitate?"
+
+Silence stretched between you.
+
+-> Show mercy
+    <<jump MercyEnd>>
+-> Finish him off
+    <<jump FinishEnd>>
+===
+
+title: PlayerLosesEvent
+---
+Your back hit the mat.
+
+Hard.
+
+The air left your lungs in one sharp gasp.
+
+Before you could recover, Faust was on you.
+
+Pinning you down.
+
+You struggled, but it was useless.
+
+He was stronger.
+
+Faster.
+
+Better.
+
+Faust: "I told you, {$playerName},"
+
+His voice was calm again. Controlled.
+
+Faust: "I don't lose,"
+
+You tried to push him off. He didn’t budge.
+
+Faust: "You improved too quickly,"
+
+Faust: "That made you dangerous,"
+
+Your vision blurred. Faust leaned closer.
+
+Faust: "I can't have that,"
+
+You: "Faust...
+You: "....s-...stop..."
+
+He smiled. Satisfied, and sure in his actions...
+
+Faust: "You should've stayed out of it,"
+
+Faust: "This is just how it has to be,"
+
+With one more blow to the skull,
+Your body went still...
+
+Faust: "Goodbye, {$playerName}..."
+<<cueEnding 7>>
+===
+
+title: MercyEnd
+---
+
+You: "...Stay down...I'm gonna call an ambulance..."
+
+You say with a hint of bitter resignation.
+But you weren't a murderer, even being attacked
+wasn't gonna change that for you. 
+That was something Faust couldn't understand.
+
+Faust: "Wh-..."
+Faust: "What?..."
+Faust: "You're-...an idiot..."
+
+You ignored him, took out your phone and 
+dialed for an ambulance.
+
+Faust: "...Why didn't you take the chance?..."
+Faust: "...What have you possibly achieved with MERCY!?..."
+
+You sigh and thank the operator as they assures you 
+someone is on their way. Wiping some blood from your 
+own nose, you turned to look down at him. 
+
+You: "...Your life, Faust."
+<<cueEnding 2>>
+===
+
+title: FinishEnd
+---
+
+You watched the red pool grow larger around his head.
+You foot having crushed his skull against the ground.
+His pulse stopped, his eyes closed, and at last...
+
+Faust lost. 
+<<cueEnding 0>>
+===

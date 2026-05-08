@@ -1,0 +1,1331 @@
+// Day 0
+
+title: SalemDay0Start
+---
+<<gatherVars>>
+
+The campus café was a hotspot during lunch, but now it was calm.
+
+Soft jazz played as you entered, only one worker in sight.
+
+She hummed softly, drying glasses with a small smile.
+
+She heard the wind chimes and turned toward you.
+
+Her face looked dreamy, as if lost in thought.
+
+<<set $SalemDiaImage = true>>
+
+Salem: "Hiii, welcome to Portal and Prose,"
+
+You approached the counter.
+
+She looked soft, with lavender hair and a warm smile.
+
+Her presence felt welcoming, drawing you in.
+
+-> Ask for her name
+    <<incRelationship "Salem" 1>>
+    <<jump AskName>>
+-> Make small talk
+    <<jump MakeTalk>>
+-> Immediately ask her to participate in the essays
+    <<decRelationship "Salem" 1>>
+    <<jump AskForParticipant>>
+===
+
+title: AskName
+---
+You: "Hi… How’re you?"
+
+She blinked, then smiled brightly, clearly happy you asked.
+
+Salem: "I'm good, thank you so much!"
+
+Her reaction surprised you.
+
+<<jump SinceYouNever>>
+===
+
+title: MakeTalk
+---
+Your fingers drummed on the counter.
+
+She looked at you expectantly.
+
+You: "So... are you the only one working?"
+
+She blinked, then nodded slowly.
+
+Salem: "Well yes I am. Others are on break right now."
+
+Salem: "It's quiet hours, so I'm alone."
+
+You nodded, relieved she didn’t mind the question.
+
+<<jump SinceYouNever>>
+===
+
+title: AskForParticipant
+---
+You wasted no time.
+
+You: "Hi, I'm {$playerName}."
+
+You: "I need volunteers for my Philosophy essay."
+
+You: "Would you be interested in participating?"
+
+She gave an awkward smile and looked away.
+
+Salem: "Are you here to order...?"
+
+That felt awkward.
+
+<<jump SinceYouNever>>
+===
+
+title: SinceYouNever
+---
+You weren’t familiar with the menu.
+
+Too many options made you hesitate.
+
+You: "Hmm... what would you recommend?"
+
+Her eyes lit up instantly.
+
+She placed the glass down, thinking.
+
+Salem: "Oooo, caramel macchiato and fudge brownie!"
+
+You nodded and ordered.
+
+She smiled happily.
+
+-> Compliment her hair
+    <<incRelationship "Salem" 1>>
+    <<jump ComplimentHair>>
+-> Ask about her job
+    <<jump AskAboutJob>>
+-> Stay silent
+    <<decRelationship "Salem" 1>>
+    <<jump StaySilent>>
+===
+
+title: ComplimentHair
+---
+You noticed her hair.
+
+You: "Your hair is really pretty."
+
+She beamed and twirled it happily.
+
+Salem: "Thank you!!"
+
+She prepared your order cheerfully.
+
+Your nerves faded.
+
+<<jump FoodArrives>>
+===
+
+title: AskAboutJob
+---
+You: "What's it like being a barista?"
+
+She hummed while preparing your drink.
+
+She placed it on a tray.
+
+Salem: "Hmm... it's nice, sometimes stressful though."
+
+She added a brownie to the tray.
+
+<<jump FoodArrives>>
+===
+
+title: StaySilent
+---
+You stayed quiet, unsure what to say.
+
+She placed your drink and brownie on the tray.
+
+She smiled softly at you.
+
+<<jump FoodArrives>>
+===
+
+title: FoodArrives
+---
+Salem: "Here's your order, dear. That will be 11.99."
+
+You paid and sat down.
+
+-> Ask her about herself
+    <<incRelationship "Salem" 1>>
+    <<jump AskAboutSalem>>
+-> Ask about the weather
+    <<jump AskAboutWeather>>
+-> Eat your food
+    <<decRelationship "Salem" 1>>
+    <<jump EatYourFood>>
+===
+
+title: AskAboutSalem
+---
+You: "So..."
+
+She looked at you while wiping the counter.
+
+You: "Are you in uni?"
+
+She slowed, then smiled.
+
+Salem: "I am actually!"
+
+Salem: "I study here, so working here is convenient."
+
+You chatted more as you ate.
+
+Eventually, you finished.
+
+<<jump LookingBackAtHer>>
+===
+
+title: AskAboutWeather
+---
+You sat down.
+
+You: "Nice weather we’re having huh?"
+
+She blinked, confused.
+
+You looked outside.
+
+Rain poured heavily.
+
+Salem: "It’s raining…"
+
+You winced.
+
+You: "Nice for the plants..."
+
+She nodded politely.
+
+<<jump LookingBackAtHer>>
+===
+
+title: EatYourFood
+---
+You sat quietly and ate.
+
+You decided not to risk awkward conversation.
+
+<<jump LookingBackAtHer>>
+===
+
+title: LookingBackAtHer
+---
+You considered asking her to be a candidate.
+
+After finishing, you approached the counter.
+
+She washed her hands and came over.
+
+Salem: "Hi dear, did you want to order more?"
+
+You shook your head.
+
+You: "Hi, I was wondering..."
+
+She straightened slightly.
+
+You: "I'm {$playerName}."
+
+You: "I need volunteers for my Philosophy essay."
+
+You: "Would you be interested?"
+
+She tilted her head thoughtfully.
+
+Salem: "Okay! I'll join,"
+
+<<set $SalemDiaImage = false>>
+
+You smiled and gave her the first question.
+
+She nodded eagerly.
+
+You said goodbye.
+
+She seemed nice.
+
+===
+
+// Day 1
+
+title: SalemDay1Start
+---
+<<gatherVars>>
+
+Entering Poem and Prose, the wind chime sang as you stepped in.
+
+You expected Salem, but another worker wiped the counters.
+
+You sighed in disappointment.
+
+Your stomach rumbled. Might as well eat.
+
+You approached the counter.
+
+The server looked up and smiled.
+
+Server: "Hello, welcome to Poem and Prose."
+
+Server: "What would you like?"
+
+Her voice was overly polite. You smiled back.
+
+You: "Hi, I'd like a toastie... and also a coffee."
+
+You specified your drink.
+
+She wrote it down and gestured to sit.
+
+The café was warm and cozy, just like yesterday.
+
+Looking around, it was mostly empty except for—
+
+Salem sat in the corner, eating from a container.
+
+She hummed softly, peaceful as she ate.
+
+You: "Salem!"
+
+<<set $SalemDiaImage = true>>
+
+Salem: "Oh hey there {$playerName}!"
+
+She smiled brightly, wiping her mouth with a napkin.
+
+You sat across from her.
+
+You noticed her curry. It smelled incredible.
+
+-> It looked so delicious
+    <<incRelationship "Salem" 1>>
+    <<jump Delicious>>
+-> The curry seemed alright
+    <<jump Alright>>
+-> The curry seemed weird looking to you
+    <<decRelationship "Salem" 1>>
+    <<jump Weird>>
+===
+
+title: Delicious
+---
+You tried not to drool.
+
+You: "Wow... that looks so good."
+
+You slumped in your seat.
+
+Salem: "Thank you, I made it."
+
+She scooped some onto her spoon.
+
+Then held it out to you.
+
+Salem: "Come on, open your mouth."
+
+You hesitated, then complied.
+
+The flavor burst across your tongue.
+
+You: "Thank you..."
+
+Salem: "..."
+
+She only smiled.
+
+<<jump SalemHeadBops>>
+===
+
+title: Alright
+---
+You: "Ooo, that looks nice."
+
+Salem: "I made it myself, so thank you."
+
+She happily continued eating.
+
+You wondered what else she could cook.
+
+<<jump SalemHeadBops>>
+===
+
+title: Weird
+---
+You looked at the curry with discomfort.
+
+You: "Uh... that's nice..."
+
+You leaned back, uneasy.
+
+Salem: "..."
+
+She went silent.
+
+<<jump SalemHeadBops>>
+===
+
+title: SalemHeadBops
+---
+Salem’s head suddenly lifted, her smile fading.
+
+You turned to see your server holding your food.
+
+Her face showed irritation.
+
+Then she forced a smile.
+
+Server: "Uh... how about you eat over here?"
+
+Server: "There's no room to set your food down."
+
+You turned back.
+
+Salem stared at her food, eating quietly.
+
+There was clearly enough space.
+
+You raised an eyebrow.
+
+-> Take the food yourself
+    <<incRelationship "Salem" 1>>
+    <<jump TakeFood>>
+-> Have the server serve you
+    <<jump MakeServer>>
+-> Move away from Salem
+    <<decRelationship "Salem" 1>>
+    <<jump MoveAway>>
+===
+
+title: TakeFood
+---
+You stood and took your food yourself.
+
+The server spluttered.
+
+You placed it at your table.
+
+Salem squeaked in surprise.
+
+She looked relieved when you sat back down.
+
+She resumed eating.
+
+<<jump DoneFood>>
+===
+
+title: MakeServer
+---
+You: "What's wrong? There's plenty of room."
+
+The server looked annoyed but complied.
+
+You noticed her gag at Salem’s food.
+
+Understanding dawned.
+
+Salem never looked up.
+
+<<jump DoneFood>>
+===
+
+title: MoveAway
+---
+You glanced at Salem.
+
+She kept her head down.
+
+You: "I'll talk to you after I eat, Salem."
+
+She nodded.
+
+You moved tables.
+
+The server suddenly acted cheerful.
+
+You ignored it.
+
+<<jump DoneFood>>
+===
+
+title: DoneFood
+---
+You: "So... you feeling okay?"
+
+Salem: "Yeah, don't worry about me, okay?"
+
+She wiped her mouth.
+
+Salem: "Why do you ask?"
+
+You thought about earlier.
+
+You: "Nothing."
+
+She stared at you strangely.
+
+Salem: "I have your answer here."
+
+She handed you a folded paper.
+
+You perked up.
+
+You: "Oh thanks!"
+
+She smiled.
+
+<<pushObjectiveIndex "Doing the Rounds">>
+
+===
+
+title: EndSalem1
+---
+You: "This is great, thank you."
+
+You placed it in your folder.
+
+Salem beamed.
+
+You handed her another paper.
+
+You: "It’s the next question."
+
+Salem: "I’ll answer this for tomorrow."
+
+<<set $SalemDiaImage = false>>
+
+She read it immediately.
+
+You stood to leave.
+
+She waved goodbye.
+
+===
+
+// Day 2
+
+title: Salem2Start
+---
+<<gatherVars>>
+
+Entering the café, the smell of fresh desserts made you salivate.
+
+Salem stood nearby, giggling with two coworkers.
+
+When the chimes rang, they turned to greet you.
+
+Salem: "Hi {$playerName}!"
+
+She walked over, looking brighter today.
+
+Skull clips decorated her hair.
+
+Salem: "Come, me and my coworkers made goodies!"
+
+She pulled you toward the counter.
+
+Desserts lined the racks—brownies, fifteens, caramel squares.
+
+Coworker: "Is this the person you've been talking about, Sal?"
+
+They stepped closer.
+
+Coworker: "They seem nice,"
+
+Salem: "Yeah, they're my friend,"
+
+She grabbed a plastic plate.
+
+You blinked at that.
+
+Friends felt like a stretch.
+
+-> Set It Straight
+    <<incRelationship "Salem" 1>>
+    <<jump SetStraight>>
+-> Question Her
+    <<jump Question>>
+-> Go with the Flow
+    <<decRelationship "Salem" 1>>
+    <<jump Flow>>
+===
+
+title: SetStraight
+---
+You: "Friends?"
+
+Salem glanced over.
+
+You: "Salem... we've only known each other a few days,"
+
+She flushed instantly.
+
+Coworkers giggled.
+
+Coworker: "Ah Salem, ever the sweetheart,"
+
+They leaned on the counter.
+
+Coworker: "You must like {$playerName} a lot already!"
+
+They teased.
+
+Salem whined, letting one lean on her.
+
+<<jump Dragged>>
+===
+
+title: Question
+---
+You: "You think we're friends?"
+
+Salem spluttered.
+
+Her coworkers burst into giggles.
+
+Coworker: "Ah Salem, ever the sweetheart,"
+
+They leaned over.
+
+Coworker: "You must like {$playerName} a lot already!"
+
+Salem whined, letting one lean on her.
+
+<<jump Dragged>>
+===
+
+title: Flow
+---
+You smiled and went along with it.
+
+Coworker: "You must like {$playerName} a lot already!"
+
+They teased.
+
+Salem whined, letting one lean on her.
+
+<<jump Dragged>>
+===
+
+title: Dragged
+---
+One coworker pulled Salem away to cut desserts.
+
+They laughed together.
+
+You almost forgot yesterday.
+
+Coworker: "I should thank you,"
+
+You turned.
+
+Another coworker watched Salem.
+
+Coworker: "You were with her yesterday,"
+
+You glanced at Salem laughing nearby.
+
+-> I had to do something
+    <<incRelationship "Salem" 1>>
+    <<jump HadTo>>
+-> It wasn't that bad
+    <<decRelationship "Salem" 1>>
+    <<jump NotBad>>
+===
+
+title: HadTo
+---
+You couldn't ignore how Salem was treated.
+
+You: "I had to do something,"
+
+The coworker nodded.
+
+<<jump OneByOne>>
+===
+
+title: NotBad
+---
+You thought back.
+
+You: "It wasn't that bad,"
+
+Silence followed.
+
+<<jump OneByOne>>
+===
+
+title: OneByOne
+---
+Desserts were cut one by one.
+
+Salem picked a piece and approached.
+
+Salem: "Here {$playerName}, try some!"
+
+She held it up.
+
+You took a bite—it was delicious.
+
+You: "This is really good, Salem."
+
+You ate more.
+
+She didn’t respond.
+
+You looked up.
+
+She stared softly, cheeks flushed.
+
+A coworker nudged her.
+
+She startled and pulled out a paper.
+
+<<jump LookingUp>>
+===
+
+title: LookingUp
+---
+You were about to thank her.
+
+Then you noticed her nervousness.
+
+She avoided your gaze.
+
+Salem: "I feel like I answered too seriously,"
+
+She clasped her hands.
+
+Salem: "The question made me think a lot,"
+
+<<set $SalemDiaImage = false>>
+
+You smiled.
+
+You: "That's fine, it's what I need,"
+
+You stored the note.
+
+She packed extra desserts for you.
+
+You said goodbye and left.
+
+<<pushObjectiveIndex "Doing the Rounds">>
+
+===
+
+//Day 3
+
+title: Salem3Start
+---
+<<gatherVars>>
+
+You went to see Salem at the café as usual.
+
+Inside, a different server stood behind the counter.
+
+He glanced at you, then back to his phone.
+
+You checked her usual corner. She wasn’t there.
+
+You: "Hey."
+
+He sighed and looked at you again.
+
+You: "Do you know where Salem is?"
+
+He looked confused at first.
+
+Then realization hit.
+
+Coworker: "The Indian chick?"
+
+Coworker: "She said she wanted to paint."
+
+Coworker: "We swapped shifts."
+
+Coworker: "If she's painting, try the art department."
+
+Coworker: "It's down the steps from here."
+
+You thanked him and left.
+
+The spiral stairs led down the hill.
+
+At the bottom sat the art department.
+
+You buzzed to be let in.
+
+Someone opened the door, surprised.
+
+Person: "Hi, who are you?"
+
+You: "Salem's friend."
+
+It felt like a stretch, but it worked.
+
+They nodded and opened the door wider.
+
+Person: "Second room on your left."
+
+Person: "You're lucky she lets you in."
+
+Person: "She doesn't do that for everyone."
+
+That made you uneasy.
+
+Still, you moved forward.
+
+The halls displayed past student work.
+
+You didn’t stop to look.
+
+You reached the door and opened it quietly.
+
+Salem stood inside.
+
+For once... she looked emotionless.
+
+-> Compliment Her
+    <<incRelationship "Salem" 1>>
+    <<jump ComplimentHer>>
+-> Compliment her painting
+    <<jump ComplimentHerPainting>>
+-> This is boring
+    <<decRelationship "Salem" 1>>
+    <<jump IsBoring>>
+===
+
+title: ComplimentHer
+---
+She was mesmerizing as she worked.
+
+Her face was still, her focus precise.
+
+Each brushstroke was deliberate.
+
+She looked like a statue in motion.
+
+It felt like something private.
+
+You turned to leave.
+
+Salem: "You can stay."
+
+<<jump Salem3Pt2>>
+===
+
+title: ComplimentHerPainting
+---
+Her strokes blended colors into a masterpiece.
+
+Every detail was carefully placed.
+
+The painting showed a glowing gate.
+
+It shimmered with an eerie blue light.
+
+It felt wrong to look at.
+
+You stepped away.
+
+Salem: "You can stay."
+
+<<jump Salem3Pt2>>
+===
+
+title: IsBoring
+---
+You stopped watching and waited.
+
+Eventually, she noticed you.
+
+Her gaze snapped out of its trance.
+
+Salem: "Oh- Hello {$playerName}."
+
+Salem: "I didn't know you were there..."
+
+She looked embarrassed.
+
+You: "Sorry, I shouldn't have barged in."
+
+You: "I can leave-"
+
+Salem: "No!"
+
+Salem: "No, it's okay, you can stay."
+
+<<jump Salem3Pt2>>
+===
+
+title: Salem3Pt2
+---
+-> Do you feel alright?
+    <<incRelationship "Salem" 1>>
+    <<jump FeelAlright>>
+-> You shouldn't do that
+    <<jump ShouldntDo>>
+-> I admire your dedication
+    <<decRelationship "Salem" 1>>
+    <<jump AdmireDedication>>
+===
+
+title: FeelAlright
+---
+You frowned, concern showing.
+
+You: "Do you feel alright?"
+
+You: "Did you even eat?"
+
+She looked surprised, then smiled.
+
+Salem: "I did, don't worry."
+
+Salem: "And I feel alright too."
+
+She giggled.
+
+You sighed softly.
+
+<<jump Salem3Pt3>>
+===
+
+title: ShouldntDo
+---
+You stepped closer, frowning.
+
+You: "You shouldn't overwork yourself like that."
+
+She gave a tight smile.
+
+Salem: "Don't worry about me, {$playerName}."
+
+Salem: "Painting helps me process things."
+
+Her voice was low.
+
+You relented.
+
+<<jump Salem3Pt3>>
+===
+
+title: AdmireDedication
+---
+You looked back at the painting.
+
+It still felt wrong.
+
+You: "I admire your dedication."
+
+She stayed silent.
+
+Her expression felt... off.
+
+<<jump Salem3Pt3>>
+===
+
+title: Salem3Pt3
+---
+Salem: "Here."
+
+She pulled a paper from her pocket.
+
+Salem: "Your questions are thought provoking."
+
+Salem: "Strangely, I like it."
+
+Her voice drifted as she resumed painting.
+
+You unfolded the paper.
+
+There was paint smudged on it.
+
+-> Yes
+    <<incRelationship "Salem" 1>>
+    <<jump YesSalem3>>
+-> No
+    <<decRelationship "Salem" 1>>
+    <<jump NoSalem3>>
+===
+
+title: NoSalem3
+---
+You looked away.
+
+You: "I'm sorry Salem."
+
+You: "I can't help you."
+
+She forced a small smile.
+
+Salem: "Oh, that's alright."
+
+She giggled softly.
+
+You smiled weakly.
+
+<<jump Salem3End>>
+===
+
+title: YesSalem3
+---
+You didn’t see harm in helping her.
+
+You: "Sure, I'll help you."
+
+She lit up instantly.
+
+Salem: "Oh thank you!"
+
+Salem: "Meet me at the cafe okay?"
+
+You smiled back.
+
+<<jump Salem3End>>
+===
+
+title: Salem3End
+---
+You expected her usual smile.
+
+But she kept painting.
+
+Slow. Precise. Mechanical.
+
+You: "Thanks, Salem."
+
+She didn’t look up.
+
+She hummed softly.
+
+You placed the next question beside her.
+
+You stepped away.
+
+At the door, you glanced back.
+
+She was still painting.
+
+It felt unsettling.
+
+You left quietly.
+
+===
+
+//Day 4
+
+title: Salem4
+---
+This time when you visited the cafe, Salem sat in her usual corner.
+
+Her lunch was laid out with small, sweet snacks.
+
+She looked up at you, smiling brightly.
+
+She gestured to the seat in front of her.
+
+Salem: "{$playerName}!"
+
+Salem: "You always come at the same time, that's good."
+
+You watched her hands reach into your bag.
+
+You: "Why's that?"
+
+Your answer came when she pulled out a premade lunch.
+
+She pushed it toward you.
+
+She smiled bashfully while you opened it.
+
+The food smelled amazing.
+
+Your mouth watered.
+
+Salem: "I... made this for you."
+
+Her voice rose into a soft squeak.
+
+You smiled and took a fork.
+
+Salem: "So, how was your day?"
+
+-> Realist view
+    <<incRelationship "Salem" 1>>
+    <<jump RealistView>>
+-> Optimistic view
+    <<jump OptimistView>>
+-> Pessimistic view
+    <<decRelationship "Salem" 1>>
+    <<jump PessimistView>>
+===
+
+title: RealistView
+---
+You: "Well..."
+
+You: "I've been stressed about the essay."
+
+You: "Once I get through the worst of it, I'll be fine."
+
+<<jump EndSalem4>>
+===
+
+title: OptimistView
+---
+You: "Actually, everything is going well!"
+
+You: "I've been doing pretty good today."
+
+<<jump EndSalem4>>
+===
+
+title: PessimistView
+---
+You: "It's been tough."
+
+You: "Honestly, I'm pretty stressed."
+
+You: "But I'll figure it out."
+
+<<jump EndSalem4>>
+===
+
+title: EndSalem4
+---
+Salem nodded as you spoke.
+
+Then her eyes widened.
+
+Salem: "Oh! I almost forgot."
+
+She dug into her bag and pulled out her notebook.
+
+She ripped out a page and handed it to you.
+
+Salem: "My answer, like always."
+
+You took it and looked back at her.
+
+She watched you with a dreamy expression.
+
+'Okay then,' you thought before reading.
+
+===
+
+//Day 5
+
+title: Salem5
+---
+
+<<gatherVars>>
+<<freezePlayer>>
+
+Entering the cafe again, you were met with a different server.
+
+Once again, you were directed to the Art Department.
+
+In the same room, Salem stood staring at her art intently.
+
+She didn’t notice you enter.
+
+She only turned when the door shut.
+
+Salem: "Oh! {$playerName}..."
+
+Salem: "Sorry... I was about to leave."
+
+She seemed distracted, like she was here but also not.
+
+You frowned, worry gnawing at your mind.
+
+-> Ask if she's alright
+    <<incRelationship "Salem" 1>>
+    <<jump AskIfOkay>>
+-> Make conversation
+    <<jump MakeConvo>>
+-> Ignore it
+    <<decRelationship "Salem" 1>>
+    <<jump IgnoreIt>>
+===
+
+title: AskIfOkay
+---
+You: "Hey..."
+
+You: "Are you feeling okay?"
+
+Salem looked at you blankly.
+
+Then she forced a small smile.
+
+Salem: "Oh yes, don't worry about me."
+
+Her tone was dreamy.
+
+You weren't convinced.
+
+<<jump EndSalem5>>
+===
+
+title: MakeConvo
+---
+Despite your concern, you didn’t want to pry into her life.
+
+Maybe light conversation would help instead.
+
+<<jump EndSalem5>>
+===
+
+title: IgnoreIt
+---
+Something felt off about Salem.
+
+She seemed distracted to a fault.
+
+Like she wasn't all there.
+
+She looked exhausted.
+
+It was unsettling.
+
+You ignored it.
+
+You weren’t equipped to handle this.
+
+<<jump EndSalem5>>
+===
+
+title: EndSalem5
+---
+Salem: "You're here for the answer, aren't you?"
+
+Her voice was sing-song as she spoke.
+
+You blinked, caught off guard.
+
+You: "Well yes, but—"
+
+She walked to her bag, cutting you off.
+
+She pulled out her notebook and tore out a page.
+
+Returning, she placed the paper into your hands.
+
+She smiled softly, almost dreamlike.
+
+Salem hummed, drawing your attention.
+
+She blinked slowly, her gaze unfocused.
+
+Salem: "That's all... right?"
+
+She yawned, then sighed.
+
+Salem: "My apologies, {$playerName}..."
+
+Salem: "I've been so tired recently..."
+
+You frowned, watching her sway slightly.
+
+You: "You alright?"
+
+You: "Maybe you should go home early."
+
+A pause.
+
+Salem nodded.
+
+Salem: "Yes..."
+
+Salem: "Yes, I'll do that..."
+
+With one last look, you left.
+
+Even as things seemed fine, something felt very wrong.
+
+<<allowPlayerToMove>>
+<<loadScene "CampusGrounds">>
+
+===
+
+//Day 6
+
+title: Salem6Cafe
+---
+
+<<gatherVars>>
+<<freezePlayer>>
+
+The cafe's soft jazz drifted as you opened the door.
+
+Warmth hit your face.
+
+You expected that same welcoming feeling.
+
+But despite the cosy air, a chill ran down your spine.
+
+Salem wasn't here like usual.
+
+Instead, one of her coworkers stood behind the counter.
+
+You figured she was at the art room.
+
+But before you could leave, the coworker looked up.
+
+Recognition spread across her face.
+
+She hurried toward you.
+
+Relief was clear in her expression.
+
+Coworker: "Oh thank god you're here."
+
+Coworker: "Have you seen Salem?"
+
+You froze, unease settling in your chest.
+
+You: "I... thought she'd be here."
+
+Her smile faltered, turning worried.
+
+Coworker: "Ahh... I see..."
+
+Coworker: "I'm sure she's just at home."
+
+Coworker: "She wasn't feeling well recently."
+
+That made sense.
+
+Salem had seemed unusually tired.
+
+You nodded, convincing yourself.
+
+You: "You're right... she's fine."
+
+With nothing keeping you there, you left.
+
+Behind you, her coworker called someone.
+
+Worry was clear on her face.
+
+<<cueEnding 3>>
+
+===

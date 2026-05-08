@@ -22,7 +22,8 @@ public class PlayerHouse : MonoBehaviour
     void Awake()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
-        
+        dialogueRunner.SetProject(yarnProjects[0]);
+
     }
 
     void OnEnable()
@@ -35,7 +36,14 @@ public class PlayerHouse : MonoBehaviour
         {
             NightLoad();
         }
-        
+
+        TimeManager.OnDayChanged += MorningLoad;
+
+    }
+
+    private void OnDisable()
+    {
+        TimeManager.OnDayChanged -= MorningLoad;
     }
     void Update()
     {

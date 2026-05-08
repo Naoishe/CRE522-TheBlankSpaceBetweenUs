@@ -20,10 +20,12 @@ public class Endings : MonoBehaviour
     public GameObject NikoCannibal;
 
     public TextMeshProUGUI endingText;
+    public YarnProject[] yarnProjects;
 
     private void Awake()
     {
         dialogueRunner = GetComponent<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[0]);
         RiftBG = GameObject.Find("TheRift");
         WhiteBG = GameObject.Find("WhiteBG");
         BlackBG = GameObject.Find("BlackBG");
@@ -46,6 +48,7 @@ public class Endings : MonoBehaviour
         endingText.text = "";
 
     }
+
     void Start()
     {
         switch(ContinuousData.instance.EndingIndex)
@@ -71,8 +74,11 @@ public class Endings : MonoBehaviour
             case 6: 
                 EndingGraduationWithFaust();
                 break;
-             default:
-                EndingGraduation();
+            case 7:
+                GameFinished(); 
+                break;
+            default:
+                GameFinished();
                 break;
         }
 
@@ -132,7 +138,7 @@ public class Endings : MonoBehaviour
     public void SalemRift()
     {
         BadEndings.Play();
-        dialogueRunner.StartDialogue("SalemRift");
+        dialogueRunner.StartDialogue("SalemEndStart");
     }
 
     public void NikoEvent()

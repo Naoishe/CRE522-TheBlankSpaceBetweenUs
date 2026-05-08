@@ -10,13 +10,13 @@ public class TimeUI : MonoBehaviour
     
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI dayText;
-    public Animator sundialAnimator;
     public TimeManager timeManager;
     private int timeIndex;
 
     private void OnEnable()
     {
         TimeManager.OnTimeFrameChanged += UpdateTime;
+        timeManager = TimeManager.instance;
     }
     private void OnDisable()
     {

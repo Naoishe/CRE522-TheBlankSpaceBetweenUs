@@ -12,8 +12,8 @@ public class Gym : MonoBehaviour
     public GameObject FaustDiaImage;
     public void Awake()
     {
-        dialogueRunner = GetComponent<DialogueRunner>();
-        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[0]);
         playerObj = GameObject.Find("PlayerObj");
         allowExit = false;
     }
@@ -32,7 +32,15 @@ public class Gym : MonoBehaviour
     {
         if (allowExit)
         {
-            ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(9.5f, 41.5f, 0f));
+            if (ContinuousData.instance.CDtimeIndex < 3)
+            {
+                ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(-19.8f, 65f, 0f));
+            }
+            else
+            {
+                ContinuousData.instance.UpdateNextScene("CampusGrounds");
+                ContinuousData.instance.SceneLoad(new Vector3(-19.8f, 65f, 0f));
+            }
         }
     }
 
@@ -87,6 +95,7 @@ public class Gym : MonoBehaviour
     {
         dialogueRunner.Stop();
         allowExit = true;
+        
     }
 
     public void LoadPlayerWinAgainstFaust()

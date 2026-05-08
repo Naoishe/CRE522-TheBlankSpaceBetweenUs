@@ -10,8 +10,8 @@ public class Cafe : MonoBehaviour
     public GameObject playerObj;
     public void Awake()
     {
-        dialogueRunner = GetComponent<DialogueRunner>();
-        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[0]);
         playerObj = GameObject.Find("PlayerObj");
         allowExit = false;
     }
@@ -30,7 +30,16 @@ public class Cafe : MonoBehaviour
     {
         if(allowExit)
         {
-            ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(9.5f,41.5f,0f));
+            if (ContinuousData.instance.CDtimeIndex < 3)
+            {
+                ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(9.5f, 41.5f, 0f));
+            }
+            else
+            {
+                ContinuousData.instance.UpdateNextScene("CampusGrounds");
+                ContinuousData.instance.SceneLoad(new Vector3(9.5f, 41.5f, 0f));
+            }
+           
         }
     }
 
@@ -47,7 +56,23 @@ public class Cafe : MonoBehaviour
         }
          if (ContinuousData.instance.CDdayIndex == 2)
         {
-            dialogueRunner.StartDialogue("SalemDay2Start");
+            dialogueRunner.StartDialogue("Salem2Start");
+        }
+        if (ContinuousData.instance.CDdayIndex == 3)
+        {
+            dialogueRunner.StartDialogue("Salem3Start");
+        }
+        if (ContinuousData.instance.CDdayIndex == 4)
+        {
+            dialogueRunner.StartDialogue("Salem4");
+        }
+        if (ContinuousData.instance.CDdayIndex == 5)
+        {
+            dialogueRunner.StartDialogue("Salem5");
+        }
+        if (ContinuousData.instance.CDdayIndex == 6 && ContinuousData.instance.SalemRP>0 && ContinuousData.instance.EndingIndex == -1)
+        {
+            dialogueRunner.StartDialogue("Salem6Cafe");
         }
     }
      void Update()
@@ -57,6 +82,6 @@ public class Cafe : MonoBehaviour
     public void AllowExit()
     {
         dialogueRunner.Stop();
-        allowExit = true;
+        ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(9.5f,41.5f,0f));
     }
 }

@@ -13,7 +13,7 @@ public class CampusGrounds : MonoBehaviour
     public Collider2D toGym;
     public Collider2D toCafe;
     public Collider2D playerCollider;
-    public GameObject noReturn;
+    ///public GameObject noReturn;
     public AudioSource notificationSound;
     public string targetScene;
 
@@ -32,7 +32,7 @@ public class CampusGrounds : MonoBehaviour
     private void Awake()
     {
         dialogueRunner = FindObjectOfType<DialogueRunner>();
-        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
+        dialogueRunner.SetProject(yarnProjects[0]);
         homeLabel = GameObject.Find("HomeLabel");
         libraryLabel = GameObject.Find("LibraryLabel");
     }

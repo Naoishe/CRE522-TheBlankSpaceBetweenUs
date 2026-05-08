@@ -1,42 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class NikoInteract : InteractableObject
 {
     public GameObject nikoDiaImage;
     public bool watchBool;
+    public YarnProject[] yarnProjects;
     public void Start()
     {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[0]);
         nikoDiaImage = GameObject.Find("NikoDiaImage");
         nikoDiaImage.SetActive(false);
     }
     public override void Interaction()
     {
         watchBool = true;
-        switch (ContinuousData.instance.CDdayIndex)
+        if (ContinuousData.instance.CDdayIndex == 0)
         {
-            case 0:
-                dialogueRunner.StartDialogue("MeetingNiko");
-                break;
-            case 1:
-                dialogueRunner.StartDialogue("Niko1");
-                break;
-            case 2:
-                dialogueRunner.StartDialogue("Niko2");
-                break;
-            case 3:
-                dialogueRunner.StartDialogue("Niko3");
-                break;
-            case 4:
-                dialogueRunner.StartDialogue("Niko4");
-                break;
-            case 5:
-                dialogueRunner.StartDialogue("Niko5");
-                break;
-            default:
-                dialogueRunner.StartDialogue("MeetingNiko");
-                break;
+            dialogueRunner.StartDialogue("Niko0");
+        }
+        if (ContinuousData.instance.CDdayIndex == 1)
+        {
+            dialogueRunner.StartDialogue("Niko1");
+        }
+        if (ContinuousData.instance.CDdayIndex == 2)
+        {
+            dialogueRunner.StartDialogue("Niko2");
+        }
+        if (ContinuousData.instance.CDdayIndex == 3)
+        {
+            dialogueRunner.StartDialogue("Niko3");
+        }
+        if (ContinuousData.instance.CDdayIndex == 4)
+        {
+            dialogueRunner.StartDialogue("Niko4");
+        }
+        if (ContinuousData.instance.CDdayIndex == 5)
+        {
+            dialogueRunner.StartDialogue("Niko5");
         }
     }
 

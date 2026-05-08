@@ -1,0 +1,988 @@
+﻿title: Niko0
+---
+
+<<gatherVars>>
+
+When you entered the library, the smell of new books and warm coffee washed
+over you. The murmurs of students studying filled the room. The library was
+always cozy, a place you liked to study and read assigned books.
+
+A good candidate for this essay would definitely be here, you thought.
+Bookworms could have the best opinions on life. You looked around for the
+right person to ask.
+
+You: "This is impossible,"
+
+You sighed. Everyone was in groups, studying or chatting. You felt too awkward
+approaching a group to ask about your questionnaire.
+
+Turning to a bookcase, you shrugged and scanned the shelves. Nothing caught
+your interest, and that's when you turned your head.
+
+To your right stood a lone man dressed in blacks and browns, like a character
+from a gothic novel. The only bright features were the blonde highlights in
+his hair and his amber eyes as they scanned the books.
+
+His hands brushed the spines delicately before stopping and selecting one
+with precision. He opened it one-handed and read a few pages before nodding.
+
+Then he turned, meeting your gaze with piercing eyes.
+
+Startled, you quickly looked away, your face warming with embarrassment. You
+heard him sigh.
+
+<<set $NikoDiaImage = true>>
+Niko: "Do you need something?"
+<<set $NikoDiaImage = false>>
+
+His voice was gravelly and rough, laced with annoyance. You didn't want to
+bother him, but you needed a candidate. Maybe approaching a group would have
+been easier.
+
+-> walk away
+    <<incRelationship "Niko" 1>>
+    <<jump WalkAway>>
+-> freeze up
+    <<jump FreezeUp>>
+-> walk towards him
+    <<decRelationship "Niko" 1>>
+    <<jump WalkTowardsHim>>
+===
+
+title: WalkAway
+---
+You decide you can't do it and quickly try to leave. You don't notice the pile
+of books on the floor and trip.
+
+You hit the ground with a loud thud.
+
+Embarrassed, you scramble up, trying to escape.
+
+<<set $NikoDiaImage = true>>
+Niko: "That looked like it hurt,"
+<<set $NikoDiaImage = false>>
+
+He laughs mockingly, making your face burn. You've never felt more humiliated.
+
+He watches you with a wide smile, clearly amused.
+
+Swallowing your pride, you approach him anyway. His eyebrow raises at your
+boldness.
+
+You: "Hi, my name is {$playerName}. I need volunteers for my last essay in
+Philosophy,"
+
+You: "and I was wondering if you'd be interested in being one?"
+
+You gather what confidence you can. He responds with an amused smile.
+
+<<jump MeetingNiko2>>
+===
+
+title: FreezeUp
+---
+You: "Uhh..."
+
+A terrible start. You sigh internally.
+
+He looks down at you with quiet confidence, which irritates you. Still, you
+push forward.
+
+You: "Hi, my name is {$playerName}. I need volunteers for my last essay in
+Philosophy,"
+
+You: "and I was wondering if you'd be interested in being one,"
+
+You explain your purpose as confidently as possible. He only raises an
+eyebrow.
+
+<<jump MeetingNiko2>>
+===
+
+title: WalkTowardsHim
+---
+You gather your confidence and approach him. He raises an eyebrow as you
+near.
+
+He turns fully to face you, towering over you. His eyes seem to glow under
+the shadows, and he looks more annoyed than curious.
+
+You begin to regret interrupting him.
+
+You: "Hi, my name is {$playerName}. I need volunteers for my last essay in
+Philosophy,"
+
+You: "and I was wondering if you'd be interested in being one,"
+
+You state your case. He responds with a soft scoff.
+
+<<jump MeetingNiko2>>
+===
+
+title: MeetingNiko2
+---
+He looked at you with a bored expression, weighing his options as his hands
+fiddled with the book. A sigh left his mouth as his gaze met yours again.
+
+Niko: "Now why would I?"
+
+You were stunned for a moment. You expected a simple yes or no, not a request
+for justification. You blinked before straightening your posture to think of
+a response.
+
+-> Plead with him
+    <<incRelationship "Niko" 1>>
+    <<jump PleadWith>>
+-> Reason with him
+    <<jump ReasonWith>>
+-> Argue with him
+    <<decRelationship "Niko" 1>>
+    <<jump ArgueWith>>
+===
+
+title: PleadWith
+---
+You felt hopeless at his condition. With little choice, you sighed and looked
+up at him.
+
+You: "Look, man, please just agree. I need candidates, and you're the only
+person I approached without being scared. Please could you agree?"
+
+He looked surprised, clearly not expecting you to beg. You felt pathetic and
+embarrassed.
+
+<<jump MeetingNiko3>>
+===
+
+title: ReasonWith
+---
+You began listing reasons.
+
+You: "Well, first, the essay question is 'The end justifies the means.' Does
+Niccolò Machiavelli's statement still apply to youth today? I feel like you'd
+be a good candidate because-"
+
+He pinched his nose and shushed you before you could finish.
+
+<<jump MeetingNiko3>>
+===
+
+title: ArgueWith
+---
+You rolled your eyes, losing patience.
+
+You: "What's your deal? You can't spare a few minutes to answer a question?"
+
+Niko: "Excuse me?"
+
+He looked at you in shock, shifting his weight as if ready to leave.
+
+You: "Whatever, just decide already,"
+
+This was a horrible idea.
+
+<<jump MeetingNiko3>>
+===
+
+title: MeetingNiko3
+---
+He closes his eyes briefly, thinking, then sighs.
+
+When he opens them, his expression softens.
+
+<<set $NikoDiaImage = true>>
+Niko: "Okay,"
+<<set $NikoDiaImage = false>>
+
+He sounds content.
+
+<<set $NikoDiaImage = true>>
+Niko: "I agree to volunteer for your candidates,"
+<<set $NikoDiaImage = false>>
+
+He seems more approachable now, his guard lowered. Whatever you said convinced
+him.
+
+He shifts and faces you fully. The tension around him fades.
+
+You notice a satchel on his shoulder and the book he holds.
+
+The book is gold-lined, titled "Wuthering Heights."
+
+<<set $NikoDiaImage = true>>
+Niko: "My name is Niko. I'm studying Music. Nice to meet you,"
+<<set $NikoDiaImage = false>>
+
+He extends his hand. You hesitate before shaking it.
+
+His hand is cold, and he pulls away quickly, grimacing.
+
+You: "It's nice to meet you too,"
+
+You give him your first question. He looks confused, but after your
+explanation, he nods slowly.
+
+<<set $NikoDiaImage = true>>
+Niko: "I'll answer this tomorrow...goodbye for now,"
+<<set $NikoDiaImage = false>>
+
+Just like that, he dismisses you and walks away.
+
+You watch him go, unsure what to think.
+
+-> Like him
+    <<jump EndingPart>>
+-> Don't mind him
+    <<jump EndingPart>>
+-> Don't like him
+    <<jump EndingPart>>
+===
+
+title: EndingPart
+---
+You've got a candidate sorted. No need to stay any longer.
+
+Time to head home...
+===
+
+//Day 1
+
+title: Niko1
+---
+<<gatherVars>>
+You found Niko again in the library, still reading the book he had picked.
+His eyes were so focused he hadn't noticed you were there.
+
+When he did, his amber eyes drifted to you as if you were an annoyance. You
+almost scoffed at his audacity.
+
+Closing the book with a bookmark, he turned toward you with a slow, almost
+catlike motion, eyes fixed on you.
+
+<<set $NikoDiaImage = true>>
+Niko: "Here for your answers, are you?"
+<<set $NikoDiaImage = false>>
+
+He spoke lazily, raising an eyebrow as if questioning your presence.
+
+-> Let's talk first
+    <<incRelationship "Niko" 1>>
+    <<jump LetsTalk>>
+-> Yeah, give them to me
+    <<jump Yeah>>
+-> You don't have to act so mighty...
+    <<decRelationship "Niko" 1>>
+    <<jump DontHave>>
+===
+
+title: LetsTalk
+---
+He handed over the answers on yellow lined paper. Niko raised a brow, likely
+wondering where this was coming from.
+
+<<set $NikoDiaImage = true>>
+Niko: "I wasn't aware these questions came with small talk,"
+<<set $NikoDiaImage = false>>
+
+His voice carried a slight snarl, as if disgusted at the idea of speaking
+more with you.
+
+The sudden hostility made you step back slightly in surprise. Irritation
+quickly replaced it.
+
+You: "You don't have to be rude about it,"
+
+You glared at him, but he remained unfazed as you began reading his answers.
+
+<<jump EndNiko1>>
+===
+
+title: Yeah
+---
+Niko rolled his eyes at your impatience before handing you the yellow paper.
+
+<<jump EndNiko1>>
+===
+
+title: DontHave
+---
+Niko looked at you in disbelief, as if you'd just done something outrageous.
+His hand subtly pulled back as disgust settled in his expression.
+
+<<set $NikoDiaImage = true>>
+Niko: "Excuse me??"
+<<set $NikoDiaImage = false>>
+
+He sounded baffled.
+
+<<set $NikoDiaImage = true>>
+Niko: "Whatever, take your stupid answer,"
+<<set $NikoDiaImage = false>>
+
+He shoved the paper toward you and began grumbling under his breath about
+you being the rudest person he'd met.
+
+<<jump EndNiko1>>
+===
+
+title: EndNiko1
+---
+You: "Thank you,"
+
+Niko looked at you with an unreadable expression before dismissing you with
+a wave. He reopened his book as if you were no longer there.
+
+His attitude was unbelievable. You left with a quiet grumble, folding the
+answers and tucking them into your folder.
+===
+
+//Day 2
+
+title: Niko2
+---
+Anxiety gnawed at your stomach as you settled in the library to work. You
+couldn't understand where it came from. You had never been stressed over
+grades and essays before, even when your degree depended on them.
+
+<<set $NikoDiaImage = true>>
+Niko: "Have you come to bother me again?"
+<<set $NikoDiaImage = false>>
+
+The disgruntled voice interrupted your spiraling thoughts.
+
+You looked up and met Niko's displeased gaze.
+
+You: "I didn't expect you to be here."
+
+You spoke honestly, surprised by his rude interruption.
+
+<<set $NikoDiaImage = true>>
+Niko: "You're the one following me."
+<<set $NikoDiaImage = false>>
+
+He muttered crossly before returning to his reading: Othello.
+
+You: "Do you have a new book every day?"
+
+You blurted the first thing that came to mind. Seeing him here threw you
+off, and idle conversation was all you could think of.
+
+<<set $NikoDiaImage = true>>
+Niko: "I'm reading ahead on my syllabus."
+<<set $NikoDiaImage = false>>
+
+He drawled as if your presence meant nothing.
+
+-> Apologise
+    <<incRelationship "Niko" 1>>
+    <<jump ApoloNiko1>>
+-> Don't react
+    <<jump DunnyReact>>
+-> Argue Back
+    <<decRelationship "Niko" 1>>
+    <<jump BitchBack>>
+===
+
+title: ApoloNiko1
+---
+You quickly tried to smooth things over.
+
+You: "I'm sorry."
+
+You whispered, shrinking back from his piercing glare. The last thing you
+wanted was to upset one of your candidates when you needed his cooperation.
+
+A flicker of pleasure glinted in his cold gaze, as if he enjoyed your
+submission.
+
+<<jump EndNiko2>>
+===
+
+title: DunnyReact
+---
+You didn't respond to his provocation. He wasn't worth your breath, you
+decided.
+
+<<jump EndNiko2>>
+===
+
+title: BitchBack
+---
+You: "There's hardly any need to take such an attitude."
+
+You scowled.
+
+You: "I didn't come here to argue. I came here to work. I'd rather spend
+my time in silence than deal with your snarkiness."
+
+You huffed and returned to your work.
+
+<<jump EndNiko2>>
+===
+
+title: EndNiko2
+---
+Niko seemed surprised by your response. It showed clearly on his face.
+
+Unsure how to respond, he returned to his work, though he continued to
+watch you from the corner of his eye.
+
+He noticed the way you nervously picked at your fingers, as if the brief
+confrontation had unsettled you deeply.
+
+That nervous habit seemed to spark something in him, a curiosity to learn
+more about you.
+
+<<set $NikoDiaImage = true>>
+Niko: "What's the next question?"
+<<set $NikoDiaImage = false>>
+
+He spoke, pulling your attention away from your thoughts.
+
+<<set $NikoDiaImage = true>>
+Niko: "For your essay."
+<<set $NikoDiaImage = false>>
+
+He clarified slowly, as if speaking to a child.
+
+At that, you decided to leave. You didn't want to spend any more time with
+him.
+
+You quickly packed your things into your bag.
+
+<<set $NikoDiaImage = true>>
+Niko: "Will you come back tomorrow?"
+<<set $NikoDiaImage = false>>
+
+His voice cut through your thoughts.
+
+You froze, unsure how to respond.
+
+<<set $NikoDiaImage = true>>
+Niko: "Will you come back tomorrow?"
+<<set $NikoDiaImage = false>>
+
+He repeated, more insistently this time.
+
+-> Yes
+    <<incRelationship "Niko" 1>>
+    <<jump Agree1>>
+-> No
+    <<decRelationship "Niko" 1>>
+    <<jump No1>>
+===
+
+title: Agree1
+---
+<<gatherVars>>
+You: "Yes."
+
+The answer came out as a whisper, drawn out by the intensity of his amber
+eyes.
+
+You shook your head, trying to shake off the strange feeling building in
+your chest.
+
+There was something about him, something that pulled you in despite
+yourself.
+
+Niko smiled, pleased.
+
+<<set $NikoDiaImage = true>>
+Niko: "Good."
+<<set $NikoDiaImage = false>>
+
+He purred softly, clearly satisfied.
+
+Embarrassment rose in your throat as you turned and hurried away.
+===
+
+title: No1
+---
+You: "No."
+
+You answered sharply, irritation rising within you. You disliked him more
+and more.
+
+There was little to admire about him, aside from his passion for books.
+
+He was rude, forceful, and gloomy.
+
+His expression twisted into something darker.
+
+Without waiting, you turned and hurried out.
+===
+
+//Day 3
+
+title: Niko3
+---
+<<gatherVars>>
+Lunch time at last. The day was bright for once, so you chose a spot under a
+tree for shade. As you pulled out your notes, you felt eyes on you.
+
+You looked up quickly, but the campus was clear. Only a few groups lingered
+nearby. No one seemed to be watching you.
+
+Blaming it on yesterday, you returned to your work.
+
+It was easy to get absorbed when focused. That must be why you didn't hear
+the footsteps.
+
+<<set $NikoDiaImage = true>>
+Niko: "How is it that everywhere I go you're there too?"
+<<set $NikoDiaImage = false>>
+
+His gravelly voice brushed your ear. You jumped, scattering your notes.
+
+<<set $NikoDiaImage = true>>
+Niko: "Wow, you'd think I'd just said boo with your reaction."
+<<set $NikoDiaImage = false>>
+
+He laughed softly, clearly amused.
+
+<<set $NikoDiaImage = true>>
+Niko: "I mean c'mon, are you that obsessed you're following me now?"
+<<set $NikoDiaImage = false>>
+
+-> Fluster
+    <<incRelationship "Niko" 1>>
+    <<jump FlusterN3>>
+-> Accuse him
+    <<decRelationship "Niko" 1>>
+    <<jump AccuseN3>>
+===
+
+title: FlusterN3
+---
+You: "W-what?"
+
+You gasped. Follow him? You weren't even sure if you liked him.
+
+You: "I definitely didn't! Are you sure you didn't follow me?"
+
+You cringed immediately after saying it.
+
+<<jump Niko3Continue>>
+===
+
+title: AccuseN3
+---
+You: "Hey! When I came here, no one was around. I'm working on my essay, so
+why would I seek someone out to interrupt myself?"
+
+You pointed at him sharply.
+
+You: "If I didn't know better, I'd say you followed me."
+
+You glanced behind him. Only thick bushes stood beyond the tree.
+
+He had approached from behind.
+
+He had been watching you the entire time.
+
+You: "You... didn't, right?"
+
+You spoke quietly, oddly satisfied at the thought.
+
+<<jump Niko3Continue>>
+===
+
+title: Niko3Continue
+---
+<<set $NikoDiaImage = true>>
+Niko: "Why would I follow you?"
+<<set $NikoDiaImage = false>>
+
+He sat beside you without asking.
+
+<<set $NikoDiaImage = true>>
+Niko: "I come here to read on sunny days. You, however, have never sat here
+before. So I conclude you're pursuing me."
+<<set $NikoDiaImage = false>>
+
+You: "Pursuing you?"
+
+You echoed, alarmed.
+
+<<set $NikoDiaImage = true>>
+Niko: "First you harass me for your essay, and now you stalk me."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "Why... {$playerName}, do you have a crush on me?"
+<<set $NikoDiaImage = false>>
+
+-> Confess
+    <<incRelationship "Niko" 1>>
+    <<jump ConfessNiko3>>
+-> Deny
+    <<decRelationship "Niko" 1>>
+    <<jump DenyNiko3>>
+===
+
+title: ConfessNiko3
+---
+You: "Truthfully?"
+
+You hesitated, almost asking permission.
+
+He stared at you.
+
+<<set $NikoDiaImage = true>>
+Niko: "I think you owe me the truth."
+<<set $NikoDiaImage = false>>
+
+You couldn't argue.
+
+You: "There's a desire... something I can't explain. I didn't follow you,
+but being near you is all I want."
+
+Niko covered his face slightly.
+
+<<set $NikoDiaImage = true>>
+Niko: "I hadn't expected you to be so honest. Are you that desperate?"
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "You don't know me. You don't know what I want."
+<<set $NikoDiaImage = false>>
+
+You: "I want to know you."
+
+<<jump EndNiko3>>
+===
+
+title: DenyNiko3
+---
+You: "Have a crush on you?"
+
+You scoffed.
+
+You: "I'm not even sure I like you as a person."
+
+His face fell slightly.
+
+A sinking feeling grew in your chest.
+
+You: "I'm sorry. Your attitude just rubs me the wrong way."
+
+<<jump EndNiko3>>
+===
+
+title: EndNiko3
+---
+Niko seemed pleased, like he understood more than you said. After a pause,
+he spoke again.
+
+<<set $NikoDiaImage = true>>
+Niko: "You're not the worst company. How's your essay coming?"
+<<set $NikoDiaImage = false>>
+
+The shift in tone caught you off guard.
+
+You: "It's a struggle."
+
+You admitted honestly.
+
+<<set $NikoDiaImage = true>>
+Niko: "Alright, hit me. Give me the next question."
+<<set $NikoDiaImage = false>>
+
+He seemed unusually cooperative.
+
+<<set $NikoDiaImage = true>>
+Niko: "Next question."
+<<set $NikoDiaImage = false>>
+
+He demanded again, his tone shifting back.
+
+You handed him the next question and took the completed one.
+===
+
+//Day 4
+
+title: Niko4
+---
+<<gatherVars>>
+Here you were at the library again. It felt almost mechanical, the way your
+feet brought you here without thought.
+
+Somewhere deep down, you longed to see Niko. To hear his thoughts again.
+There was something about the way he spoke that pulled at you, something
+dark and fascinating that made you want to know everything about him.
+
+As usual, he sat at the same secluded table tucked into the corner.
+
+His eyes met yours before you could even speak.
+
+<<set $NikoDiaImage = true>>
+Niko: "Have you come for more pestering?"
+<<set $NikoDiaImage = false>>
+
+He greeted you with a lopsided smile, closing his book. The cover was a
+limited edition of Frankenstein, one you'd admired before.
+
+You: "Is it any good?"
+
+You gestured toward the book as you set your bag down.
+
+<<set $NikoDiaImage = true>>
+Niko: "I don't mind it. Shelley makes interesting points about abandonment
+and nature versus nurture."
+<<set $NikoDiaImage = false>>
+
+You: "I don't believe in the nature versus nurture argument."
+
+You turned your nose up slightly.
+
+You: "Everyone has a choice to act differently. Some have it easier, but in
+the end everything comes down to choice. Though the debate is fascinating.
+Don't..."
+
+You trailed off as his intense glare made you shiver.
+
+<<set $NikoDiaImage = true>>
+Niko: "Not everything is a choice."
+<<set $NikoDiaImage = false>>
+
+His tone was sharp, almost angry.
+
+<<set $NikoDiaImage = true>>
+Niko: "Some things are beyond a person's control. If they had a choice, they
+would have chosen differently."
+<<set $NikoDiaImage = false>>
+
+He slammed his book onto the table. The sound echoed through the library,
+drawing a few glances from nearby students.
+
+You felt uneasy, realizing you had upset him.
+
+-> Apologise profusely
+    <<incRelationship "Niko" 1>>
+    <<jump ApologiseN4>>
+-> Pull out books and ignore it
+    <<jump PullBooks>>
+-> Ask what's wrong
+    <<decRelationship "Niko" 1>>
+    <<jump AskN4>>
+===
+
+title: ApologiseN4
+---
+You: "I'm so sorry."
+
+The apology came out quickly.
+
+You: "Please, don't be mad at me. I would never want to upset you."
+
+You reached for his hands, hoping to show your sincerity.
+
+You: "I'm sorry."
+
+You repeated, more quietly.
+
+<<jump EndNiko4>>
+===
+
+title: PullBooks
+---
+Unsure how to fix things, you quietly placed your books on the table.
+
+Ignoring his reaction seemed safest.
+
+You: "So... I have another question for you."
+
+<<jump EndNiko4>>
+===
+
+title: AskN4
+---
+You: "I can't apologise for something I don't understand."
+
+You kept your voice steady.
+
+You: "If I did, it wouldn't mean anything."
+
+You took a breath before continuing.
+
+You: "What's wrong?"
+
+Niko looked genuinely surprised, as if no one had asked him that before.
+
+For a moment, something shifted in him.
+
+<<set $NikoDiaImage = true>>
+Niko: "I lost my parents in a car accident."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "I was too young. I don't remember their faces."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "It wasn't their choice to die. It was the choice of a drunk driver."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "I'm glad he's dead."
+<<set $NikoDiaImage = false>>
+
+You felt sick hearing it.
+
+Suddenly, everything about him made sense.
+
+Their death wasn't a choice, and neither was how it shaped him.
+
+<<jump EndNiko4>>
+===
+
+title: EndNiko4
+---
+<<set $NikoDiaImage = true>>
+Niko: "Forget it. Ask your damn question. I'm over this."
+<<set $NikoDiaImage = false>>
+
+He shoved the paper into your hands.
+
+Without another word, he grabbed his things and stormed out.
+
+You were left alone, unsettled and filled with guilt for what you might
+have caused.
+===
+
+//Day 5
+
+title: Niko5
+---
+<<gatherVars>>
+Niko was at the library again, staring out the window deep in thought. He
+looked troubled, his brow twitching as his finger tapped an uneven rhythm.
+
+After your last encounter, you considered leaving him alone. He clearly
+needed space. But you still had an essay to finish.
+
+You approached quietly, yet he noticed you anyway. His narrowed eyes locked
+onto you before he stretched like a waking cat.
+
+<<set $NikoDiaImage = true>>
+Niko: "Hey,"
+<<set $NikoDiaImage = false>>
+
+He greeted you coldly before looking away again. His gaze seemed distant,
+almost empty.
+
+You gave a quiet greeting back, unsure how to approach him now. Apologizing
+again would likely do nothing.
+
+Suddenly, he snapped his head toward you, expression sharp with impatience.
+
+<<set $NikoDiaImage = true>>
+Niko: "I have a question to ask you,"
+<<set $NikoDiaImage = false>>
+
+His tone was firm, leaving no room for refusal.
+
+You glanced around briefly, relieved no one seemed to notice.
+
+You: "...Okay, what is it?"
+
+You stretched the word slightly, confused.
+
+<<set $NikoDiaImage = true>>
+Niko: "You're a Philosophy student,"
+<<set $NikoDiaImage = false>>
+
+You resisted the urge to respond sarcastically.
+
+<<set $NikoDiaImage = true>>
+Niko: "What is your view on death?"
+<<set $NikoDiaImage = false>>
+
+The question caught you off guard.
+
+You: "Are you serious?"
+
+He responded with an impatient sigh and glare.
+
+You realized he meant it.
+
+You stayed quiet for a moment, thinking carefully.
+
+-> It is nothing short of a calamity, it harms all
+    <<incRelationship "Niko" 1>>
+    <<jump Choice1N5>>
+-> Death does not concern the living so why worry ourselves over it?
+    <<jump Choice2N5>>
+-> The unavoidable reality that gives meaning to life
+    <<decRelationship "Niko" 1>>
+    <<jump Choice3N5>>
+===
+
+title: Choice1N5
+---
+You: "I think death is a frightening thing. It harms everyone in its wake."
+
+You spoke slowly, choosing your words carefully.
+
+Niko's rigid posture softened slightly.
+
+Soon enough, though, he returned to his usual distant demeanor, looking at
+you as if you meant nothing.
+
+<<jump EndNiko5>>
+===
+
+title: Choice2N5
+---
+You: "Death doesn't really concern the living. Why dwell on it and invite
+fear?"
+
+You shrugged lightly.
+
+Niko froze for a moment, his expression unreadable, before settling back
+into his usual posture.
+
+<<jump EndNiko5>>
+===
+
+title: Choice3N5
+---
+You: "Death gives life meaning. It's what makes it worth living."
+
+He studied you carefully, as if trying to determine whether you meant it.
+
+<<set $NikoDiaImage = true>>
+Niko: "I suppose it makes life worth preserving."
+<<set $NikoDiaImage = false>>
+
+His tone was quieter now.
+
+Then he frowned.
+
+<<set $NikoDiaImage = true>>
+Niko: "What a pretentious response."
+<<set $NikoDiaImage = false>>
+
+<<jump EndNiko5>>
+===
+
+title: EndNiko5
+---
+Niko shook his head slowly, unsatisfied.
+
+<<set $NikoDiaImage = true>>
+Niko: "Death isn't something to take lightly."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "You only say that because you don't know what it's like to be haunted
+by it."
+<<set $NikoDiaImage = false>>
+
+His voice rose briefly before dropping into something quieter.
+
+<<set $NikoDiaImage = true>>
+Niko: "You have no idea."
+<<set $NikoDiaImage = false>>
+===

@@ -7,6 +7,7 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager instance;
     public static Action OnTimeFrameChanged;
     public static Action OnDayChanged;
 
@@ -19,6 +20,11 @@ public class TimeManager : MonoBehaviour
     public GameObject TimeGUI;
 
 
+    private void Awake()
+    {
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
     void Start()
     {
         TimeGUI.SetActive(true);
@@ -51,18 +57,8 @@ public class TimeManager : MonoBehaviour
 
     private void UpdateTimeFrame()
     {
-        if (TimeFrameIndex == 4)
-        {
-            TimeFrameIndex = 0;
-            Day++;
-            OnDayChanged?.Invoke();
-            //Debug.Log("Current day:" + Day + " Current TimeframeIndex: " + TimeFrameIndex);
-        }
-        else
-        {
-            TimeFrameIndex++;
-        }
-        
+        TimeFrameIndex++;
+         
     }
 
     private void NewSceneResets()
@@ -75,5 +71,13 @@ public class TimeManager : MonoBehaviour
         OnTimeFrameChanged?.Invoke();
         allowUpdates = false;
         ContinuousData.instance.UpdateSavedTime(TimeFrameIndex, Day);
+    }
+
+    public void ResetTimeForNewDay()
+    {
+            TimeFrameIndex = 0;
+            Day++;
+            OnDayChanged?.Invoke();
+            
     }
 }

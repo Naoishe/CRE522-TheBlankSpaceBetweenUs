@@ -12,16 +12,13 @@ public class Library : MonoBehaviour
     public Collider2D toCampus;
     public Collider2D playerCollider;
     public GameObject playerObj;
-    public DialogueRunner dialogueRunner;
-    public YarnProject[] yarnProjects;
+    
 
     public static Action ReturnToCampus;
 
 
     private void Awake()
     {
-        dialogueRunner = FindObjectOfType<DialogueRunner>();
-        dialogueRunner.SetProject(yarnProjects[ContinuousData.instance.CDdayIndex]);
     }
     void Start()
     {

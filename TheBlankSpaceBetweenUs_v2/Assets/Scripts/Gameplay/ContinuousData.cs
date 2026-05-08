@@ -47,7 +47,7 @@ public class ContinuousData : MonoBehaviour
     public bool allowMovement;
 
     //Yarn
-    public InMemoryVariableStorage variableStorage;
+    public InMemoryVariableStorage yarnStorage;
     public Library libraryRef;
     public DialogueRunner diaRunner;
     public bool clubAttended;
@@ -80,6 +80,8 @@ public class ContinuousData : MonoBehaviour
 
     private void Awake()
     {
+        diaRunner = FindObjectOfType<DialogueRunner>();
+        yarnStorage = diaRunner.VariableStorage as InMemoryVariableStorage;
         if (playerName == null)
         {
             playerName = "Player";
@@ -89,7 +91,6 @@ public class ContinuousData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         CDtimeIndex = 0;
         CDdayIndex = 0;
-        variableStorage = FindObjectOfType<InMemoryVariableStorage>();
         LocatePlayerObject();
         if (newGame)
         {
@@ -101,6 +102,7 @@ public class ContinuousData : MonoBehaviour
             SalemRP = 0;
         }
         shortestDistance = 1000f;
+        EndingIndex = -1;
         
     }
 
@@ -126,6 +128,7 @@ public class ContinuousData : MonoBehaviour
         diaRunner.AddCommandHandler<string, string>("setAnimTrigger", SetAnimTrigger);
         diaRunner.AddCommandHandler("feedPlayerNameToYarn", FeedPlayerNameToYarn);
         diaRunner.AddCommandHandler<string, int>("alterPlayerAttribute", AlterPlayerAttribute);
+        diaRunner.AddCommandHandler<int>("cueEnding", CueEnding);
 
         allowMovement = true;
         NikoDiaImageState = false;
@@ -135,6 +138,26 @@ public class ContinuousData : MonoBehaviour
 
     public void Update()
     {
+        //If day 6 is reached and the player doesn't meet the requirements to continue any other story lines, default to Niko's
+        if (CDdayIndex == 6 && NikoRP>SalemRP && NikoRP > FaustRP && EndingIndex==-1)
+        {
+            EndingIndex = 5;
+        }
+        else
+        {
+            if (CDdayIndex == 6 && NikoRP<=0 && playerClub!="Wrestling" && SalemRP<=0) 
+            {
+                EndingIndex = 5;
+            }
+            //Other endings are triggered through separate areas
+        }
+        
+
+        //Automatic ending of graduation if no others have been reached yet.
+        if (CDdayIndex == 7 && EndingIndex == -1)
+        {
+            EndingIndex = 0;
+        }
 
     }
 
@@ -155,13 +178,11 @@ public class ContinuousData : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
         currentSceneName = currentScene.name;
         currentSceneBuildIndex = currentScene.buildIndex;
+        NikoDiaImageState = MonitorOverscreen("$NikoDiaImage");
+        SalemDiaImageState = MonitorOverscreen("$SalemDiaImage");
+        FaustDiaImageState = MonitorOverscreen("$FaustDiaImage");
     }
 
-
-    public void SetEnding(int endingIndex)
-    {
-        EndingIndex = endingIndex;
-    }
 
     public void LocatePlayerObject()
     {
@@ -189,31 +210,19 @@ public class ContinuousData : MonoBehaviour
 
     public void FetchYarnStringVariable(string yarnVar, string unityVar)
     {
-        variableStorage.TryGetValue(yarnVar, out unityVar);
+        yarnStorage.TryGetValue(yarnVar, out unityVar);
         Debug.Log("String Fetched: " + unityVar);
     }
-    public void FetchYarnBoolVariable(string yarnVar, bool unityVar)
-    {
-        variableStorage.TryGetValue(yarnVar, out unityVar);
-        Debug.Log("Bool Fetched: " + unityVar);
-        if (unityVar)
-        {
-            ReturnYarnAsTrue?.Invoke();
-        }
-        else
-        {
-            ReturnYarnAsFalse?.Invoke();
-        }
-    }
+    
     public void FetchYarnIntVariable(string yarnVar, int unityVar)
     {
-        variableStorage.TryGetValue(yarnVar, out unityVar);
+        yarnStorage.TryGetValue(yarnVar, out unityVar);
         Debug.Log("Int Fetched: " + unityVar);
     }
 
     public void SetYarnStringVariable(string yarnVar, string updatedString)
     {
-        variableStorage.SetValue(yarnVar, updatedString);
+        yarnStorage.SetValue(yarnVar, updatedString);
 
     }
     public void SceneChangeDetected(string sceneToLoad, Vector3 nextSpawnPoint)
@@ -229,7 +238,7 @@ public class ContinuousData : MonoBehaviour
         SceneManager.LoadScene(nextSceneString);
         NewSceneLoaded?.Invoke();
         SetSpawnPosition(nextSpawnPoint);
-        diaRunner = FindObjectOfType<DialogueRunner>();
+        
         FeedPlayerNameToYarn();
 
     }
@@ -248,6 +257,11 @@ public class ContinuousData : MonoBehaviour
     private void UpdateSpawnVector(Vector3 newSpawnVector)
     {
         spawnPositionVector = newSpawnVector;
+    }
+
+    public void UpdateNextScene(string nextScene)
+    {
+        nextSceneString = nextScene;
     }
     public void AlterPlayerAttribute(string attribute, int amount)
     {
@@ -355,7 +369,7 @@ public class ContinuousData : MonoBehaviour
         nextSceneString = sceneName;
         SceneManager.LoadScene(nextSceneString);
         NewSceneLoaded?.Invoke();
-        diaRunner = FindObjectOfType<DialogueRunner>();
+        
     }
 
     public void CloseDialogue()
@@ -438,11 +452,10 @@ public class ContinuousData : MonoBehaviour
     public void FeedPlayerNameToYarn()
     {
 
-        var storage = diaRunner.VariableStorage as InMemoryVariableStorage;
 
-        if (storage != null)
+        if (yarnStorage != null)
         {
-            storage.SetValue("$playerName", playerName);
+            yarnStorage.SetValue("$playerName", playerName);
         }
 
     }
@@ -455,6 +468,24 @@ public class ContinuousData : MonoBehaviour
     public void PlayTalkSoundEffect()
     {
         talkingSFX.Play();
+    }
+
+    public void CueEnding(int endingNum)
+    {
+        EndingIndex = endingNum;
+        SceneChangeDetected("Endings", new Vector3(-2.5f,-14.7f,0));
+    }
+
+    public bool MonitorOverscreen(string variableName)
+    {
+        if (yarnStorage == null)
+        {
+            Debug.LogError("Variable storage is not InMemoryVariableStorage");
+            return false;
+        }
+
+        yarnStorage.TryGetValue(variableName, out bool value);
+        return value;
     }
 
 

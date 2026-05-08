@@ -8,12 +8,20 @@ using static Unity.Collections.AllocatorManager;
 
 public class EndedClass : MonoBehaviour
 {
-    private InMemoryVariableStorage variableStorage;
+    
     private bool endingclass;
+    public YarnProject[] yarnProjects;
+    public DialogueRunner dialogueRunner;
+
+    private void Awake()
+    {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[0]);
+    }
 
     private void Start()
     {
-        variableStorage = FindObjectOfType<InMemoryVariableStorage>();
+        
         endingclass = false;
     }
 
