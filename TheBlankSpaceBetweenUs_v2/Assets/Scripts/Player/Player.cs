@@ -1,7 +1,7 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
-public class Player : MonoBehaviour 
+public class Player : MonoBehaviour
 {
 
     public static Action OnMinigameInput;
@@ -11,12 +11,12 @@ public class Player : MonoBehaviour
     delegate void PlayerDelegate();
     PlayerDelegate playerDelegate;
 
-    private float privStamina=0;
+    private float privStamina = 0;
     private string privName;
     private bool staminaDepleted;
     private Vector2 playerLocation;
     private ContactFilter2D contactFilter;
-    public float searchRadius=10;
+    public float searchRadius = 10;
 
     [SerializeField] public GameObject player;
     [SerializeField] public Animator animator;
@@ -26,13 +26,13 @@ public class Player : MonoBehaviour
     private float shortestDistance;
 
     [Header("Movement")]
-    public float walkSpeed=5f;
+    public float walkSpeed = 5f;
     public float sprintSpeed;
 
     public bool isWalking = false;
 
     public int playerCollectableCounter;
-    
+
 
     //public Animator anim;
     private Vector2 movementInput;
@@ -40,15 +40,16 @@ public class Player : MonoBehaviour
     public float stamina
     {
         get { return privStamina; }
-        set { 
+        set
+        {
             privStamina = value;
             if (privStamina < 0)
             {
-                staminaDepleted= true;
+                staminaDepleted = true;
             }
             else
             {
-                staminaDepleted= false;
+                staminaDepleted = false;
             }
             privStamina = Mathf.Clamp(privStamina, 0, 100);
         }
@@ -69,12 +70,12 @@ public class Player : MonoBehaviour
         playerCollectableCounter = 0;
 
 
-        
+
     }
     public void Update()
     {
         playerDelegate();
-        playerLocation=this.transform.position;
+        playerLocation = this.transform.position;
 
     }
 
@@ -103,14 +104,16 @@ public class Player : MonoBehaviour
 
     public void FixedUpdate()
     {
+        // Apply physics-based movement when movement is allowed
         if (ContinuousData.instance.allowMovement)
         {
             MovePlayer();
         }
-            
+
     }
     private void MyInput()
     {
+        // Read raw movement input and update animator parameters
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
 
@@ -122,7 +125,7 @@ public class Player : MonoBehaviour
         if (movementInput.magnitude > 0)
         {
             animator.SetBool("isWalking", true);
-            
+
         }
         else
         {
@@ -133,20 +136,23 @@ public class Player : MonoBehaviour
 
     public void TriggerInvis()
     {
-               animator.SetTrigger("Invisible");
+        // Trigger invisibility animation
+        animator.SetTrigger("Invisible");
     }
 
     public void TriggerVisible()
     {
-               animator.SetTrigger("Visible");
+        // Trigger visible animation
+        animator.SetTrigger("Visible");
     }
 
-    public void MovePlayer() 
+    public void MovePlayer()
     {
-        if(rb!= null)
+        // Apply velocity to the player's rigidbody based on input
+        if (rb != null)
         {
             rb.velocity = movementInput * walkSpeed;
-            
+
         }
         else
         {
@@ -171,6 +177,7 @@ public class Player : MonoBehaviour
 
     public void SpeedControl()
     {
+        // Limit the player's velocity to the configured walk speed
         Vector2 flatVel = new Vector2(rb.velocity.x, rb.velocity.y);
 
         //limit velocity if needed
@@ -183,18 +190,19 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Count collectable pickups when player collides with them
         if (collision.gameObject.CompareTag("Collectable"))
         {
             if (playerCollectableCounter != null)
             {
                 playerCollectableCounter++;
             }
-       
+
 
         }
     }
 
-    
-  
+
+
 
 }

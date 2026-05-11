@@ -765,7 +765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Leave Cafe
+  m_text: Leave
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5f512f19c8c4fc44e866044eb04883f7, type: 2}
   m_sharedMaterial: {fileID: -6889238988396646603, guid: 5f512f19c8c4fc44e866044eb04883f7, type: 2}

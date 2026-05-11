@@ -1,12 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Unity.Collections.AllocatorManager;
-using TMPro;
-using System;
-using UnityEngine.UI;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 public class MenuListener : MonoBehaviour
 {
@@ -17,51 +10,45 @@ public class MenuListener : MonoBehaviour
     public float maxOpacity = 1.0f;
     public GameObject MenuScript;
 
-    static float lerpT = 0.0f;
-    static float volumeLerp = 0.0f;
     void Start()
     {
+        // Start main menu music
         MainMusic.Play();
     }
     private void OnEnable()
     {
+        // Subscribe to main menu events
         MainMenu.startButtonPressed += PlaySoundEffect;
-        MainMenu.startButtonPressed += LerpMusic;
+        MainMenu.newGameTriggered += BeginGame;
     }
 
     private void OnDisable()
     {
+        // Unsubscribe from events
         MainMenu.startButtonPressed -= PlaySoundEffect;
-        MainMenu.startButtonPressed -= LerpMusic;
     }
-    void Update()
+    
+    public void BeginGame()
     {
-        
-    }
-
-    public void LerpMusic()
-    {
-        /*MainMusic.volume = Mathf.Lerp(1f, 0f, volumeLerp);
-        volumeLerp += 0.5f * Time.deltaTime;
-        if (MainMusic.volume == 0f)
-        {
-            LoadGame();
-        }*/
+        // Start asynchronous game loading transition
         StartCoroutine(LoadGame());
     }
 
     public void PlaySoundEffect()
     {
+        // Play UI click sound effect
         SoundEffect.Play();
     }
 
-    
+
 
     IEnumerator LoadGame()
     {
+
+        // Delay then move to the player's house scene
         yield return new WaitForSeconds(2);
         ContinuousData.instance.SceneChangeDetected("PlayerHouse", ContinuousData.instance.playerHouse_MorningSpawn);
     }
-    
+
 
 }

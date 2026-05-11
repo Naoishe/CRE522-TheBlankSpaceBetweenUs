@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-using Yarn;
 using Yarn.Unity;
 
 public class PlayerHouse : MonoBehaviour
@@ -17,16 +14,19 @@ public class PlayerHouse : MonoBehaviour
 
     public bool breakfastDone;
 
-
-
+    public YarnProject[] yarnProjects;
     public DialogueRunner dialogueRunner;
-    void Start()
+    void Awake()
     {
-        
+        // Initialize DialogueRunner and assign the relevant Yarn project
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        dialogueRunner.SetProject(yarnProjects[0]);
+
     }
 
     void OnEnable()
     {
+        // Setup scene-specific player placement based on time and subscribe to day changes
         if (ContinuousData.instance.CDtimeIndex <= 3)
         {
             MorningLoad();
@@ -35,14 +35,22 @@ public class PlayerHouse : MonoBehaviour
         {
             NightLoad();
         }
-        
+
+        TimeManager.OnDayChanged += MorningLoad;
+
+    }
+
+    private void OnDisable()
+    {
+        TimeManager.OnDayChanged -= MorningLoad;
     }
     void Update()
     {
 
+        // Monitor colliders to trigger scene transitions or local movement
         if (Physics2D.IsTouching(leavingCollider, playerCollider))
         {
-            ContinuousData.instance.SceneChangeDetected("Midday",ContinuousData.instance.campusGrounds_BridgeSpawn);
+            ContinuousData.instance.SceneChangeDetected("Midday", ContinuousData.instance.campusGrounds_BridgeSpawn);
             LeavingForClass();
         }
         if (Physics2D.IsTouching(toDownStairs, playerCollider))
@@ -58,23 +66,25 @@ public class PlayerHouse : MonoBehaviour
 
     void LeavingForClass()
     {
-        screenCover.SetActive(true); 
+        // Show screen cover and start the 'leaving for class' dialogue
+        screenCover.SetActive(true);
         dialogueRunner.StartDialogue("LeavingForClass");
     }
 
     void MorningLoad()
     {
+        // Position player for morning and start the appropriate morning sequence
         player.transform.position = new Vector3(-6.7f, -0.2f, 0f);
         TurnOffPlayer();
         breakfastDone = false;
-        if (ContinuousData.instance.CDdayIndex == 0 ) //
+        if (ContinuousData.instance.CDdayIndex == 0) //
         {
             ContinuousData.instance.newGame = false;
             StartCoroutine(Morning0());
         }
-         else
+        else
         {
-            Debug.Log("Other days not added");
+            StartCoroutine(MorningNorm());
         }
     }
 
@@ -84,37 +94,45 @@ public class PlayerHouse : MonoBehaviour
         dialogueRunner.StartDialogue("IntroDialogue");
         yield return new WaitForSeconds(10f);
         bed.SetTrigger("WakePlayer");
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(10f);
         TurnOnPlayer();
 
     }
 
-    void NightLoad() 
+    public IEnumerator MorningNorm()
     {
+        // Play the normal morning sequence for subsequent days
+        yield return new WaitForSeconds(2f);
+        dialogueRunner.StartDialogue("MorningNorm");
+        yield return new WaitForSeconds(10f);
+        bed.SetTrigger("WakePlayer");
+        yield return new WaitForSeconds(8f);
+        TurnOnPlayer();
+    }
+
+    void NightLoad()
+    {
+        // Position player for nighttime
         player.transform.position = new Vector3(-2.4f, -28.5f, 0f);
         breakfastDone = true;
-        if (ContinuousData.instance.CDdayIndex == 0 ) //
-        {
-            //StartCoroutine(Night0());
-        }
-        else
-        {
-            Debug.Log("Other days not added");
-        }
+
     }
 
     public void UpdateBreakfastStatus(bool boolState)
     {
+        // Update the breakfast completion flag
         breakfastDone = boolState;
     }
 
     private void TurnOffPlayer()
     {
+        // Make the player invisible via animator
         player.GetComponent<Animator>().SetBool("Invisible", true);
     }
 
     private void TurnOnPlayer()
     {
+        // Make the player visible via animator
         player.GetComponent<Animator>().SetBool("Invisible", false);
     }
 

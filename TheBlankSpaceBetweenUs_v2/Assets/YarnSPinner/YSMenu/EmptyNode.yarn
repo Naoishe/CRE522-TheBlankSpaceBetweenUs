@@ -1,0 +1,9 @@
+﻿title: InitialNode
+---
+<<decalre $FaustDiaImage = false>>
+<<decalre $NikoDiaImage = false>>
+<<decalre $SalemDiaImage = false>>
+<<declare $playerName = "player">>
+<<declare $playerClub = "NoClub">>
+<<declare $clubAttended = false>>
+===

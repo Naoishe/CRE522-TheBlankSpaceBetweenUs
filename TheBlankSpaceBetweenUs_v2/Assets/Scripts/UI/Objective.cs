@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-public class Objective 
+public class Objective
 {
     //Base Class for Objective objects 
 
@@ -27,15 +22,14 @@ public class Objective
         completed = false;
         notificationType = "Update";
         currentIndex = 0;
-        currentDescription = descriptions[currentIndex];
     }
 
-    public void UpdateNotificationType( string typeUpdate)
+    public void UpdateNotificationType(string typeUpdate)
     {
-       notificationType = typeUpdate;
+        notificationType = typeUpdate;
     }
 
-    public void UpdateNotificationType( bool completedUpdate)
+    public void UpdateNotificationType(bool completedUpdate)
     {
         completed = completedUpdate;
     }
@@ -44,6 +38,12 @@ public class Objective
     {
         currentIndex++;
         currentDescription = descriptions[currentIndex];
+        if (currentIndex >= segmentCount)
+        {
+            completed = true;
+            notificationType = "Completed";
+
+        }
     }
 
 }

@@ -3,7 +3,7 @@ using Yarn.Unity;
 
 public class InteractableObject : MonoBehaviour, Iinteractable
 {
-    public bool objectActive=false;
+    public bool objectActive = false;
     public float distance;
     public bool standardNotifications;
 
@@ -12,37 +12,43 @@ public class InteractableObject : MonoBehaviour, Iinteractable
 
     public void Awake()
     {
+        // Cache reference to the player GameObject on awake
         player = GameObject.Find("PlayerObj");
-        
+
     }
 
     public void OnEnable()
     {
+        // Subscribe to the global interaction event
         Player.OnInteractionEnabled += InteractionActivated;
     }
     public void OnDisable()
     {
+        // Unsubscribe from the global interaction event
         Player.OnInteractionEnabled -= InteractionActivated;
     }
-    public void InteractionActivated() 
+    public void InteractionActivated()
     {
+        // Check player distance and invoke interaction if in range
+        player = GameObject.Find("PlayerObj");
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         distance = Vector2.Distance(player.transform.position, this.transform.position);
-        if (distance<3f)
+        if (distance < 3f)
         {
-            Debug.Log("InteractionActivated_Object: " + this.name);
-            objectActive= true;
+            //Debug.Log("InteractionActivated_Object: " + this.name);
+            objectActive = true;
             Interaction();
         }
         else
         {
-            
-            objectActive = false; 
+
+            objectActive = false;
         }
     }
 
     public void Update()
     {
+        // Listen for the deactivation key and run per-frame extra updates
         if (Input.GetKeyDown(KeyCode.K)) ///deactivation button
         {
             if (objectActive)
@@ -50,17 +56,22 @@ public class InteractableObject : MonoBehaviour, Iinteractable
                 EndInteraction();
             }
         }
+
+        UpdateExtra();
     }
+
+    public virtual void UpdateExtra() { }
     public virtual void Interaction() { }
 
     public void EndInteraction()
     {
-        objectActive= false;
+        // End interaction and run object specific cleanup
+        objectActive = false;
         Debug.Log("Interaction ENDED. Object: " + this.name);
         EndSpecifics();
     }
 
     public virtual void EndSpecifics() { }
 
-    
+
 }

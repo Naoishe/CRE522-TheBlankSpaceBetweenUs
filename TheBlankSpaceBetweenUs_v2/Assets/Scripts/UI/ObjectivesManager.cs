@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
 using TMPro;
-using TMPro.EditorUtilities;
+using UnityEngine;
 
 public class ObjectivesManager : MonoBehaviour
 {
     public static ObjectivesManager instance;
-    
+
 
 
     //Hierarchy Vars
@@ -55,25 +53,20 @@ public class ObjectivesManager : MonoBehaviour
     Objective objective_1;
     Objective objective_2;
     Objective objective_3;
-    Objective objective_4;
-    Objective objective_5;
-    Objective objective_6;
-    Objective objective_7;
-    Objective objective_8;
-    Objective objective_9;
-    Objective objective_10;
-    Objective objective_11;
+
+    private bool disable1;
+    private bool disable2;
+    private bool disable3;
 
     private int i = 0;
 
 
     private void Awake()
     {
+        // Initialize singleton, UI state and base objectives
         instance = this;
         DontDestroyOnLoad(gameObject);
-        GenerateObjectives();
         ObjScrActive = false;
-
 
         objectiveUpdatedText.SetActive(false);
         objectiveFailedText.SetActive(false);
@@ -81,45 +74,101 @@ public class ObjectivesManager : MonoBehaviour
         objectiveUpdatedDesc.gameObject.SetActive(false);
         objectiveFailedDesc.gameObject.SetActive(false);
         objectiveCompletedDesc.gameObject.SetActive(false);
+
+        GenerateObjectiveZero();
+        GenerateObjectiveOne();
+        GenerateObjectiveTwo();
+        GenerateObjectiveTutorial();
+
+        disable1 = false;
+        disable2 = false;
+        disable3 = false;
+
     }
 
-    private void OnEnable()
-    { 
+    
 
-    }
-
-    private void OnDisable()
+    private void Start()
     {
-        
+        // Add the initial objective for the current day and show notification
+        if (ContinuousData.instance.CDdayIndex == 0)
+        {
+            activeObjectives.Add(objective_3);
+            AssignDisplayVariables(objective_3);
+            OutputNotification(objective_3);
+        }
+        else
+        {
+            activeObjectives.Add(objective_2);
+            AssignDisplayVariables(objective_2);
+            OutputNotification(objective_2);
+        }
+
+        objectiveUpdatedText.SetActive(false);
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-                PushUpdateNotification(objective_0);
+            PushUpdateNotification(objective_0);
         }
-        
+
+        /*if (disable1!)
+        {
+            if (objective_0.completed == true)
+            {
+                PushCompletedNotification(objective_1);
+            }
+        }
+        if (disable2!)
+        {
+            if (objective_1.completed)
+            {
+                PushCompletedNotification(objective_2);
+            }
+        }
+        if (disable3!)
+        {
+            if (objective_2.completed)
+            {
+                PushCompletedNotification(objective_0);
+            }
+        }*/
+
+
+
     }
 
     public void PushUpdateNotification(Objective objective)
     {
+        // Show an update notification for the given objective
         objectiveUpdatedText.SetActive(true);
         SetNotificationType(objective, new string("Update"));
+        SetObjectiveActive(objective);
+        OutputNotification(objective);
+    }
+    public void PushCompletedNotification(Objective objective)
+    {
+        // Show a completed notification for the given objective
+        objectiveCompletedText.SetActive(true);
+        SetNotificationType(objective, new string("Completed"));
         SetObjectiveActive(objective);
         OutputNotification(objective);
     }
 
     public void OutputNotification(Objective objective)
     {
+        // Play the notification animation and start its lifecycle coroutine
         notifImage.SetActive(true);
-        animator=notifImage.GetComponent<Animator>();
+        animator = notifImage.GetComponent<Animator>();
         animator.SetTrigger("Form");
         StartCoroutine(NotificationHold(objective));
     }
 
     public void SetObjectiveActive(Objective objective)
     {
+        // Add objective to active list and prepare display variables
         activeObjectives.Add(objective);
         AssignDisplayVariables(objective);
     }
@@ -141,15 +190,15 @@ public class ObjectivesManager : MonoBehaviour
             ObjectivesScreen.GetComponent<Animator>().SetTrigger("form");
             StartCoroutine(HeaderHold(true));
         }
-       
-        
+
+
 
 
     }
 
     public void PrintToScreen()
     {
-        for (int i = 0;  i < activeObjectives.Count; i++)
+        for (int i = 0; i < activeObjectives.Count; i++)
         {
             //
         }
@@ -158,6 +207,7 @@ public class ObjectivesManager : MonoBehaviour
 
     public void AssignDisplayVariables(Objective fetchedObjective)
     {
+        // Configure UI elements based on the objective's notification type
         notificationType = fetchedObjective.notificationType;
         //Decide which notification appearance type is used to show the objective with on screen [Update,Completed,Failed]
         if (notificationType == "Update")
@@ -200,6 +250,7 @@ public class ObjectivesManager : MonoBehaviour
 
     private IEnumerator NotificationHold(Objective objective)
     {
+        // Show notification text and hide it after a delay
         yield return new WaitForSeconds(0.25f);
         notifTitle.GetComponent<TextMeshProUGUI>().text = objective.objectiveTitle;
         displayedDescription.text = objective.currentDescription;
@@ -211,10 +262,12 @@ public class ObjectivesManager : MonoBehaviour
         objectiveUpdatedText.SetActive(false);
         objectiveFailedText.SetActive(false);
         objectiveCompletedText.SetActive(false);
+        displayedDescription.text = "";
     }
     private IEnumerator HeaderHold(bool state)
     {
-        if (state==true)
+        // Hold the objectives header visible briefly when opening/closing
+        if (state == true)
         {
             yield return new WaitForSeconds(0.25f);
             ObjectivesScreenTitles.SetActive(true);
@@ -244,11 +297,12 @@ public class ObjectivesManager : MonoBehaviour
         {
             Debug.Log("ERROR: No Matching Objective Found");
         }
-        
+
     }
     public void IncObjectiveIndex(Objective objective)
     {
         objective.UpdateCurrentIndex();
+
     }
 
 
@@ -262,18 +316,9 @@ public class ObjectivesManager : MonoBehaviour
     }
 
     //Objective Generation
-    public void GenerateObjectives()
+    public void GenerateObjectiveZero()
     {
-       
-        /*
-        objective_ = new Objective(new string(""), new string(""));
-        objective_.descriptions = new string[];
-        objective_.descriptions[0] = "";
-        objective_.descriptions[1] = "";
-        objective_.descriptions[2] = "";
-        objective_.segmentCount = ;
-        */
-        
+
         //Objective 0: Pull Up Your Boötes
         objective_0 = new Objective(new string("Pull Up Your Boötes"), new string("Start your assignment and complete your day."));
         objective_0.descriptions = new string[6];
@@ -286,14 +331,22 @@ public class ObjectivesManager : MonoBehaviour
         objective_0.segmentCount = 6;
         objective_0.currentDescription = objective_0.descriptions[objective_0.currentIndex];
 
+    }
+
+    public void GenerateObjectiveOne()
+    {
         //Objective 1: Come and Have a Go
         objective_1 = new Objective(new string("Come and Have a Go"), new string("Improve an Attribute through a University Club"));
         objective_1.descriptions = new string[3];
         objective_1.descriptions[0] = "Join a Club (Theatre, Gym, Debate)";
         objective_1.descriptions[1] = "Attend Club Practice";
-        objective_1.descriptions[2] = "View Attributes in 'Profile'";
-        objective_1.segmentCount = 3;
+        objective_1.segmentCount = 2;
         objective_1.currentDescription = objective_1.descriptions[objective_1.currentIndex];
+
+    }
+
+    public void GenerateObjectiveTwo()
+    {
 
         objective_2 = new Objective(new string("Doing the Rounds"), new string(""));
         objective_2.descriptions = new string[3];
@@ -301,71 +354,20 @@ public class ObjectivesManager : MonoBehaviour
         objective_2.descriptions[1] = "Collect Question Answers from Candidates (1/3)";
         objective_2.descriptions[2] = "Collect Question Answers from Candidates (2/3)";
         objective_2.segmentCount = 3;
+        objective_2.currentDescription = objective_2.descriptions[objective_2.currentIndex];
+    }
 
-        objective_3 = new Objective(new string("Sun Down"), new string("Complete your nightly routine!"));
-        objective_3.descriptions = new string[4];
-        objective_3.descriptions[0] = "Make Dinner";
-        objective_3.descriptions[1] = "Eat Dinner";
-        objective_3.descriptions[2] = "Work On Essay";
-        objective_3.descriptions[3] = "Go To Sleep";
-        objective_3.segmentCount = 4;
+    public void GenerateObjectiveTutorial()
+    {
 
-        objective_4 = new Objective(new string("Sun Down"), new string("Complete your nightly routine."));
-        objective_4.descriptions = new string[5];
-        objective_4.descriptions[0] = "Make Dinner";
-        objective_4.descriptions[1] = "Eat Dinner";
-        objective_4.descriptions[2] = "Work On Essay";
-        objective_4.descriptions[3] = "Lock The Window";
-        objective_4.descriptions[4] = "Go To Sleep";
-        objective_4.segmentCount = 5;
+        objective_3 = new Objective(new string("Tutorial"), new string("Complete your nightly routine!"));
+        objective_3.descriptions = new string[3];
+        objective_3.descriptions[0] = "Use WASD to walk around";
+        objective_3.descriptions[1] = "Press E to interact (kitchen)";
+        objective_3.descriptions[2] = "Note: Use your mouse to navigate any dialogue!";
+        objective_3.segmentCount = 3;
+        objective_3.currentDescription = objective_3.descriptions[objective_3.currentIndex];
 
-        objective_5 = new Objective(new string("Among the Stars"), new string("Get involved with club tournaments!"));
-        objective_5.descriptions = new string[6];
-        objective_5.descriptions[0] = "Enter a club tournament";
-        objective_5.descriptions[1] = "Win A Club Tournament";
-        objective_5.segmentCount = 2;
-
-        objective_6 = new Objective(new string("Have some Taste"), new string("Help Salem with the Cafe"));
-        objective_6.descriptions = new string[3];
-        objective_6.descriptions[0] = "Order Something from the Cafe";
-        objective_6.descriptions[1] = "Put Rubbish in the Bin";
-        objective_6.descriptions[2] = "Wipe Tables";
-        objective_6.segmentCount = 3;
-
-        objective_7 = new Objective(new string("Lightspeed"), new string(""));
-        objective_7.descriptions = new string[3];
-        objective_7.descriptions[0] = "Collect Question Answers from Candidates 0/3";
-        objective_7.descriptions[1] = "Collect Question Answers from Candidates 1/3";
-        objective_7.descriptions[2] = "Collect Question Answers from Candidates 2/3";
-        objective_7.segmentCount = 3;
-
-        objective_8 = new Objective(new string("Honey, I'm Home..."), new string(""));
-        objective_8.descriptions = new string[6];
-        objective_8.descriptions[0] = "What does the note say..?";
-        objective_8.descriptions[1] = "Check on the strange Sound";
-        objective_8.descriptions[2] = "Save Salem";
-        objective_8.segmentCount = 3;
-
-        objective_9 = new Objective(new string("Gone Girl"), new string(""));
-        objective_9.descriptions = new string[3];
-        objective_9.descriptions[0] = "Ask Around Camous about Salem";
-        objective_9.descriptions[1] = "Check the Cafe";
-        objective_9.descriptions[2] = "Locate Salem";
-        objective_9.segmentCount = 3;
-
-        objective_10 = new Objective(new string("Unturned"), new string(""));
-        objective_10.descriptions = new string[3];
-        objective_10.descriptions[0] = "Find a Way inside the lecture halls";
-        objective_10.descriptions[1] = "Locate the dean's office";
-        objective_10.descriptions[2] = "Find Information on Niko";
-        objective_10.segmentCount = 3;
-
-        objective_11 = new Objective(new string("Racing Hearts"), new string(""));
-        objective_11.descriptions = new string[3];
-        objective_11.descriptions[0] = "Meet Faust by the Fountain";
-        objective_11.descriptions[1] = "Attend the date";
-        objective_11.descriptions[2] = "Steal phone?";
-        objective_11.segmentCount = 3;
 
     }
 

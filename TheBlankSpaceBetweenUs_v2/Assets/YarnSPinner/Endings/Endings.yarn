@@ -1,0 +1,571 @@
+﻿title: NikoEventStart
+---
+<<declare $playerName = "">>
+<<gathervars>>
+Recalling what happened through the haze of your pounding head was
+a struggle. Like any other day, it started with your routine.
+
+Wake up, breakfast, ride the bus...
+
+You were heading to class when something sharp struck your head.
+
+You tried to reach back, but felt nothing. Your body was numb.
+
+A faint tingling spread beneath your skin.
+
+Panic struck as you realized you couldn’t see.
+
+Slowly, your senses returned. A fabric was tied over your eyes.
+
+Feeling returned to your body. You weren’t paralyzed, just bound.
+
+Plastic bit into your wrists as you struggled. Zip ties, likely.
+
+Panic rose into a choked sob. You were bound, bruised, terrified.
+
+You tried to scream, but your mouth was gagged with silk.
+
+<<set $NikoDiaImage = true>>
+Niko: "You asked me yesterday, 'Should one outweigh many?'"
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "Do you remember that?"
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "It got me thinking... you agreed with me."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "So I was foolish not to act on it."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "Why let this opportunity slip through my fingers?"
+<<set $NikoDiaImage = false>>
+
+Hands loosened the blindfold.
+
+<<set $NikoDiaImage = true>>
+Niko: "There. Isn't it good to see again?"
+<<set $NikoDiaImage = false>>
+
+You recognized the voice immediately.
+
+Niko.
+
+<<set $NikoDiaImage = true>>
+Niko: "Ah-ah. No noise."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "We wouldn't want anyone finding you."
+<<set $NikoDiaImage = false>>
+
+-> Muffled Scream
+    <<jump NEchoice1>>
+-> Headbutt him
+    <<incRelationship "Niko" 1>>
+    <<jump NEchoice2>>
+-> Accept
+    <<decRelationship "Niko" 1>>
+    <<jump NEchoice3>>
+===
+
+title: NEchoice1
+---
+You screamed into the gag, hoping it wasn’t as muffled as he claimed.
+
+<<jump NE2>>
+===
+
+title: NEchoice2
+---
+<<gathervars>>
+Your head slammed into his nose.
+
+Blood spilled instantly.
+
+<<set $NikoDiaImage = true>>
+Niko: "You fucking brat!"
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "All I want is for us to be together."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "Don't you want that?"
+<<set $NikoDiaImage = false>>
+
+You shook your head violently.
+
+<<jump NE2>>
+===
+
+title: NEchoice3
+---
+<<gathervars>>
+You lowered your head in acceptance.
+
+What was the point in fighting?
+
+You were tired.
+
+Exams. Essays. Everything.
+
+But you also hated losing control.
+
+<<jump NE2>>
+===
+
+title: NE2
+---
+<<gathervars>>
+Niko’s expression darkened.
+
+<<set $NikoDiaImage = true>>
+Niko: "It would be easier if you stopped resisting."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "This is your life now."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "My happiness matters more. You agreed!"
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "You agreed!"
+<<set $NikoDiaImage = false>>
+
+He struck a vase. It shattered.
+
+Glass scattered. Blood dripped from his hand.
+
+<<set $NikoDiaImage = true>>
+Niko: "Now look what you made me do."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "It's alright."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "I forgive you."
+<<set $NikoDiaImage = false>>
+
+He adjusted your shirt.
+
+<<set $NikoDiaImage = true>>
+Niko: "Always look your best for your love."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "It's okay. It's okay."
+<<set $NikoDiaImage = false>>
+
+His amber eyes locked onto yours.
+
+<<set $NikoDiaImage = true>>
+Niko: "We'll be together forever now."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "Won't we?"
+<<set $NikoDiaImage = false>>
+<<determineNikoEnd>>
+===
+
+title: CannibalismEnd
+---
+<<gathervars>>
+<<set $NikoDiaImage = true>>
+Niko: "Misery made me a wretch."
+<<set $NikoDiaImage = false>>
+
+He sliced into a peach.
+
+Juice ran down his fingers.
+
+He licked them clean.
+
+Fruits lay across the table.
+
+Apples. Pomegranates. Peaches.
+
+<<set $NikoDiaImage = true>>
+Niko: "Misery made me a wretch."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "But I won't let it consume me."
+<<set $NikoDiaImage = false>>
+
+He tore a pomegranate apart.
+
+Seeds scattered like blood.
+
+<<set $NikoDiaImage = true>>
+Niko: "I admired Frankenstein once."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "But he abandoned his creation."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "I will not abandon you."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "You'll always be a part of me."
+<<set $NikoDiaImage = false>>
+<<gameFinished>>
+===
+
+title: StockholmSyndromeEndPart
+---
+<<gathervars>>
+You: "You're more myself than I."
+
+<<set $NikoDiaImage = true>>
+Niko: "You know Wuthering Heights well."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "But that's not quite right."
+<<set $NikoDiaImage = false>>
+
+You: "I know."
+
+You: "I'm speaking of us."
+
+You: "Our souls are intertwined."
+
+You reached for him.
+
+His hair was soft beneath your fingers.
+
+You: "I want to stay with you."
+
+You: "If you'll have me?"
+
+<<set $NikoDiaImage = true>>
+Niko: "I'll have only you."
+<<set $NikoDiaImage = false>>
+
+He embraced you.
+
+<<set $NikoDiaImage = true>>
+Niko: "We will be together now."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "You'll always be a part of me."
+<<set $NikoDiaImage = false>>
+
+<<set $NikoDiaImage = true>>
+Niko: "My soul."
+<<set $NikoDiaImage = false>>
+<<gameFinished>>
+===
+
+title: Graduation
+---
+
+<<gathervars>>
+After everything this year, you did it. You scraped your grade
+together enough to graduate!
+
+As others threw their hats in the air, you held onto yours,
+preferring something solid. A reminder that even when things
+were rough, you still made it.
+
+<<gameFinished>>
+===
+
+title: GraduationWithFaust
+---
+<<gathervars>>
+After everything this year, you did it. You scraped your grade
+together enough to graduate!
+
+As others threw their hats in the air, you held onto yours,
+preferring something solid. A reminder that even when things
+were rough, you still made it.
+<<moodSwitch>>
+<<jump GoodFaust>>
+===
+
+title: GoodNiko
+---
+<<gathervars>>
+Birds tweet softly as a summer breeze moves the trees outside.
+Swallows loop across the blue sky beyond the locked window.
+<<set $NikoDiaImage = true>>
+Niko: "Are you admiring the birds, my dove?" He approaches
+quietly.
+
+Niko: "You look breathtaking,"
+
+You are dressed carefully, styled exactly how he likes. To him,
+you are delicate. Precious.
+
+His dove. His dove in a gilded cage.
+
+Niko: "Don't you like it?" He gestures to the table.
+
+Croissants, pain au chocolat, and pastries cover it.
+
+Niko: "I wanted you to feel like you were in Paris, dining
+beside La Seine."
+
+Niko: "Because, ma chérie, you deserve the best,"
+
+He lifts your hand, kissing each knuckle slowly. A quiet
+reminder of who you belong to.
+
+He listens to distant church bells.
+
+Niko: "Isn't today your graduation?" He tilts his head.
+
+You: "It was. I forgot about it,"
+
+He smiles brightly.
+
+Niko: "An éclair?" He offers it gently.
+
+You: "Could we go for a walk today?" You miss the outside air.
+
+He sets the éclair down, displeased.
+
+Niko: "I can open the window. It might feel like a walk by a
+river."
+
+Niko: "You know why you can't go out,"
+
+He stands, kissing your forehead.
+
+Niko: "It's alright. We all make mistakes,"
+
+He cracks the window open slightly, the key resting around his
+neck.
+
+Niko: "It's a beautiful day,"
+
+You smile. You agree. It is a beautiful day.
+<<set $NikoDiaImage = false>>
+
+And maybe this isn't so bad. What more could you need?...
+<<gameFinished>>
+===
+
+title: GoodFaust
+---
+<<gathervars>>
+You stop by the cafe for one last campus coffee when Faust
+approaches you.
+<<set $FaustDiaImage = true>>
+Faust: "Those answers I gave you? Most of them were lies."
+
+You stare at him as he looks away, shifting.
+
+Faust: "I cared too much about how I looked. Even answering
+your questions felt...wrong."
+
+He hesitates.
+
+Faust: "I didn't want to seem weak. So I lied."
+<<set $FaustDiaImage = false>>
+Silence lingers between you, and you had nothing more to say...
+<<gameFinished>>
+===
+
+title: SalemEndingStart
+---
+<<gathervars>>
+A dreadful feeling consumed you.
+
+The need to find Salem gnawed at your mind.
+
+Mumbling to yourself, you made a split decision to visit her.
+
+On your way to her dorm, something flickered in your vision.
+
+It looked distorted. Glitching.
+
+You turned quickly, but everything looked normal again.
+
+Your heart pounded.
+
+The feeling of being watched crawled over your skin.
+
+Salem: "Find me,"
+
+Your thoughts dulled.
+
+Your body moved on its own, drawn forward.
+
+Panic vanished, replaced by a single purpose.
+
+Find her.
+<<jump AtTheRift>>
+===
+
+title: AtTheRift
+---
+<<gathervars>>
+The scene before you was unlike anything you'd seen.
+
+A dark space stretched endlessly.
+
+A rocky hill led up to a dim blue light.
+
+Whispers filled your ears, speaking truths you couldn't grasp.
+
+Your mind blocked them out.
+
+Something pushed you forward.
+
+And so, you walked.
+
+'Why am I walking?' you thought.
+
+It didn't matter.
+
+Your autonomy felt stripped away.
+
+Your thoughts weren't your own.
+
+Your body wasn't your own.
+
+You climbed the hill, stones crunching beneath your feet.
+
+At the top stood an archway.
+
+A gate, glowing with an unnatural blue.
+
+Dust swirled around it, shimmering in the air.
+
+It felt wrong. Like it didn't belong.
+
+It towered over you, large enough to swallow you whole.
+
+The whispers urged you closer.
+
+Then—
+
+You saw her.
+<<set $SalemDiaImage = true>>
+
+Your trance shattered.
+
+The whispers vanished.
+
+You gasped.
+
+She was here.
+
+You rushed forward, stumbling over rocks.
+
+Your footsteps echoed.
+
+She turned.
+
+Salem: "{$playerName}..."
+Salem: "You came!"
+
+Her voice echoed through the space.
+
+Her pupils were blown wide.
+
+She swayed, an unnatural smile stretching across her face.
+
+You slowed, unease settling deep in your chest.
+
+Something wasn't right.
+
+Salem: "You came... I'm so happy..."
+Salem: "You were the only one who cared..."
+Salem: "Thank you... I'm so happy you're here..."
+
+She drifted toward you like a ghost.
+
+You: "Salem..."
+You: "What are you doing here?"
+
+Salem: "Silly {$playerName}..."
+Salem: "I'm about to witness a new dream,"
+
+She sighed happily, eyes closing.
+
+Salem: "All my sadness will disappear there,"
+
+Her eyes snapped open.
+
+Salem: "It will be beautiful...!"
+Salem: "A new slate... a fresh start..."
+Salem: "Hehehe... HEHEHEHE..."
+
+She grabbed your arms tightly.
+
+It hurt.
+
+Salem: "I'm so tired of this dream..."
+Salem: "So much hate... so much sadness..."
+Salem: "I want a happy dream..."
+
+She paused.
+
+Salem: "You're happy for me... right?"
+
+You frowned.
+
+You: "Don't do it."
+
+She stared at you blankly.
+
+Salem: "What...?"
+
+You: "You want a new dream?"
+You: "Won't you miss your friends? Your family?"
+You: "Your new world won't have them. Or me."
+
+You softened your tone.
+
+You: "Life is harsh, but that's what makes it matter."
+You: "The sun... food... laughter..."
+
+Salem stood still.
+
+Then she sniffled.
+
+Tears fell.
+
+Salem: "I'm so tired..."
+Salem: "Why is everything so cruel?"
+Salem: "Why do people hate...?"
+
+She sobbed.
+
+You pulled her into a hug.
+
+Salem: "I don't want to feel anymore..."
+
+You: "I know."
+
+You held her as she cried.
+
+You: "Come on... let's leave."
+
+She looked up, then nodded weakly.
+
+Together, you walked away.
+<<set $SalemDiaImage = false>>
+
+One last glance at the gate silenced the whispers for good.
+<<gameFinished>>
+===

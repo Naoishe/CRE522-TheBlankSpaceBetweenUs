@@ -3,14 +3,5 @@ using UnityEngine;
 public class SundialUI : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Start/Update not required for this UI component; methods removed
 }

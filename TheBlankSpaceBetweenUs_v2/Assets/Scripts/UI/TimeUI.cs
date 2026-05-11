@@ -1,22 +1,18 @@
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Timers;
 using TMPro;
+using UnityEngine;
 
 public class TimeUI : MonoBehaviour
 {
-    
+
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI dayText;
-    public Animator sundialAnimator;
     public TimeManager timeManager;
     private int timeIndex;
 
     private void OnEnable()
     {
         TimeManager.OnTimeFrameChanged += UpdateTime;
+        timeManager = TimeManager.instance;
     }
     private void OnDisable()
     {
@@ -40,8 +36,8 @@ public class TimeUI : MonoBehaviour
     }
 
 
-    
- 
+
+
 
 }
 

@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectBed : InteractableObject
 {
+    public Action PlayerSlept;
     private bool nightTime;
     public Animator playeranim;
 
@@ -26,7 +27,16 @@ public class ObjectBed : InteractableObject
     {
         //dialogueRunner.StartDialogue("");
         playeranim.SetTrigger("Invisible");
+
         this.GetComponent<Animator>().SetTrigger("PlayerSleep");
+        if (ContinuousData.instance.CDtimeIndex > 3)
+        {
+            TimeManager.instance.ResetTimeForNewDay();
+        }
+        else
+        {
+            EndSpecifics();
+        }
     }
 
     public override void EndSpecifics()
