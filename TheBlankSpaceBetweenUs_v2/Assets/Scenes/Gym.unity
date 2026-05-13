@@ -415,7 +415,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185560000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e417b35746836774588d542882fff838, type: 3}
+  m_Script: {fileID: 11500000, guid: 7513ca726470c9346ad6cc90bfcd366e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activeRoundSpotlight: {fileID: 0}
@@ -439,7 +439,8 @@ MonoBehaviour:
   fighterSlider: {fileID: 0}
   playerSlider: {fileID: 0}
   dialogueRunner: {fileID: 0}
-  yarnProjects: []
+  yarnProjects:
+  - {fileID: 7545569452688597077, guid: 39d6a390b8db63d41993cac6c6d19c19, type: 3}
 --- !u!1 &1344825583
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,22 @@ public class Gym : MonoBehaviour
     {
         // Initialize the dialogue runner and player references
         dialogueRunner = FindObjectOfType<DialogueRunner>();
+        if (dialogueRunner == null || !dialogueRunner)
+        {
+            Debug.LogError("Gym: No DialogueRunner found in scene.", this);
+            return;
+        }
+        if (yarnProjects == null || yarnProjects.Length == 0 || yarnProjects[0] == null)
+        {
+            Debug.LogError("Gym: Assign Gym0 YarnProject on Gym scene manager.", this);
+            return;
+        }
+        if (dialogueRunner.IsDialogueRunning)
+            dialogueRunner.Stop();
         dialogueRunner.SetProject(yarnProjects[0]);
         playerObj = GameObject.Find("PlayerObj");
+        if (FaustDiaImage == null)
+            FaustDiaImage = GameObject.Find("FaustDiaImage");
         allowExit = false;
     }
 
@@ -90,7 +104,10 @@ public class Gym : MonoBehaviour
     public void FixedUpdate()
     {
         // Update Faust dialogue image visibility each fixed update
-        FaustDiaImage.SetActive(ContinuousData.instance.FaustDiaImageState);
+        if (FaustDiaImage == null)
+            FaustDiaImage = GameObject.Find("FaustDiaImage");
+        if (FaustDiaImage != null && ContinuousData.instance != null)
+            FaustDiaImage.SetActive(ContinuousData.instance.FaustDiaImageState);
     }
 
     public void AllowExit()
