@@ -18,15 +18,21 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        // Initialize singleton instance and persist across scenes
+        // Keep a single persistent TimeManager (scenes often add another on UI prefabs).
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
+
     void Start()
     {
-        // Ensure the time UI is visible on start
+        if (TimeGUI == null)
+            TimeGUI = gameObject;
         TimeGUI.SetActive(true);
-
     }
 
     private void OnEnable()

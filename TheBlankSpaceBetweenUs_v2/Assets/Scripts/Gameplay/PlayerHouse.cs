@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 
+[DefaultExecutionOrder(10)]
 public class PlayerHouse : MonoBehaviour
 {
     public Collider2D playerCollider;
@@ -16,18 +17,71 @@ public class PlayerHouse : MonoBehaviour
 
     public YarnProject[] yarnProjects;
     public DialogueRunner dialogueRunner;
+
+    private bool _yarnProjectApplied;
+
+    private void ConfigureYarnForHouse()
+    {
+        ContinuousData.EnsureDialogueRunnerExistsInScene();
+        DialogueRunner resolved = null;
+        if (ContinuousData.instance != null)
+        {
+            ContinuousData.instance.RegisterYarnCommandHandlersIfNeeded();
+            resolved = ContinuousData.instance.diaRunner;
+        }
+        if (resolved == null || !resolved)
+            resolved = ContinuousData.FindPreferredDialogueRunner();
+
+        // OnSceneLoadedRefreshYarn may destroy a scene-level duplicate kit; our cached runner then dies while the flag stays true.
+        if (_yarnProjectApplied && (dialogueRunner == null || !dialogueRunner || dialogueRunner != resolved))
+            _yarnProjectApplied = false;
+
+        if (_yarnProjectApplied)
+            return;
+
+        if (resolved == null || !resolved)
+        {
+            Debug.LogError("PlayerHouse: DialogueRunner is still missing after EnsureDialogueRunnerExistsInScene. Assign dialogueRunner in Inspector or install Yarn Spinner.", this);
+            return;
+        }
+
+        dialogueRunner = resolved;
+
+        if (yarnProjects == null || yarnProjects.Length == 0 || yarnProjects[0] == null)
+        {
+            Debug.LogError("PlayerHouse: yarnProjects must have at least one YarnProject assigned in the Inspector.", this);
+            return;
+        }
+
+        dialogueRunner.SetProject(yarnProjects[0]);
+        _yarnProjectApplied = true;
+    }
+
     void Awake()
     {
-        // Initialize DialogueRunner and assign the relevant Yarn project
-        dialogueRunner = FindObjectOfType<DialogueRunner>();
-        dialogueRunner.SetProject(yarnProjects[0]);
+        // Before OnEnable so morning dialogue coroutines always see a configured runner when possible.
+        ConfigureYarnForHouse();
+    }
 
+    void Start()
+    {
+        // Retry after all Awakes (e.g. if DialogueRunner was created very late in the frame).
+        ConfigureYarnForHouse();
+        if (!_yarnProjectApplied)
+            StartCoroutine(ConfigureYarnAfterDataInit());
+    }
+
+    private IEnumerator ConfigureYarnAfterDataInit()
+    {
+        yield return null;
+        ConfigureYarnForHouse();
     }
 
     void OnEnable()
     {
         // Setup scene-specific player placement based on time and subscribe to day changes
-        if (ContinuousData.instance.CDtimeIndex <= 3)
+        int timeIndex = ContinuousData.instance != null ? ContinuousData.instance.CDtimeIndex : 0;
+        if (timeIndex <= 3)
         {
             MorningLoad();
         }
@@ -50,7 +104,8 @@ public class PlayerHouse : MonoBehaviour
         // Monitor colliders to trigger scene transitions or local movement
         if (Physics2D.IsTouching(leavingCollider, playerCollider))
         {
-            ContinuousData.instance.SceneChangeDetected("Midday", ContinuousData.instance.campusGrounds_BridgeSpawn);
+            if (ContinuousData.instance != null)
+                ContinuousData.instance.SceneChangeDetected("Midday", ContinuousData.instance.campusGrounds_BridgeSpawn);
             LeavingForClass();
         }
         if (Physics2D.IsTouching(toDownStairs, playerCollider))
@@ -66,6 +121,12 @@ public class PlayerHouse : MonoBehaviour
 
     void LeavingForClass()
     {
+        ConfigureYarnForHouse();
+        if (dialogueRunner == null || !_yarnProjectApplied)
+        {
+            Debug.LogError("PlayerHouse: Cannot start LeavingForClass — DialogueRunner or Yarn project not configured.", this);
+            return;
+        }
         // Show screen cover and start the 'leaving for class' dialogue
         screenCover.SetActive(true);
         dialogueRunner.StartDialogue("LeavingForClass");
@@ -77,9 +138,10 @@ public class PlayerHouse : MonoBehaviour
         player.transform.position = new Vector3(-6.7f, -0.2f, 0f);
         TurnOffPlayer();
         breakfastDone = false;
-        if (ContinuousData.instance.CDdayIndex == 0) //
+        if (ContinuousData.instance == null || ContinuousData.instance.CDdayIndex == 0) //
         {
-            ContinuousData.instance.newGame = false;
+            if (ContinuousData.instance != null)
+                ContinuousData.instance.newGame = false;
             StartCoroutine(Morning0());
         }
         else
@@ -91,6 +153,9 @@ public class PlayerHouse : MonoBehaviour
     public IEnumerator Morning0()
     {
         yield return new WaitForSeconds(2f);
+        ConfigureYarnForHouse();
+        if (dialogueRunner == null || !_yarnProjectApplied)
+            yield break;
         dialogueRunner.StartDialogue("IntroDialogue");
         yield return new WaitForSeconds(10f);
         bed.SetTrigger("WakePlayer");
@@ -103,6 +168,9 @@ public class PlayerHouse : MonoBehaviour
     {
         // Play the normal morning sequence for subsequent days
         yield return new WaitForSeconds(2f);
+        ConfigureYarnForHouse();
+        if (dialogueRunner == null || !_yarnProjectApplied)
+            yield break;
         dialogueRunner.StartDialogue("MorningNorm");
         yield return new WaitForSeconds(10f);
         bed.SetTrigger("WakePlayer");

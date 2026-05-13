@@ -9786,7 +9786,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.10214925, y: -0.18970537}
@@ -9986,6 +9986,9 @@ MonoBehaviour:
   toCampus: {fileID: 1493508650}
   playerCollider: {fileID: 1159604400957691888}
   playerObj: {fileID: 317115939}
+  yarnProjects:
+  - {fileID: 7545569452688597077, guid: a594b28bc5d60ad42978d095f3e03e80, type: 3}
+  dialogueRunner: {fileID: 0}
 --- !u!114 &1602744261
 MonoBehaviour:
   m_ObjectHideFlags: 0

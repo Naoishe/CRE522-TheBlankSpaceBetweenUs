@@ -1,15 +1,15 @@
-﻿title: EnterTheatre
+title: EnterTheatre
 ---
 What would you like to do?
 
-<<if $playerClub == "Theatre">>>
+<<if $playerClub == "Theatre">>
     -> Attend Theatre Rehearsal
         <<startPractice "Theatre">>
     -> Exit
 <<else>>
     -> Join Theatre Club
 
-        <<if $playerClub == "Wrestling">>>
+        <<if $playerClub == "Wrestling">>
             You are already in the Wrestling club.
             Would you like to quit it to join the Theatre club?
 
@@ -67,7 +67,7 @@ title: EnterGym
 ---
 What would you like to do?
 
-<<if $playerClub == "Wrestling">>>
+<<if $playerClub == "Wrestling">>
     -> Attend Wrestling Practice
         <<startPractice "Wrestling">>
 
@@ -75,7 +75,7 @@ What would you like to do?
 
 <<else>>
     -> Join Wrestling Club
-        <<if $playerClub == "Theatre">>>
+        <<if $playerClub == "Theatre">>
             You are already in the Theatre club.
             Would you like to quit it to join the Wrestling club?
 
@@ -93,7 +93,7 @@ What would you like to do?
                 <<endif>>
             -> No
 
-        <<elseif $playerClub == "Debate">>>
+        <<elseif $playerClub == "Debate">>
             You are already in the Debate club.
             Would you like to quit it to join the Wrestling club?
 
@@ -134,18 +134,23 @@ title: EnterLibrary
 ---
 What would you like to do?
 
-<<if $playerClub == "Debate">>>
-    -> Attend Debate Practice
-        <<startPractice "Debate">>
+<<if true>>
     -> Enter University Library
         <<loadScene "Library">>
+    -> Not now
+        <<closeDialogue>>
+<<endif>>
+
+<<if $playerClub == "Debate">>
+    -> Attend Debate Practice
+        <<startPractice "Debate">>
     -> Exit
         <<closeDialogue>>
 
 <<else>>
     -> Join Debate Club
 
-        <<if $playerClub == "Theatre">>>
+        <<if $playerClub == "Theatre">>
             You are already in the Theatre club.
             Would you like to quit it to join the Debate club?
             -> Yes
@@ -163,7 +168,7 @@ What would you like to do?
             -> No
                 <<closeDialogue>>
 
-        <<elseif $playerClub == "Wrestling">>>
+        <<elseif $playerClub == "Wrestling">>
             You are already in the Wrestling club.
             Would you like to quit it to join the Debate club?
 
@@ -198,10 +203,6 @@ What would you like to do?
             <<endif>>
 
         <<endif>>
-    -> Enter University Library
-        <<loadScene "Library">>
-    -> Exit
-        <<closeDialogue>>
 
 <<endif>>
 ===
@@ -213,6 +214,17 @@ What would you like to do?
 -> Enter Cafe
     <<loadScene "Cafe">>
 -> Exit
+    <<closeDialogue>>
+
+===
+
+title: EnterPlayerHouse
+---
+Head back to the dorms?
+
+-> Yes
+    <<loadScene "PlayerHouse">>
+-> No
     <<closeDialogue>>
 
 ===

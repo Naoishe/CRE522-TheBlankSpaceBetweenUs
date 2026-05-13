@@ -1,5 +1,7 @@
 ﻿title: Niko0
 ---
+<<declare $playerName = "">>
+<<declare $NikoDiaImage = false>>
 
 <<gatherVars>>
 
