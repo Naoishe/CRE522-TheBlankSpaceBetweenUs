@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 public class Gym : MonoBehaviour
@@ -8,23 +9,13 @@ public class Gym : MonoBehaviour
     public bool allowExit;
     public GameObject playerObj;
     public GameObject FaustDiaImage;
+    private bool _dialogueStartScheduled;
+    private bool _dialogueStarted;
+    private int _runnerCommandsRegisteredFor = int.MinValue;
+
     public void Awake()
     {
-        // Initialize the dialogue runner and player references
-        dialogueRunner = FindObjectOfType<DialogueRunner>();
-        if (dialogueRunner == null || !dialogueRunner)
-        {
-            Debug.LogError("Gym: No DialogueRunner found in scene.", this);
-            return;
-        }
-        if (yarnProjects == null || yarnProjects.Length == 0 || yarnProjects[0] == null)
-        {
-            Debug.LogError("Gym: Assign Gym0 YarnProject on Gym scene manager.", this);
-            return;
-        }
-        if (dialogueRunner.IsDialogueRunning)
-            dialogueRunner.Stop();
-        dialogueRunner.SetProject(yarnProjects[0]);
+        // Initialize scene refs; dialogue setup runs after scene refresh to avoid runner teardown races.
         playerObj = GameObject.Find("PlayerObj");
         if (FaustDiaImage == null)
             FaustDiaImage = GameObject.Find("FaustDiaImage");
@@ -34,71 +25,166 @@ public class Gym : MonoBehaviour
     private void OnEnable()
     {
         Player.OnExitButton += HandleExitButton;
+        ContinuousData.AfterYarnSceneRefresh += OnAfterYarnSceneRefresh;
     }
 
     private void OnDisable()
     {
         Player.OnExitButton -= HandleExitButton;
+        ContinuousData.AfterYarnSceneRefresh -= OnAfterYarnSceneRefresh;
     }
 
     private void HandleExitButton()
     {
         // Handle player exit input and route scene change appropriately
+        var cd = ContinuousData.instance;
+        if (cd == null)
+            return;
         if (allowExit)
         {
-            if (ContinuousData.instance.CDtimeIndex < 3)
+            if (cd.CDtimeIndex < 3)
             {
-                ContinuousData.instance.SceneChangeDetected("CampusGrounds", new Vector3(-19.8f, 65f, 0f));
+                cd.SceneChangeDetected("CampusGrounds", new Vector3(-19.8f, 65f, 0f));
             }
             else
             {
-                ContinuousData.instance.UpdateNextScene("CampusGrounds");
-                ContinuousData.instance.SceneLoad(new Vector3(-19.8f, 65f, 0f));
+                cd.UpdateNextScene("CampusGrounds");
+                cd.SceneLoad(new Vector3(-19.8f, 65f, 0f));
             }
         }
     }
 
     void Start()
     {
-        // Register command handlers and start appropriate Faust dialogues
-        dialogueRunner.AddCommandHandler("allowExit", AllowExit);
-        dialogueRunner.AddCommandHandler("startEventGame", StartEventGame);
-        if (ContinuousData.instance.CDdayIndex == 0)
+        ScheduleDialogueStartIfNeeded();
+    }
+
+    private void OnAfterYarnSceneRefresh(Scene scene)
+    {
+        if (!isActiveAndEnabled)
+            return;
+        if (!string.Equals(scene.name, "Gym", System.StringComparison.Ordinal))
+            return;
+        ScheduleDialogueStartIfNeeded();
+    }
+
+    private void ScheduleDialogueStartIfNeeded()
+    {
+        if (_dialogueStarted || _dialogueStartScheduled)
+            return;
+        _dialogueStartScheduled = true;
+        StartCoroutine(StartGymDialogueWhenReady());
+    }
+
+    private System.Collections.IEnumerator StartGymDialogueWhenReady()
+    {
+        for (int attempt = 0; attempt < 10; attempt++)
         {
-            dialogueRunner.StartDialogue("Faust0");
-        }
-        if (ContinuousData.instance.CDdayIndex == 1)
-        {
-            dialogueRunner.StartDialogue("Faust1");
-        }
-        if (ContinuousData.instance.CDdayIndex == 2)
-        {
-            if (ContinuousData.instance.FaustRP > 0 && ContinuousData.instance.playerClub == "Wrestling")
+            var dr = ResolveDialogueRunner();
+            if (dr == null || !dr)
             {
-                dialogueRunner.StartDialogue("Faust2Positive");
+                yield return null;
+                continue;
             }
 
-            else
+            if (!BindGymProject(dr))
             {
-                dialogueRunner.StartDialogue("Faust2Negative");
+                yield return null;
+                continue;
+            }
+
+            RegisterGymCommandsIfNeeded(dr);
+
+            string startNode = GetGymStartNode();
+            if (string.IsNullOrEmpty(startNode))
+            {
+                _dialogueStartScheduled = false;
+                yield break;
+            }
+
+            _dialogueStarted = true;
+            dr.StartDialogue(startNode);
+            yield break;
+        }
+
+        _dialogueStartScheduled = false;
+        Debug.LogWarning("Gym: Failed to start dialogue after retries.", this);
+    }
+
+    private DialogueRunner ResolveDialogueRunner()
+    {
+        ContinuousData.EnsureDialogueRunnerExistsInScene();
+        var cd = ContinuousData.instance;
+        if (cd != null)
+        {
+            cd.EnsureDialogueRunnerAndStorage();
+            cd.RegisterYarnCommandHandlersIfNeeded();
+            if (cd.diaRunner != null && cd.diaRunner)
+            {
+                dialogueRunner = cd.diaRunner;
+                return dialogueRunner;
             }
         }
-        if (ContinuousData.instance.CDdayIndex == 3)
+
+        dialogueRunner = ContinuousData.FindPreferredDialogueRunner();
+        if (dialogueRunner == null || !dialogueRunner)
+            dialogueRunner = FindObjectOfType<DialogueRunner>(true);
+        return dialogueRunner;
+    }
+
+    private bool BindGymProject(DialogueRunner dr)
+    {
+        if (yarnProjects == null || yarnProjects.Length == 0 || yarnProjects[0] == null)
         {
-            dialogueRunner.StartDialogue("Faust3");
+            Debug.LogError("Gym: Assign Gym0 YarnProject on Gym scene manager.", this);
+            return false;
         }
-        if (ContinuousData.instance.CDdayIndex == 4 && ContinuousData.instance.EndingIndex < 6)
+
+        if (dr.YarnProject == yarnProjects[0])
+            return true;
+
+        if (dr.IsDialogueRunning)
         {
-            DetermineFaustEnd();
+            dr.Stop();
+            return false;
         }
-        else if (ContinuousData.instance.CDdayIndex == 4 && ContinuousData.instance.EndingIndex == 7)
+
+        dr.SetProject(yarnProjects[0]);
+        return true;
+    }
+
+    private void RegisterGymCommandsIfNeeded(DialogueRunner dr)
+    {
+        if (dr == null || !dr)
+            return;
+        int runnerId = dr.GetInstanceID();
+        if (_runnerCommandsRegisteredFor == runnerId)
+            return;
+        dr.AddCommandHandler("allowExit", AllowExit);
+        dr.AddCommandHandler("startEventGame", StartEventGame);
+        _runnerCommandsRegisteredFor = runnerId;
+    }
+
+    private string GetGymStartNode()
+    {
+        var cd = ContinuousData.instance;
+        if (cd == null)
+            return null;
+
+        if (cd.CDdayIndex == 0) return "Faust0";
+        if (cd.CDdayIndex == 1) return "Faust1";
+        if (cd.CDdayIndex == 2)
         {
-            dialogueRunner.StartDialogue("PlayerWinsEvent");
+            if (cd.FaustRP > 0 && cd.playerClub == "Wrestling")
+                return "Faust2Positive";
+            return "Faust2Negative";
         }
-        else if (ContinuousData.instance.CDdayIndex == 4 && ContinuousData.instance.EndingIndex == 8)
-        {
-            dialogueRunner.StartDialogue("PlayerLosesEvent");
-        }
+        if (cd.CDdayIndex == 3) return "Faust3";
+        if (cd.CDdayIndex == 4 && cd.EndingIndex < 6 && cd.playerClub == "Wrestling")
+            return "FaustEventStart";
+        if (cd.CDdayIndex == 4 && cd.EndingIndex == 7) return "PlayerWinsEvent";
+        if (cd.CDdayIndex == 4 && cd.EndingIndex == 8) return "PlayerLosesEvent";
+        return null;
     }
 
     public void FixedUpdate()
@@ -113,7 +199,8 @@ public class Gym : MonoBehaviour
     public void AllowExit()
     {
         // Stop any running dialogue and allow the player to exit
-        dialogueRunner.Stop();
+        if (dialogueRunner != null && dialogueRunner)
+            dialogueRunner.Stop();
         allowExit = true;
 
     }
@@ -148,7 +235,8 @@ public class Gym : MonoBehaviour
 
     public void StartEventGame()
     {
-        ContinuousData.instance.LoadScene("Wrestling");
+        if (ContinuousData.instance != null)
+            ContinuousData.instance.LoadScene("Wrestling");
     }
 
 
