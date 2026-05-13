@@ -33,6 +33,14 @@ public class CampusGrounds : MonoBehaviour
 
     // Previous-frame overlap so we only fire once per approach (FixedUpdate was restarting dialogue every frame).
     private bool _wasTouchingLibrary;
+    private bool _libraryEdgeInitialized;
+    private bool _hasExplicitLibraryDoorTrigger;
+    private bool _wasTouchingGymDirect;
+    private bool _gymEdgeInitialized;
+    private bool _hasExplicitGymDoorTrigger;
+    private bool _wasTouchingCafeDirect;
+    private bool _cafeEdgeInitialized;
+    private bool _hasExplicitCafeDoorTrigger;
     private bool _wasTouchingHome;
     private bool _wasTouchingTheatre;
     private bool _wasTouchingCafe;
@@ -98,6 +106,19 @@ public class CampusGrounds : MonoBehaviour
     private void Awake()
     {
         ResolveLibraryBuildingCollider();
+        var doorTriggers = FindObjectsOfType<CampusSceneDoorTrigger2D>(true);
+        foreach (var trigger in doorTriggers)
+        {
+            if (trigger == null)
+                continue;
+            string scene = trigger.sceneName;
+            if (string.Equals(scene, "Library", System.StringComparison.OrdinalIgnoreCase))
+                _hasExplicitLibraryDoorTrigger = true;
+            else if (string.Equals(scene, "Gym", System.StringComparison.OrdinalIgnoreCase))
+                _hasExplicitGymDoorTrigger = true;
+            else if (string.Equals(scene, "Cafe", System.StringComparison.OrdinalIgnoreCase))
+                _hasExplicitCafeDoorTrigger = true;
+        }
         ConfigureCampusYarn();
         homeLabel = GameObject.Find("HomeLabel");
         libraryLabel = GameObject.Find("LibraryLabel");
@@ -180,10 +201,10 @@ public class CampusGrounds : MonoBehaviour
             return;
 
         TryLoadLibraryEdge();
+        TryLoadGymEdge();
+        TryLoadCafeEdge();
         TryDoorEdge(toHome, ref _wasTouchingHome, "EnterPlayerHouse", playNotification: false);
         TryDoorEdge(toTheatre, ref _wasTouchingTheatre, "EnterTheatre", playNotification: true);
-        TryDoorEdge(toCafe, ref _wasTouchingCafe, "EnterCafe", playNotification: true);
-        TryDoorEdge(toGym, ref _wasTouchingGym, "EnterGym", playNotification: true);
     }
 
     /// <summary>
@@ -192,9 +213,18 @@ public class CampusGrounds : MonoBehaviour
     /// </summary>
     private void TryLoadLibraryEdge()
     {
+        if (_hasExplicitLibraryDoorTrigger)
+            return;
         if (toLibrary == null || !toLibrary)
             return;
         bool touching = ContinuousData.CollidersOverlap2D(toLibrary, playerCollider);
+        if (!_libraryEdgeInitialized)
+        {
+            // If we spawn from Library already inside this collider, don't immediately re-enter Library.
+            _wasTouchingLibrary = touching;
+            _libraryEdgeInitialized = true;
+            return;
+        }
         if (touching && !_wasTouchingLibrary)
         {
             var cd = ContinuousData.instance;
@@ -205,6 +235,56 @@ public class CampusGrounds : MonoBehaviour
             }
         }
         _wasTouchingLibrary = touching;
+    }
+
+    private void TryLoadGymEdge()
+    {
+        if (_hasExplicitGymDoorTrigger)
+            return;
+        if (toGym == null || !toGym)
+            return;
+        bool touching = ContinuousData.CollidersOverlap2D(toGym, playerCollider);
+        if (!_gymEdgeInitialized)
+        {
+            _wasTouchingGymDirect = touching;
+            _gymEdgeInitialized = true;
+            return;
+        }
+        if (touching && !_wasTouchingGymDirect)
+        {
+            var cd = ContinuousData.instance;
+            if (cd != null)
+            {
+                cd.AllowPlayerToMove();
+                cd.LoadScene("Gym");
+            }
+        }
+        _wasTouchingGymDirect = touching;
+    }
+
+    private void TryLoadCafeEdge()
+    {
+        if (_hasExplicitCafeDoorTrigger)
+            return;
+        if (toCafe == null || !toCafe)
+            return;
+        bool touching = ContinuousData.CollidersOverlap2D(toCafe, playerCollider);
+        if (!_cafeEdgeInitialized)
+        {
+            _wasTouchingCafeDirect = touching;
+            _cafeEdgeInitialized = true;
+            return;
+        }
+        if (touching && !_wasTouchingCafeDirect)
+        {
+            var cd = ContinuousData.instance;
+            if (cd != null)
+            {
+                cd.AllowPlayerToMove();
+                cd.LoadScene("Cafe");
+            }
+        }
+        _wasTouchingCafeDirect = touching;
     }
 
     private void TryDoorEdge(Collider2D zone, ref bool wasTouching, string yarnNode, bool playNotification)
